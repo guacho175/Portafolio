@@ -1,0 +1,184 @@
+{
+  "perfil": {
+    "nombre": "Christian Galindez",
+    "rol": "Backend · Ciberseguridad · Automatización",
+    "descripcion_corta": "Estudiante de Ingeniería en Informática enfocado en el desarrollo backend, automatización de procesos y conceptos de ciberseguridad.\nHe aprendido a construir aplicaciones desde cero, conectar APIs, desarrollar bots conversacionales y configurar entornos seguros bajo Linux, siempre buscando aplicar mis conocimientos de forma práctica.",
+    "ubicacion": "📍 La Serena, Chile",
+    "stack": "💼 Stack: Python · Django · Node.js · Linux",
+    "intereses": "⚡ Intereses: Arquitectura Backend · APIs · Ciberseguridad",
+    "disponibilidad": "Buscando Práctica Profesional en TI / Minería",
+    "cv_url": "CV_christian-andres-galindez-lastra (1).pdf"
+  },
+  "stats": [
+    {
+      "k": "3+",
+      "t": "Años como estudiante TI"
+    },
+    {
+      "k": "10+",
+      "t": "Herramientas y APIs"
+    },
+    {
+      "k": "6+",
+      "t": "Proyectos desarrollados"
+    }
+  ],
+  "now": "Desarrollando sistemas backend (Turnero), sitios modulares web con Astro y explorando entornos de laboratorio en Linux.",
+  "busco": "Oportunidades, como una práctica profesional, para seguir aplicando y desarrollando mis habilidades en backend, automatización o infraestructura.",
+  "links": {
+    "linkedin": {
+      "url": "http://www.linkedin.com/in/christian-galindez-337ab5287",
+      "text": "LinkedIn"
+    },
+    "email": {
+      "url": "mailto:galindez175@gmail.com",
+      "text": "Email"
+    },
+    "github": {
+      "url": "https://github.com/ChristianGalindez",
+      "text": "GitHub"
+    }
+  },
+  "proyectos": [
+    {
+      "titulo": "Turnero & WhatsApp Booking Bot",
+      "badge": "Backend + API",
+      "descripcion": "Sistema de gestión de turnos para profesionales con sincronización a Google Calendar. Está integrado con la API de WhatsApp Cloud (Node.js/Express) para agendamientos conversacionales.",
+      "tags": [
+        "Python",
+        "Django REST",
+        "WhatsApp API",
+        "PostgreSQL",
+        "Node.js"
+      ]
+    },
+    {
+      "titulo": "Plataforma Web Modular Base",
+      "badge": "Frontend",
+      "descripcion": "Desarrollo de un sitio web estructurado apoyado en la arquitectura basada en componentes y layouts, con foco en el aislamiento de diseño, organización de directorios y rendimiento.",
+      "tags": [
+        "Astro",
+        "Tailwind CSS",
+        "HTML/JS",
+        "Arquitectura Modular"
+      ]
+    },
+    {
+      "titulo": "Laboratorio de Ciberseguridad e Infraestructura",
+      "badge": "Redes y OS",
+      "descripcion": "Diseño de un entorno virtualizado utilizando máquinas virtuales y redes locales simuladas para realizar auditorías, pruebas aisladas y aprendizaje práctico con sistemas Linux.",
+      "tags": [
+        "Debian",
+        "Kali Linux",
+        "VirtualBox",
+        "Networking",
+        "SSH"
+      ]
+    },
+    {
+      "titulo": "Agente Conversacional con Dialogflow CX",
+      "badge": "IA",
+      "descripcion": "Flujos detallados para un chatbot inteligente centrado en procesamiento de lenguaje natural para guiar a usuarios en un proceso de agendamiento, consumiendo webhooks conectados al backend.",
+      "tags": [
+        "Dialogflow CX",
+        "Google Cloud",
+        "Webhooks"
+      ]
+    },
+    {
+      "titulo": "API de Transformación con IA",
+      "badge": "Servicios API",
+      "descripcion": "Desarrollo de API backend para recibir imágenes por base64 o URL, procesarlas contra modelos de Inteligencia Artificial mediante prompts y entregar la nueva imagen generada.",
+      "tags": [
+        "Backend API",
+        "Integración IA",
+        "IBM Code Engine"
+      ]
+    },
+    {
+      "titulo": "Sistema GIS Interactivo",
+      "badge": "Datos Geográficos",
+      "descripcion": "Despliegue de un proyecto académico para monitorizar información y ubicación de incidentes representados sobre capas cartográficas dinámicas en la web.",
+      "tags": [
+        "Python",
+        "Django",
+        "Bases de Datos GIS"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "categoria": "Backend & Automatización",
+      "items": [
+        "Python",
+        "Django",
+        "Django REST",
+        "Node.js",
+        "Express",
+        "Integración APIs REST"
+      ]
+    },
+    {
+      "categoria": "Infraestructura & OS",
+      "items": [
+        "Linux",
+        "Debian",
+        "Kali Linux",
+        "VirtualBox",
+        "Arquitectura Redes",
+        "SSH",
+        "Git"
+      ]
+    },
+    {
+      "categoria": "Cloud & IA",
+      "items": [
+        "Google Calendar API",
+        "WhatsApp API",
+        "Dialogflow CX",
+        "Google Cloud",
+        "ngrok"
+      ]
+    },
+    {
+      "categoria": "Bases de Datos",
+      "items": [
+        "PostgreSQL",
+        "SQLite",
+        "SQL",
+        "DBeaver"
+      ]
+    },
+    {
+      "categoria": "Frontend & Arquitectura",
+      "items": [
+        "Astro",
+        "Tailwind CSS",
+        "JavaScript",
+        "Diseño Modular",
+        "Documentación Técnica"
+      ]
+    }
+  ],
+  "experiencia": [
+    {
+      "titulo": "Ingeniería en Informática · INACAP (Estudiante)",
+      "fecha": "2023 — Presente",
+      "descripcion": "Especialización enfocada en desarrollo de aplicaciones web, redes de computadoras, backend y aprendizaje práctico en tecnologías actuales y arquitecturas seguras."
+    },
+    {
+      "titulo": "Proyectos de Software Independientes",
+      "fecha": "2024 — Presente",
+      "descripcion": "Creación e integración de sistemas en proyectos reales (Turnero, Bots conversacionales); abarcando desde configuraciones en servidores Linux hasta consumo de APIs y pasarelas de conexión."
+    },
+    {
+      "titulo": "Soporte e Infraestructura · Fundación Educacional Seminario Conciliar",
+      "fecha": "Dic 2022 — Presente",
+      "descripcion": "Colaboración práctica con el mantenimiento de red de la fundación, actualización de terminales y soporte tecnológico general al equipo."
+    }
+  ],
+  "contacto": {
+    "email": "galindez175@gmail.com",
+    "linkedin_path": "/in/christian-galindez-337ab5287"
+  }
+}
