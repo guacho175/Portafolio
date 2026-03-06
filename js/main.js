@@ -43,6 +43,17 @@ function setupUI() {
   // --- Footer year ---
   const yearEl = document.getElementById("year");
   if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // --- Scroll-to-top button ---
+  const scrollTopBtn = document.createElement('button');
+  scrollTopBtn.className = 'scroll-top';
+  scrollTopBtn.setAttribute('aria-label', 'Volver arriba');
+  scrollTopBtn.innerHTML = '&uarr;';
+  document.body.appendChild(scrollTopBtn);
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 300);
+  }, { passive: true });
 }
 
 function setupObserver() {
@@ -59,14 +70,13 @@ function populatePortfolio(data) {
   // --- Hero Section ---
   const heroNameTags = document.querySelectorAll('.hero-name');
   heroNameTags.forEach(el => el.textContent = data.perfil.nombre);
+  const roleSegments = (data.perfil.rol || '').split(/\s*[|·]\s*/).filter(Boolean);
   
   if (document.getElementById('hero-disponibilidad')) document.getElementById('hero-disponibilidad').textContent = data.perfil.disponibilidad;
-  if (document.getElementById('hero-rol-1')) document.getElementById('hero-rol-1').textContent = data.perfil.rol.split('·')[0].trim();
-  if (document.getElementById('hero-rol-sidebar')) document.getElementById('hero-rol-sidebar').textContent = data.perfil.rol;
+  if (document.getElementById('hero-rol-1')) document.getElementById('hero-rol-1').textContent = roleSegments[0] || data.perfil.rol;
   
-  // Format short description using a trick to replace \n with <br/> or keeping as a block
   if (document.getElementById('hero-desc')) {
-      document.getElementById('hero-desc').innerHTML = data.perfil.descripcion_corta.replace(/\n/g, "<br/>");
+      document.getElementById('hero-desc').textContent = data.perfil.descripcion_corta;
   }
 
   if (document.getElementById('meta-ubicacion')) document.getElementById('meta-ubicacion').textContent = data.perfil.ubicacion;
@@ -75,17 +85,23 @@ function populatePortfolio(data) {
 
   if (document.getElementById('btn-cv')) document.getElementById('btn-cv').href = data.perfil.cv_url;
 
+  const sidebarData = data.sidebar || {};
+  if (document.getElementById('sidebar-kicker')) document.getElementById('sidebar-kicker').textContent = sidebarData.kicker || 'Resumen profesional';
+  if (document.getElementById('sidebar-title')) document.getElementById('sidebar-title').textContent = sidebarData.titulo || 'Perfil tecnico orientado a backend';
+  if (document.getElementById('sidebar-summary')) document.getElementById('sidebar-summary').textContent = sidebarData.resumen || '';
+  const focusContainer = document.getElementById('sidebar-focus');
+  if (focusContainer) {
+    focusContainer.innerHTML = (sidebarData.foco || []).map(item => `<span class="focus-pill">${item}</span>`).join('');
+  }
+
   // --- Sidebar Stats & Status ---
   const statsContainer = document.getElementById('sidebar-stats');
   if (statsContainer && data.stats) {
-    statsContainer.innerHTML = '';
-    data.stats.forEach(stat => {
-      statsContainer.innerHTML += `
-        <div class="stat">
-          <div class="k">${stat.k}</div>
-          <div class="t">${stat.t}</div>
-        </div>`;
-    });
+    statsContainer.innerHTML = data.stats.map(stat => `
+      <div class="stat">
+        <div class="k">${stat.k}</div>
+        <div class="t">${stat.t}</div>
+      </div>`).join('');
   }
 
   if (document.getElementById('sidebar-now')) document.getElementById('sidebar-now').textContent = data.now;
@@ -104,20 +120,41 @@ function populatePortfolio(data) {
   const projContainer = document.getElementById('projects-grid');
   if (projContainer && data.proyectos) {
     projContainer.innerHTML = '';
-    data.proyectos.forEach(p => {
+    data.proyectos.forEach((p, i) => {
       const tagsHtml = p.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+      const linksHtml = [
+        p.repo_url ? `<a class="link" href="${p.repo_url}" target="_blank" rel="noopener">Codigo &rarr;</a>` : '',
+        p.demo_url ? `<a class="link" href="${p.demo_url}" target="_blank" rel="noopener">Demo &rarr;</a>` : '',
+      ].filter(Boolean).join('');
       projContainer.innerHTML += `
-        <article class="project reveal">
+        <article class="project reveal" style="--i:${i}" data-tags="${p.tags.join(',')}">
           <div class="top">
             <h3>${p.titulo}</h3>
             <span class="badge">${p.badge}</span>
           </div>
           <p>${p.descripcion}</p>
-          <div class="tags">
-            ${tagsHtml}
-          </div>
+          <div class="tags">${tagsHtml}</div>
+          ${linksHtml ? `<div class="links">${linksHtml}</div>` : ''}
         </article>`;
     });
+
+    const filterBar = document.getElementById('filter-bar');
+    if (filterBar) {
+      const allTags = [...new Set(data.proyectos.flatMap(p => p.tags))];
+      filterBar.innerHTML = `<button class="filter-btn active" data-tag="all">Todos</button>` +
+        allTags.map(tag => `<button class="filter-btn" data-tag="${tag}">${tag}</button>`).join('');
+      filterBar.addEventListener('click', ev => {
+        const btn = ev.target.closest('.filter-btn');
+        if (!btn) return;
+        filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tag = btn.dataset.tag;
+        projContainer.querySelectorAll('.project').forEach(card => {
+          const cardTags = card.dataset.tags.split(',');
+          card.style.display = (tag === 'all' || cardTags.includes(tag)) ? '' : 'none';
+        });
+      });
+    }
   }
 
   // --- Skills ---
@@ -155,27 +192,19 @@ function populatePortfolio(data) {
   // --- Re-trigger Observer for dynamically injected .reveal elements ---
   setupObserver();
 
-  // --- Setup Contact Form Action ---
-  const forms = document.getElementById("contactForm");
-  const finalEmail = data.contacto.email;
-  
-  if (document.getElementById('contact-email-tag')) {
-      document.getElementById('contact-email-tag').textContent = `📧 ${finalEmail}`;
-  }
-  if (document.getElementById('contact-linkedin-tag')) {
-      document.getElementById('contact-linkedin-tag').textContent = `🔗 LinkedIn: ${data.contacto.linkedin_path}`;
-  }
-
-  if (forms) {
-    forms.addEventListener("submit", (ev) => {
-      ev.preventDefault();
-      const name = encodeURIComponent(document.getElementById("name").value.trim());
-      const email = encodeURIComponent(document.getElementById("email").value.trim());
-      const subject = encodeURIComponent(document.getElementById("subject").value.trim());
-      const message = encodeURIComponent(document.getElementById("message").value.trim());
-
-      const body = `Nombre: ${name}%0AEmail: ${email}%0A%0A${message}`;
-      window.location.href = `mailto:${finalEmail}?subject=${subject}&body=${body}`;
-    });
+  // --- Contact Links ---
+  const contactLinksContainer = document.getElementById('contact-links');
+  if (contactLinksContainer) {
+    const contactItems = [
+      { label: 'Email', value: data.contacto.email, url: `mailto:${data.contacto.email}`, external: false },
+      { label: 'LinkedIn', value: data.contacto.linkedin_path, url: data.links.linkedin.url, external: true },
+      { label: 'GitHub', value: data.links.github.url.replace('https://', ''), url: data.links.github.url, external: true },
+    ];
+    contactLinksContainer.innerHTML = contactItems.map((item, i) => `
+      <a class="contact-link-card reveal" style="--i:${i}" href="${item.url}"${item.external ? ' target="_blank" rel="noopener"' : ''}>
+        <span class="cl-label">${item.label}</span>
+        <span class="cl-value">${item.value}</span>
+        <span class="cl-arrow">&rarr;</span>
+      </a>`).join('');
   }
 }

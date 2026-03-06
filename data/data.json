@@ -1,30 +1,40 @@
 {
   "perfil": {
     "nombre": "Christian Galindez",
-    "rol": "Backend · Ciberseguridad · Automatización",
-    "descripcion_corta": "Estudiante de Ingeniería en Informática enfocado en el desarrollo backend, automatización de procesos y conceptos de ciberseguridad.\nHe aprendido a construir aplicaciones desde cero, conectar APIs, desarrollar bots conversacionales y configurar entornos seguros bajo Linux, siempre buscando aplicar mis conocimientos de forma práctica.",
-    "ubicacion": "📍 La Serena, Chile",
-    "stack": "💼 Stack: Python · Django · Node.js · Linux",
-    "intereses": "⚡ Intereses: Arquitectura Backend · APIs · Ciberseguridad",
-    "disponibilidad": "Buscando Práctica Profesional en TI / Minería",
+    "rol": "Backend | Ciberseguridad | Automatizacion",
+    "descripcion_corta": "Estudiante de Ingenieria en Informatica enfocado en backend, automatizacion e integracion de servicios.\nConstruyo APIs, conecto plataformas externas y preparo entornos Linux para convertir ideas en soluciones funcionales.",
+    "ubicacion": "La Serena, Chile",
+    "stack": "Stack: Python | Django | Node.js | Linux",
+    "intereses": "Intereses: Arquitectura backend | APIs | Ciberseguridad aplicada",
+    "disponibilidad": "Disponible para practica profesional y proyectos backend",
     "cv_url": "CV_christian-andres-galindez-lastra (1).pdf"
+  },
+  "sidebar": {
+    "kicker": "Resumen profesional",
+    "titulo": "Desarrollo backend con foco practico y criterio tecnico.",
+    "resumen": "Me enfoco en construir soluciones que integren APIs, automaticen tareas y puedan mantenerse con orden. Disfruto pasar de la idea al sistema funcional, cuidando estructura, despliegue y operacion.",
+    "foco": [
+      "APIs e integraciones",
+      "Automatizacion de procesos",
+      "Linux e infraestructura"
+    ]
   },
   "stats": [
     {
+      "k": "6+",
+      "t": "proyectos construidos"
+    },
+    {
       "k": "3+",
-      "t": "Años como estudiante TI"
+      "t": "anos formandome en TI"
     },
     {
       "k": "10+",
-      "t": "Herramientas y APIs"
-    },
-    {
-      "k": "6+",
-      "t": "Proyectos desarrollados"
+      "t": "herramientas y APIs usadas"
     }
   ],
-  "now": "Desarrollando sistemas backend (Turnero), sitios modulares web con Astro y explorando entornos de laboratorio en Linux.",
-  "busco": "Oportunidades, como una práctica profesional, para seguir aplicando y desarrollando mis habilidades en backend, automatización o infraestructura.",
+  "now": "Construyendo un sistema de turnos con integraciones conversacionales, explorando arquitectura modular con Astro y reforzando practica en entornos Linux.",
+  "busco": "Una practica profesional o rol trainee donde pueda aportar en backend, automatizacion e integracion de servicios desde el primer dia.",
   "links": {
     "linkedin": {
       "url": "http://www.linkedin.com/in/christian-galindez-337ab5287",
@@ -35,103 +45,115 @@
       "text": "Email"
     },
     "github": {
-      "url": "https://github.com/ChristianGalindez",
+      "url": "https://github.com/guacho175",
       "text": "GitHub"
     }
   },
   "proyectos": [
     {
-      "titulo": "Turnero & WhatsApp Booking Bot",
+      "titulo": "Turnero y bot de reservas por WhatsApp",
       "badge": "Backend + API",
-      "descripcion": "Sistema de gestión de turnos para profesionales con sincronización a Google Calendar. Está integrado con la API de WhatsApp Cloud (Node.js/Express) para agendamientos conversacionales.",
+      "descripcion": "Sistema de gestion de turnos para profesionales con sincronizacion a Google Calendar. Incluye integracion con WhatsApp Cloud API para reservas conversacionales.",
       "tags": [
         "Python",
         "Django REST",
         "WhatsApp API",
         "PostgreSQL",
         "Node.js"
-      ]
+      ],
+      "repo_url": "",
+      "demo_url": ""
     },
     {
-      "titulo": "Plataforma Web Modular Base",
+      "titulo": "Plataforma web modular base",
       "badge": "Frontend",
-      "descripcion": "Desarrollo de un sitio web estructurado apoyado en la arquitectura basada en componentes y layouts, con foco en el aislamiento de diseño, organización de directorios y rendimiento.",
+      "descripcion": "Sitio web estructurado con arquitectura por componentes y layouts, pensado para mantener orden visual, escalabilidad y buen rendimiento.",
       "tags": [
         "Astro",
         "Tailwind CSS",
         "HTML/JS",
-        "Arquitectura Modular"
-      ]
+        "Arquitectura modular"
+      ],
+      "repo_url": "",
+      "demo_url": ""
     },
     {
-      "titulo": "Laboratorio de Ciberseguridad e Infraestructura",
+      "titulo": "Laboratorio de ciberseguridad e infraestructura",
       "badge": "Redes y OS",
-      "descripcion": "Diseño de un entorno virtualizado utilizando máquinas virtuales y redes locales simuladas para realizar auditorías, pruebas aisladas y aprendizaje práctico con sistemas Linux.",
+      "descripcion": "Entorno virtualizado con maquinas y redes simuladas para auditorias, pruebas aisladas y practica tecnica con sistemas Linux.",
       "tags": [
         "Debian",
         "Kali Linux",
         "VirtualBox",
         "Networking",
         "SSH"
-      ]
+      ],
+      "repo_url": "",
+      "demo_url": ""
     },
     {
-      "titulo": "Agente Conversacional con Dialogflow CX",
+      "titulo": "Agente conversacional con Dialogflow CX",
       "badge": "IA",
-      "descripcion": "Flujos detallados para un chatbot inteligente centrado en procesamiento de lenguaje natural para guiar a usuarios en un proceso de agendamiento, consumiendo webhooks conectados al backend.",
+      "descripcion": "Flujos conversacionales para guiar agendamientos mediante NLP y webhooks conectados a un backend de reservas.",
       "tags": [
         "Dialogflow CX",
         "Google Cloud",
         "Webhooks"
-      ]
+      ],
+      "repo_url": "",
+      "demo_url": ""
     },
     {
-      "titulo": "API de Transformación con IA",
+      "titulo": "API de transformacion con IA",
       "badge": "Servicios API",
-      "descripcion": "Desarrollo de API backend para recibir imágenes por base64 o URL, procesarlas contra modelos de Inteligencia Artificial mediante prompts y entregar la nueva imagen generada.",
+      "descripcion": "API backend para recibir imagenes por base64 o URL, procesarlas con modelos de IA y devolver una nueva salida generada.",
       "tags": [
         "Backend API",
-        "Integración IA",
+        "Integracion IA",
         "IBM Code Engine"
-      ]
+      ],
+      "repo_url": "",
+      "demo_url": ""
     },
     {
-      "titulo": "Sistema GIS Interactivo",
-      "badge": "Datos Geográficos",
-      "descripcion": "Despliegue de un proyecto académico para monitorizar información y ubicación de incidentes representados sobre capas cartográficas dinámicas en la web.",
+      "titulo": "Sistema GIS interactivo",
+      "badge": "Datos geograficos",
+      "descripcion": "Proyecto academico para visualizar incidentes y ubicaciones sobre capas cartograficas dinamicas en la web.",
       "tags": [
         "Python",
         "Django",
-        "Bases de Datos GIS"
-      ]
+        "Bases de datos GIS"
+      ],
+      "repo_url": "",
+      "demo_url": ""
     }
   ],
   "skills": [
     {
-      "categoria": "Backend & Automatización",
+      "categoria": "Backend y automatizacion",
       "items": [
         "Python",
         "Django",
         "Django REST",
         "Node.js",
         "Express",
-        "Integración APIs REST"
+        "Integracion de APIs REST"
       ]
     },
     {
-      "categoria": "Infraestructura & OS",
+      "categoria": "Infraestructura y sistemas",
       "items": [
         "Linux",
         "Debian",
         "Kali Linux",
         "VirtualBox",
-        "Arquitectura Redes",
+        "Arquitectura de redes",
         "SSH",
         "Git"
       ]
     },
     {
-      "categoria": "Cloud & IA",
+      "categoria": "Cloud e integraciones",
       "items": [
         "Google Calendar API",
         "WhatsApp API",
@@ -141,7 +163,7 @@
       ]
     },
     {
-      "categoria": "Bases de Datos",
+      "categoria": "Bases de datos",
       "items": [
         "PostgreSQL",
         "SQLite",
@@ -150,31 +172,31 @@
       ]
     },
     {
-      "categoria": "Frontend & Arquitectura",
+      "categoria": "Frontend y arquitectura",
       "items": [
         "Astro",
         "Tailwind CSS",
         "JavaScript",
-        "Diseño Modular",
-        "Documentación Técnica"
+        "Diseno modular",
+        "Documentacion tecnica"
       ]
     }
   ],
   "experiencia": [
     {
-      "titulo": "Ingeniería en Informática · INACAP (Estudiante)",
-      "fecha": "2023 — Presente",
-      "descripcion": "Especialización enfocada en desarrollo de aplicaciones web, redes de computadoras, backend y aprendizaje práctico en tecnologías actuales y arquitecturas seguras."
+      "titulo": "Ingenieria en Informatica | INACAP (Estudiante)",
+      "fecha": "2023 - Presente",
+      "descripcion": "Formacion enfocada en desarrollo web, redes, backend y practica continua con tecnologias actuales y arquitecturas seguras."
     },
     {
-      "titulo": "Proyectos de Software Independientes",
-      "fecha": "2024 — Presente",
-      "descripcion": "Creación e integración de sistemas en proyectos reales (Turnero, Bots conversacionales); abarcando desde configuraciones en servidores Linux hasta consumo de APIs y pasarelas de conexión."
+      "titulo": "Proyectos de software independientes",
+      "fecha": "2024 - Presente",
+      "descripcion": "Diseno e integracion de sistemas reales, desde bots conversacionales y turneros hasta despliegues sobre Linux y consumo de APIs."
     },
     {
-      "titulo": "Soporte e Infraestructura · Fundación Educacional Seminario Conciliar",
-      "fecha": "Dic 2022 — Presente",
-      "descripcion": "Colaboración práctica con el mantenimiento de red de la fundación, actualización de terminales y soporte tecnológico general al equipo."
+      "titulo": "Soporte e infraestructura | Fundacion Educacional Seminario Conciliar",
+      "fecha": "Dic 2022 - Presente",
+      "descripcion": "Apoyo en mantenimiento de red, actualizacion de terminales y soporte tecnologico general para la operacion diaria."
     }
   ],
   "contacto": {

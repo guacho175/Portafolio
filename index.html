@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 
 <head>
@@ -12,11 +12,17 @@
   <meta property="og:title" content="Christian Galindez — Portafolio" />
   <meta property="og:description" content="Desarrollador backend, experiencia, proyectos y portafolio." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/og-preview.png" />
+  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f6f8ff" media="(prefers-color-scheme: light)" />
+  <link rel="canonical" href="https://guacho175.github.io" />
+  <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon" />
 
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body data-theme="dark">
+  <a class="skip-link" href="#top">Saltar al contenido</a>
   <div class="bg-grid" aria-hidden="true"></div>
 
   <div class="topbar">
@@ -24,14 +30,13 @@
       <div class="topbar-inner">
         <a class="brand" href="#top" aria-label="Inicio">
           <span class="logo" aria-hidden="true"></span>
-          <span>ChristianGalindez<span style="opacity:.65">.dev</span></span>
+          <span>Christian Galindez<span style="opacity:.65"></span></span>
         </a>
 
         <nav class="nav" aria-label="Secciones">
           <a href="#projects">Proyectos</a>
           <a href="#skills">Skills</a>
           <a href="#experience">Experiencia</a>
-          <a href="#contact">Contacto</a>
         </nav>
 
         <div class="actions">
@@ -51,21 +56,8 @@
             Tema
           </button>
 
-          <a class="btn primary" href="#contact">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 12l7 7 9-15" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-            Hablemos
-          </a>
-        </div>
-      </div>
 
-      <div class="mobile-nav" id="mobileNav" aria-label="Menú móvil">
-        <a href="#projects">Proyectos</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experiencia</a>
-        <a href="#contact">Contacto</a>
+        </div>
       </div>
     </div>
   </div>
@@ -127,41 +119,38 @@
 
           <aside class="card reveal">
             <div class="hero-side">
-              <div class="profile">
-                <div class="avatar" aria-hidden="true"></div>
-                <div>
-                  <div class="name hero-name"></div>
-                  <div class="role" id="hero-rol-sidebar"></div>
-                  <div class="tags">
-                    <span class="tag">Práctica Profesional</span>
-                    <span class="tag">Disposición</span>
-                    <span class="tag">Proactivo</span>
-                  </div>
+              <div class="hero-summary">
+                <span class="section-kicker" id="sidebar-kicker">Resumen profesional</span>
+                <h2 class="hero-side-title" id="sidebar-title"></h2>
+                <p class="hero-side-copy" id="sidebar-summary"></p>
+                <div class="hero-side-tags" id="sidebar-focus"></div>
+              </div>
+
+              <div class="stats stats-wide" id="sidebar-stats"></div>
+
+              <div class="hero-side-panels">
+                <div class="mini">
+                  <strong class="mini-label">Actualmente</strong>
+                  <span id="sidebar-now"></span>
+                </div>
+
+                <div class="mini">
+                  <strong class="mini-label">Siguiente paso</strong>
+                  <span id="sidebar-busco"></span>
                 </div>
               </div>
 
-              <div class="stats" id="sidebar-stats"></div>
-
-              <div class="mini">
-                <strong style="color:var(--text)">Now:</strong>
-                <span id="sidebar-now"></span>
-                <div style="height:10px"></div>
-                <strong style="color:var(--text)">Busco:</strong>
-                <span id="sidebar-busco"></span>
-              </div>
-
-              <div class="mini">
-                <strong style="color:var(--text)">Links rápidos</strong>
-                <div style="height:10px"></div>
-                <div style="display:flex; gap:10px; flex-wrap:wrap">
+              <div class="mini quick-links">
+                <strong class="mini-label">Links directos</strong>
+                <div class="quick-links-row">
                   <a class="link link-linkedin" href="#" target="_blank" rel="noopener">
-                    <span>LinkedIn</span> ↗
+                    <span>LinkedIn</span> &rarr;
                   </a>
                   <a class="link link-email" href="#">
-                    <span>Email</span> ↗
+                    <span>Email</span> &rarr;
                   </a>
                   <a class="link link-github" href="#" target="_blank" rel="noopener">
-                    <span>GitHub</span> ↗
+                    <span>GitHub</span> &rarr;
                   </a>
                 </div>
               </div>
@@ -183,6 +172,7 @@
           <span class="pill">Proyectos destacados</span>
         </div>
 
+        <div class="filter-bar" id="filter-bar"></div>
         <div class="grid" id="projects-grid"></div>
       </div>
     </section>
@@ -224,38 +214,10 @@
             <h2>Contacto</h2>
             <p class="section-desc">¿Tienes una idea o un proyecto? Escríbeme y lo vemos.</p>
           </div>
-          <span class="pill">El formulario usa mailto (gratis).</span>
+          <span class="pill">Disponible para contacto</span>
         </div>
 
-        <div class="contact-card reveal">
-          <div class="tags" style="margin:0 0 8px">
-            <span class="tag" id="contact-email-tag"></span>
-            <span class="tag" id="contact-linkedin-tag"></span>
-          </div>
-
-          <form id="contactForm">
-            <div class="row">
-              <input id="name" name="name" type="text" placeholder="Tu nombre" required />
-              <input id="email" name="email" type="email" placeholder="Tu email" required />
-            </div>
-            <input id="subject" name="subject" type="text" placeholder="Asunto" required />
-            <textarea id="message" name="message" placeholder="Mensaje" required></textarea>
-
-            <button class="btn primary" type="submit">
-              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                <path d="M22 2l-7 20-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-              </svg>
-              Enviar
-            </button>
-
-            <p class="fine">
-              Nota: Este formulario abre tu cliente de correo (no guarda datos en servidor). Si quieres un formulario
-              “real”,
-              puedes conectar gratis a Formspree/Netlify Forms/Firebase (más adelante).
-            </p>
-          </form>
-        </div>
+        <div class="contact-links" id="contact-links"></div>
       </div>
     </section>
 
