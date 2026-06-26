@@ -1003,7 +1003,7 @@ pre {
   display: flex;
   width: max-content;
   padding: 12px 0;
-  animation: marquee-scroll 48s linear infinite;
+  animation: marquee-scroll 120s linear infinite;
 }
 
 .tech-marquee:hover .marquee-track {
