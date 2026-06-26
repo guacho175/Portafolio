@@ -5,232 +5,247 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description"
-    content="Portafolio de Christian Galindez — desarrollador enfocado en backend, análisis de datos y estudiante de Ingeniería en Informática." />
-  <title>Christian Galindez — Portafolio</title>
+    content="Portafolio tecnico de Christian Galindez: backend, APIs, automatizacion, Linux e integraciones." />
+  <title>Christian Galindez | Backend, APIs e Integraciones</title>
 
-  <!-- Open Graph (preview al compartir) -->
-  <meta property="og:title" content="Christian Galindez — Portafolio" />
-  <meta property="og:description" content="Desarrollador backend, experiencia, proyectos y portafolio." />
+  <meta property="og:title" content="Christian Galindez | Backend, APIs e Integraciones" />
+  <meta property="og:description"
+    content="Portafolio tecnico con proyectos backend, automatizacion, integraciones y experiencia en infraestructura." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/img/og-preview.png" />
-  <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#f6f8ff" media="(prefers-color-scheme: light)" />
+  <meta property="og:image" content="assets/img/og-preview.svg" />
+  <meta name="theme-color" content="#071A3D" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)" />
   <link rel="canonical" href="https://guacho175.github.io" />
-  <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
 
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body data-theme="dark">
-  <a class="skip-link" href="#top">Saltar al contenido</a>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
   <div class="bg-grid" aria-hidden="true"></div>
 
-  <div class="topbar">
+  <header class="topbar">
     <div class="container">
       <div class="topbar-inner">
-        <a class="brand" href="#top" aria-label="Inicio">
-          <span class="logo" aria-hidden="true"></span>
-          <span>Christian Galindez<span style="opacity:.65"></span></span>
+        <a class="brand" href="#top" aria-label="Ir al inicio">
+          <span class="logo" aria-hidden="true">CG</span>
+          <span>
+            <strong>Christian Galindez</strong>
+            <small>Backend developer</small>
+          </span>
         </a>
 
-        <nav class="nav" aria-label="Secciones">
+        <nav class="nav" aria-label="Secciones principales">
+          <a href="#case">Caso</a>
+          <a href="#orbynex">Orbynex</a>
           <a href="#projects">Proyectos</a>
-          <a href="#skills">Skills</a>
+          <a href="#skills">Stack</a>
           <a href="#experience">Experiencia</a>
+          <a href="#contact">Contacto</a>
         </nav>
 
         <div class="actions">
-          <button class="btn menu-btn" id="menuBtn" type="button" aria-label="Abrir menú">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-            </svg>
+          <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" aria-expanded="false"
+            aria-controls="mobileNav">
+            <span aria-hidden="true"></span>
           </button>
-
-          <button class="btn" id="themeBtn" type="button" aria-label="Cambiar tema">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 18a6 6 0 1 1 0-12v12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-              <path
-                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-            </svg>
+          <button class="btn theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema">
+            <span class="theme-dot" aria-hidden="true"></span>
             Tema
           </button>
-
-
         </div>
       </div>
+
+      <nav class="mobile-nav" id="mobileNav" aria-label="Secciones moviles">
+        <a href="#case">Caso</a>
+        <a href="#orbynex">Orbynex</a>
+        <a href="#projects">Proyectos</a>
+        <a href="#skills">Stack</a>
+        <a href="#experience">Experiencia</a>
+        <a href="#contact">Contacto</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <main id="top">
-    <header class="hero">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="card reveal">
-            <div class="hero-main">
-              <span class="pill">
-                <span style="width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block"></span>
-                <span id="hero-disponibilidad"></span>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-layout">
+        <div class="hero-copy reveal">
+          <span class="status-pill">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="hero-disponibilidad"></span>
+          </span>
+
+          <p class="eyebrow">Portafolio tecnico</p>
+          <h1 id="hero-title"><span id="hero-headline"></span></h1>
+          <p class="hero-lead" id="hero-desc"></p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#case">Ver caso destacado</a>
+            <a class="btn" id="btn-cv" href="#" target="_blank" rel="noopener">Descargar CV</a>
+            <a class="btn quiet link-email" href="#">Contactar</a>
+          </div>
+
+          <div class="hero-tags" id="hero-tags"></div>
+        </div>
+
+        <div class="workbench reveal" aria-label="Vista tecnica de integraciones backend">
+          <div class="workbench-head">
+            <div>
+              <span class="window-dots" aria-hidden="true">
+                <i></i><i></i><i></i>
               </span>
+              <strong>backend-workbench</strong>
+            </div>
+            <span class="live-badge">online</span>
+          </div>
 
-              <h1>
-                Hola, soy <span class="gradient-text hero-name"></span> 👋
-                <br />
-                <span style="opacity:.92">Desarrollador</span> <span class="gradient-text" id="hero-rol-1"></span>
-              </h1>
+          <div class="workbench-grid">
+            <div class="api-panel">
+              <div class="panel-label">API Gateway</div>
+              <div class="request-line"><span>POST</span> /api/turnos/reservar</div>
+              <pre>{
+  "canal": "whatsapp",
+  "servicio": "agenda",
+  "estado": "sincronizado"
+}</pre>
+            </div>
 
-              <p id="hero-desc"></p>
+            <div class="phone-panel">
+              <div class="panel-label">Flujo conversacional</div>
+              <div class="chat-row inbound">Hola, quiero reservar una hora</div>
+              <div class="chat-row outbound">Tengo disponibilidad para manana a las 10:30</div>
+              <div class="chat-row inbound">Confirmo</div>
+            </div>
 
-              <div class="hero-cta">
-                <a class="btn primary" href="#projects">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M8 17l4 4 4-4M12 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                  </svg>
-                  Ver proyectos
-                </a>
+            <div class="sync-panel">
+              <div class="panel-label">Pipeline</div>
+              <div class="sync-step"><span>WhatsApp</span><strong>entrada</strong></div>
+              <div class="sync-step"><span>Django REST</span><strong>validacion</strong></div>
+              <div class="sync-step"><span>PostgreSQL</span><strong>registro</strong></div>
+              <div class="sync-step"><span>Calendar</span><strong>evento</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                <a class="btn" id="btn-cv" href="#" target="_blank" rel="noopener">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 3v12m0 0l4-4m-4 4l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                      stroke-linejoin="round" />
-                    <path d="M4 21h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                  </svg>
-                  Descargar CV
-                </a>
+    <section class="proof-strip" aria-label="Indicadores principales">
+      <div class="container proof-grid" id="proof-stats"></div>
+    </section>
 
-                <a class="btn link-github" href="#" target="_blank" rel="noopener">
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M9 19c-4 1.5-4-2.5-5-3m10 6v-3.5c0-1 .1-1.4-.5-2 1.7-.2 3.5-.8 3.5-4A3.1 3.1 0 0 0 16 7.5 2.9 2.9 0 0 0 16 5s-.7-.2-2 1a6.7 6.7 0 0 0-4 0c-1.3-1.2-2-1-2-1a2.9 2.9 0 0 0 0 2.5A3.1 3.1 0 0 0 7 10c0 3.2 1.8 3.8 3.5 4-.6.6-.6 1.2-.5 2V22"
-                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  GitHub
-                </a>
-              </div>
-
-              <div class="hero-meta">
-                <span class="pill" id="meta-ubicacion"></span>
-                <span class="pill" id="meta-stack"></span>
-                <span class="pill" id="meta-intereses"></span>
-              </div>
+    <section class="section-block venture-section" id="orbynex" aria-labelledby="orbynex-heading">
+      <div class="container">
+        <div class="venture-panel reveal">
+          <div class="venture-copy">
+            <p class="eyebrow">Marca propia</p>
+            <h2 id="orbynex-heading"><span id="venture-name"></span></h2>
+            <p class="section-desc" id="venture-summary"></p>
+            <div class="venture-actions">
+              <a class="btn primary" id="venture-link" href="#" target="_blank" rel="noopener">Ver Orbynex</a>
+              <a class="btn quiet" href="#projects">Ver proyectos aplicados</a>
             </div>
           </div>
 
-          <aside class="card reveal">
-            <div class="hero-side">
-              <div class="hero-summary">
-                <span class="section-kicker" id="sidebar-kicker">Resumen profesional</span>
-                <h2 class="hero-side-title" id="sidebar-title"></h2>
-                <p class="hero-side-copy" id="sidebar-summary"></p>
-                <div class="hero-side-tags" id="sidebar-focus"></div>
-              </div>
-
-              <div class="stats stats-wide" id="sidebar-stats"></div>
-
-              <div class="hero-side-panels">
-                <div class="mini">
-                  <strong class="mini-label">Actualmente</strong>
-                  <span id="sidebar-now"></span>
-                </div>
-
-                <div class="mini">
-                  <strong class="mini-label">Siguiente paso</strong>
-                  <span id="sidebar-busco"></span>
-                </div>
-              </div>
-
-              <div class="mini quick-links">
-                <strong class="mini-label">Links directos</strong>
-                <div class="quick-links-row">
-                  <a class="link link-linkedin" href="#" target="_blank" rel="noopener">
-                    <span>LinkedIn</span> &rarr;
-                  </a>
-                  <a class="link link-email" href="#">
-                    <span>Email</span> &rarr;
-                  </a>
-                  <a class="link link-github" href="#" target="_blank" rel="noopener">
-                    <span>GitHub</span> &rarr;
-                  </a>
-                </div>
-              </div>
-
-            </div>
-          </aside>
+          <div class="venture-services" id="venture-services"></div>
         </div>
-      </div>
-    </header>
-
-    <section id="projects">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Proyectos</h2>
-            <p class="section-desc">Selección de proyectos académicos y desarrollos personales enfocados en backend y
-              automatización.</p>
-          </div>
-          <span class="pill">Proyectos destacados</span>
-        </div>
-
-        <div class="filter-bar" id="filter-bar"></div>
-        <div class="grid" id="projects-grid"></div>
       </div>
     </section>
 
-    <section id="skills">
+    <section class="section-block case-section" id="case" aria-labelledby="case-heading">
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Skills</h2>
-            <p class="section-desc">Tecnologías y herramientas que domino para resolver problemas de negocio e
-              ingeniería.</p>
+            <p class="eyebrow">Proyecto bandera</p>
+            <h2 id="case-heading">Caso de estudio</h2>
           </div>
-          <span class="pill">Stack Tecnológico</span>
+          <a class="section-link" href="#contact">Disponible para pega backend y clientes</a>
         </div>
 
-        <div class="grid" id="skills-grid"></div>
+        <div class="case-layout">
+          <div class="case-copy reveal">
+            <span class="badge" id="case-badge"></span>
+            <h3 id="case-title"></h3>
+            <p id="case-summary"></p>
+            <div class="case-points" id="case-results"></div>
+          </div>
+
+          <div class="case-board reveal" id="case-board"></div>
+        </div>
       </div>
     </section>
 
-    <section id="experience">
+    <section class="section-block" id="projects" aria-labelledby="projects-heading">
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Experiencia y Formación</h2>
-            <p class="section-desc">Trayectoria profesional y académica enfocada en soporte y desarrollo tecnológico.
-            </p>
+            <p class="eyebrow">Trabajo aplicado</p>
+            <h2 id="projects-heading">Proyectos</h2>
+            <p class="section-desc">Una seleccion enfocada en backend, integraciones, automatizacion e infraestructura.</p>
           </div>
-          <span class="pill">INACAP & Laboral</span>
+          <span class="pill">Tecnologias en movimiento</span>
         </div>
 
-        <div class="timeline" id="experience-timeline"></div>
+        <div class="tech-marquee" id="filter-bar" aria-label="Tecnologias usadas en proyectos"></div>
+        <div class="projects-grid" id="projects-grid"></div>
       </div>
     </section>
 
-    <section id="contact">
+    <section class="section-block stack-section" id="skills" aria-labelledby="skills-heading">
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Contacto</h2>
-            <p class="section-desc">¿Tienes una idea o un proyecto? Escríbeme y lo vemos.</p>
+            <p class="eyebrow">Stack y criterio tecnico</p>
+            <h2 id="skills-heading">Capacidades</h2>
+            <p class="section-desc">Herramientas que uso para construir, integrar, desplegar y mantener soluciones.</p>
           </div>
-          <span class="pill">Disponible para contacto</span>
         </div>
 
-        <div class="contact-links" id="contact-links"></div>
+        <div class="capability-grid" id="skills-grid"></div>
+      </div>
+    </section>
+
+    <section class="section-block" id="experience" aria-labelledby="experience-heading">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Base profesional</p>
+            <h2 id="experience-heading">Experiencia y formacion</h2>
+            <p class="section-desc">Trayectoria combinando estudios, proyectos propios y soporte tecnologico real.</p>
+          </div>
+        </div>
+
+        <div class="experience-board" id="experience-timeline"></div>
+      </div>
+    </section>
+
+    <section class="section-block contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div>
+            <p class="eyebrow">Contacto directo</p>
+            <h2 id="contact-heading">Conversemos sobre backend, automatizacion o clientes</h2>
+            <p class="section-desc" id="contact-pitch"></p>
+          </div>
+
+          <div class="contact-actions">
+            <a class="btn primary link-email" href="#">Enviar email</a>
+            <button class="btn" id="copy-email" type="button">Copiar email</button>
+            <a class="btn quiet link-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn quiet link-github" href="#" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <footer>
-      <div class="container">
-        <div class="footer-inner">
-          <div>© <span id="year"></span> Christian Galindez. Hecho con HTML/CSS/JS.</div>
-          <div style="display:flex; gap:12px; flex-wrap:wrap">
-            <a class="pill" href="#top">↑ Arriba</a>
-            <a class="pill link-github" href="#" target="_blank" rel="noopener">GitHub</a>
-            <a class="pill link-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
+      <div class="container footer-inner">
+        <div>
+          <strong>Christian Galindez</strong>
+          <span>&copy; <span id="year"></span>. HTML, CSS y JavaScript.</span>
         </div>
+        <a class="section-link" href="#top">Volver arriba</a>
       </div>
     </footer>
   </main>

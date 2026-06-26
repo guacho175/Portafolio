@@ -1,40 +1,95 @@
 {
   "perfil": {
     "nombre": "Christian Galindez",
-    "rol": "Backend | Ciberseguridad | Automatizacion",
-    "descripcion_corta": "Estudiante de Ingenieria en Informatica enfocado en backend, automatizacion e integracion de servicios.\nConstruyo APIs, conecto plataformas externas y preparo entornos Linux para convertir ideas en soluciones funcionales.",
+    "rol": "Backend | Automatizacion | Soluciones web",
+    "headline": "Backend, automatizacion y productos web para negocios que necesitan operar mejor.",
+    "descripcion_corta": "Desarrollador enfocado en construir servicios backend, productos web, integraciones y flujos automatizados.\nTrabajo con Python, Django REST, React, Next.js, Node.js y Linux para pasar de una idea a un sistema funcional, documentado y mantenible.",
     "ubicacion": "La Serena, Chile",
-    "stack": "Stack: Python | Django | Node.js | Linux",
-    "intereses": "Intereses: Arquitectura backend | APIs | Ciberseguridad aplicada",
-    "disponibilidad": "Disponible para practica profesional y proyectos backend",
-    "cv_url": "CV_christian-andres-galindez-lastra (1).pdf"
-  },
-  "sidebar": {
-    "kicker": "Resumen profesional",
-    "titulo": "Desarrollo backend con foco practico y criterio tecnico.",
-    "resumen": "Me enfoco en construir soluciones que integren APIs, automaticen tareas y puedan mantenerse con orden. Disfruto pasar de la idea al sistema funcional, cuidando estructura, despliegue y operacion.",
-    "foco": [
-      "APIs e integraciones",
-      "Automatizacion de procesos",
-      "Linux e infraestructura"
+    "stack": "Python | Django REST | Node.js | Linux",
+    "intereses": "APIs externas | Automatizacion | Ciberseguridad aplicada",
+    "disponibilidad": "Abierto a roles backend, proyectos freelance y clientes Orbynex",
+    "cv_url": "CV_christian-andres-galindez-lastra (1).pdf",
+    "hero_tags": [
+      "La Serena, Chile",
+      "Python / Django REST / Node.js",
+      "React / Next.js / Astro",
+      "APIs, bots, SaaS e integraciones",
+      "Clientes, automatizacion y sistemas web"
     ]
   },
   "stats": [
     {
-      "k": "6+",
-      "t": "proyectos construidos"
+      "k": "10+",
+      "t": "proyectos construidos entre backend, productos web, integraciones e infraestructura"
     },
     {
       "k": "3+",
-      "t": "anos formandome en TI"
+      "t": "anos formandome en desarrollo, redes y soporte tecnologico"
     },
     {
-      "k": "10+",
-      "t": "herramientas y APIs usadas"
+      "k": "65+",
+      "t": "tecnologias, lenguajes, APIs, herramientas y conceptos aplicados en proyectos reales y laboratorios"
     }
   ],
-  "now": "Construyendo un sistema de turnos con integraciones conversacionales, explorando arquitectura modular con Astro y reforzando practica en entornos Linux.",
-  "busco": "Una practica profesional o rol trainee donde pueda aportar en backend, automatizacion e integracion de servicios desde el primer dia.",
+  "venture": {
+    "nombre": "orbynex.digital",
+    "url": "https://orbynexdigital.cl/",
+    "resumen": "Mi marca de soluciones web y automatizacion digital para negocios pequenos: landing pages, integraciones, flujos entre herramientas y documentacion clara para que lo implementado se pueda mantener.",
+    "servicios": [
+      {
+        "titulo": "Landing pages",
+        "descripcion": "Paginas enfocadas en explicar servicios, captar contactos y generar confianza desde el primer clic."
+      },
+      {
+        "titulo": "Flujos inteligentes",
+        "descripcion": "Automatizaciones entre formularios, planillas, correos y herramientas para reducir trabajo manual."
+      },
+      {
+        "titulo": "Integracion de herramientas",
+        "descripcion": "Conexion de plataformas mediante APIs y webhooks para evitar datos duplicados y errores operativos."
+      },
+      {
+        "titulo": "Documentacion y soporte",
+        "descripcion": "Entregas ordenadas para que el negocio entienda como usar, revisar y mantener la solucion."
+      }
+    ]
+  },
+  "case_study": {
+    "badge": "Backend + WhatsApp + Calendar",
+    "titulo": "Turnero con reservas conversacionales por WhatsApp",
+    "resumen": "Sistema para gestionar disponibilidad, reservas y sincronizacion con Google Calendar usando un backend modular y una experiencia conversacional conectada a WhatsApp Cloud API.",
+    "resultados": [
+      "Convierte mensajes de WhatsApp en reservas estructuradas.",
+      "Centraliza disponibilidad, confirmacion y registro de turnos.",
+      "Deja una base clara para crecer hacia panel administrativo, recordatorios y reportes."
+    ],
+    "flujo": [
+      {
+        "label": "WhatsApp Cloud API",
+        "detail": "Recibe la conversacion y captura la intencion de reserva."
+      },
+      {
+        "label": "Backend Django REST",
+        "detail": "Valida horarios, servicios y reglas antes de confirmar."
+      },
+      {
+        "label": "PostgreSQL",
+        "detail": "Guarda reservas, clientes, estados y trazabilidad."
+      },
+      {
+        "label": "Google Calendar",
+        "detail": "Sincroniza el evento para evitar dobles reservas."
+      }
+    ],
+    "stack": [
+      "Python",
+      "Django REST",
+      "PostgreSQL",
+      "WhatsApp API",
+      "Google Calendar API",
+      "Node.js"
+    ]
+  },
   "links": {
     "linkedin": {
       "url": "http://www.linkedin.com/in/christian-galindez-337ab5287",
@@ -51,15 +106,163 @@
   },
   "proyectos": [
     {
+      "titulo": "AgendaPro Orbynex",
+      "badge": "SaaS salud",
+      "estado": "Producto web",
+      "descripcion": "Software multi-tenant para profesionales de salud y clinicas pequenas. Centraliza pacientes, citas, disponibilidad, reservas online y gestion por roles.",
+      "impacto": "Incluye reserva publica, aislamiento de datos por organizacion, prevencion de solapamientos y reportes exportables en PDF/Excel.",
+      "visual": "saas",
+      "visual_labels": [
+        "Multi-tenant",
+        "RLS / roles",
+        "PDF + Excel"
+      ],
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Supabase",
+        "PostgreSQL",
+        "RLS",
+        "SaaS",
+        "PDF",
+        "Excel",
+        "Google OAuth",
+        "Resend",
+        "Mercado Pago",
+        "CSV",
+        "Roles"
+      ],
+      "repo_url": "",
+      "demo_url": "https://agendapro.orbynexdigital.cl/"
+    },
+    {
+      "titulo": "orbynex.digital",
+      "badge": "Marca propia",
+      "estado": "Soluciones web",
+      "descripcion": "Landing comercial para ofrecer automatizacion digital, sitios web, integraciones y flujos practicos para negocios pequenos.",
+      "impacto": "Convierte mi oferta tecnica en una presencia comercial clara, con servicios, proceso, planes y contacto directo por WhatsApp.",
+      "visual": "orbynex",
+      "visual_labels": [
+        "Landing pages",
+        "Automatizacion",
+        "APIs + webhooks"
+      ],
+      "tags": [
+        "Landing pages",
+        "Automatizacion",
+        "Integraciones",
+        "SEO",
+        "WhatsApp",
+        "Calendly",
+        "ManyChat",
+        "Metricool",
+        "Meta Business Suite"
+      ],
+      "repo_url": "",
+      "demo_url": "https://orbynexdigital.cl/"
+    },
+    {
+      "titulo": "DOS27 Studio Publicitario",
+      "badge": "Cliente web",
+      "estado": "Landing comercial",
+      "descripcion": "Sitio para estudio publicitario enfocado en diseno grafico, imprenta, branding, material corporativo, marketing digital y paginas web.",
+      "impacto": "Presenta servicios, portafolio visual, proceso, contacto por WhatsApp y una identidad grafica de alto contraste para venta directa.",
+      "visual": "cliente",
+      "visual_labels": [
+        "React SPA",
+        "Servicios + portfolio",
+        "WhatsApp CTA"
+      ],
+      "tags": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Framer Motion",
+        "SEO",
+        "Responsive",
+        "WhatsApp",
+        "Diseno grafico",
+        "Branding",
+        "Marketing digital"
+      ],
+      "repo_url": "",
+      "demo_url": "https://dos27.orbynexdigital.cl/"
+    },
+    {
+      "titulo": "Smart Feed Reporter",
+      "badge": "Dashboard IA",
+      "estado": "Dashboard de reportes",
+      "descripcion": "Aplicacion de reporteria para analizar, ordenar y presentar informacion de feed/contenido en una experiencia tipo dashboard.",
+      "impacto": "Organiza datos de contenido en una vista clara para facilitar seguimiento, analisis y toma de decisiones.",
+      "visual": "dashboard",
+      "visual_labels": [
+        "Python + React",
+        "Reporter",
+        "Dashboard"
+      ],
+      "tags": [
+        "Python",
+        "React",
+        "Vite",
+        "Dashboard",
+        "Analisis de datos",
+        "API"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "NotiWilson",
+      "badge": "Bot + dashboard",
+      "estado": "Demo activa",
+      "descripcion": "Dashboard del agente de reportes tecnologicos: recopila noticias de IA, Cloud y eventos, las resume/traduce con IA y prepara entregas por Telegram.",
+      "impacto": "Incluye panel de reportes, historial, metricas, configuracion del bot y automatizacion de envios a las 08:00 y 18:00 hora de Chile.",
+      "visual": "notiwilson",
+      "visual_labels": [
+        "AI summaries",
+        "Telegram reports",
+        "Metrics dashboard"
+      ],
+      "tags": [
+        "React",
+        "TypeScript",
+        "TanStack Router",
+        "shadcn/ui",
+        "Recharts",
+        "Telegram Bot",
+        "IA",
+        "Dashboard",
+        "Gemini API",
+        "RSS",
+        "Supabase",
+        "Vercel",
+        "SHA256"
+      ],
+      "repo_url": "",
+      "demo_url": "https://notiwilson.lovable.app/"
+    },
+    {
       "titulo": "Turnero y bot de reservas por WhatsApp",
       "badge": "Backend + API",
-      "descripcion": "Sistema de gestion de turnos para profesionales con sincronizacion a Google Calendar. Incluye integracion con WhatsApp Cloud API para reservas conversacionales.",
+      "estado": "Proyecto bandera",
+      "descripcion": "Sistema de gestion de turnos para profesionales con sincronizacion a Google Calendar e integracion con WhatsApp Cloud API.",
+      "impacto": "Resuelve agenda, confirmacion y registro desde un flujo conversacional conectado al backend.",
+      "visual": "reservas",
+      "visual_labels": [
+        "POST /api/turnos",
+        "WhatsApp -> Django",
+        "Calendar synced"
+      ],
       "tags": [
         "Python",
         "Django REST",
         "WhatsApp API",
         "PostgreSQL",
-        "Node.js"
+        "Node.js",
+        "Express",
+        "Webhooks",
+        "ngrok"
       ],
       "repo_url": "",
       "demo_url": ""
@@ -67,7 +270,15 @@
     {
       "titulo": "Plataforma web modular base",
       "badge": "Frontend",
-      "descripcion": "Sitio web estructurado con arquitectura por componentes y layouts, pensado para mantener orden visual, escalabilidad y buen rendimiento.",
+      "estado": "Arquitectura web",
+      "descripcion": "Sitio estructurado con componentes, layouts y criterios de escalabilidad visual para mantener orden y rendimiento.",
+      "impacto": "Base reutilizable para proyectos donde el contenido debe crecer sin perder claridad.",
+      "visual": "frontend",
+      "visual_labels": [
+        "Layout",
+        "Componentes",
+        "SEO / performance"
+      ],
       "tags": [
         "Astro",
         "Tailwind CSS",
@@ -80,7 +291,15 @@
     {
       "titulo": "Laboratorio de ciberseguridad e infraestructura",
       "badge": "Redes y OS",
+      "estado": "Laboratorio tecnico",
       "descripcion": "Entorno virtualizado con maquinas y redes simuladas para auditorias, pruebas aisladas y practica tecnica con sistemas Linux.",
+      "impacto": "Permite practicar redes, hardening, SSH y analisis en un ambiente controlado.",
+      "visual": "infra",
+      "visual_labels": [
+        "Debian host",
+        "Kali lab",
+        "SSH / networking"
+      ],
       "tags": [
         "Debian",
         "Kali Linux",
@@ -94,7 +313,15 @@
     {
       "titulo": "Agente conversacional con Dialogflow CX",
       "badge": "IA",
+      "estado": "Integracion IA",
       "descripcion": "Flujos conversacionales para guiar agendamientos mediante NLP y webhooks conectados a un backend de reservas.",
+      "impacto": "Ordena la conversacion y prepara datos limpios para el backend.",
+      "visual": "ai",
+      "visual_labels": [
+        "Intent detectado",
+        "Webhook",
+        "Reserva guiada"
+      ],
       "tags": [
         "Dialogflow CX",
         "Google Cloud",
@@ -106,7 +333,15 @@
     {
       "titulo": "API de transformacion con IA",
       "badge": "Servicios API",
+      "estado": "Servicio API",
       "descripcion": "API backend para recibir imagenes por base64 o URL, procesarlas con modelos de IA y devolver una nueva salida generada.",
+      "impacto": "Expone procesamiento con IA como servicio consumible por otros sistemas.",
+      "visual": "api",
+      "visual_labels": [
+        "base64 / URL",
+        "AI model",
+        "JSON response"
+      ],
       "tags": [
         "Backend API",
         "Integracion IA",
@@ -118,11 +353,165 @@
     {
       "titulo": "Sistema GIS interactivo",
       "badge": "Datos geograficos",
+      "estado": "Proyecto academico",
       "descripcion": "Proyecto academico para visualizar incidentes y ubicaciones sobre capas cartograficas dinamicas en la web.",
+      "impacto": "Convierte datos geograficos en una interfaz consultable para analisis visual.",
+      "visual": "gis",
+      "visual_labels": [
+        "Capas GIS",
+        "Django",
+        "Mapa interactivo"
+      ],
       "tags": [
         "Python",
         "Django",
-        "Bases de datos GIS"
+        "Bases de datos GIS",
+        "Leaflet.js",
+        "Geolocalizacion",
+        "Nominatim",
+        "PostgreSQL",
+        "SQLite"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "Alpha Docere / Practica profesional",
+      "badge": "PHP + soporte TI",
+      "estado": "Practica completada",
+      "descripcion": "Trabajo aplicado en sitio institucional, soporte tecnologico, documentacion tecnica y automatizacion basica de atencion.",
+      "impacto": "Refuerza experiencia en entorno real con requerimientos, soporte a usuarios, mantenimiento web, PHP, Java, chatbot y documentacion.",
+      "visual": "practice",
+      "visual_labels": [
+        "PHP",
+        "Java chatbot",
+        "Soporte TI"
+      ],
+      "tags": [
+        "PHP",
+        "Java",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Chatbot",
+        "Soporte TI",
+        "Documentacion tecnica",
+        "Gestion de incidentes"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "Tu Barrio Limpio / Microbasurales",
+      "badge": "Django + GIS",
+      "estado": "Proyecto academico avanzado",
+      "descripcion": "Sistema web para denuncias, monitoreo territorial y gestion de microbasurales con roles, mapas, API REST, auditoria y controles de seguridad.",
+      "impacto": "Integra geolocalizacion, reportabilidad, estados de atencion, roles operativos y criterios de auditoria COBIT/OWASP para mejorar trazabilidad.",
+      "visual": "gis",
+      "visual_labels": [
+        "Django 5",
+        "GIS + Leaflet",
+        "COBIT / OWASP"
+      ],
+      "tags": [
+        "Python",
+        "Django",
+        "Django REST",
+        "Bootstrap 5",
+        "Leaflet.js",
+        "JWT",
+        "PostgreSQL",
+        "SQLite",
+        "GIS",
+        "Geolocalizacion",
+        "Nominatim",
+        "Power BI",
+        "PythonAnywhere",
+        "AWS EC2",
+        "AWS RDS",
+        "AWS S3",
+        "Nginx",
+        "Gunicorn",
+        "Cloudflare",
+        "COBIT",
+        "OWASP"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "GRAVO.cl / E-commerce",
+      "badge": "WordPress + tienda",
+      "estado": "Sitio comercial",
+      "descripcion": "Rediseno, mantencion y soporte de sitio e-commerce sobre WordPress, orientado a presencia comercial, catalogo, pagos y operacion web.",
+      "impacto": "Trabajo practico con administracion WordPress, edicion visual, hosting, SSL, migracion, contenido, tienda y soporte operativo.",
+      "visual": "ecommerce",
+      "visual_labels": [
+        "WordPress",
+        "WooCommerce",
+        "Webpay"
+      ],
+      "tags": [
+        "WordPress",
+        "Divi Builder",
+        "Elementor",
+        "WooCommerce",
+        "PHP",
+        "MySQL",
+        "Transbank",
+        "Webpay",
+        "cPanel",
+        "SSL",
+        "SMTP",
+        "SEO"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "Brujula Digital / Totem IA",
+      "badge": "Proyecto academico",
+      "estado": "Tesis / prototipo",
+      "descripcion": "Sistema tipo totem para orientar usuarios mediante interfaz web, backend, base de datos y apoyo de IA en el flujo de atencion.",
+      "impacto": "Combina experiencia interactiva, backend, datos y despliegue cloud para resolver orientacion automatizada en un contexto presencial.",
+      "visual": "totem",
+      "visual_labels": [
+        "React",
+        "Node.js",
+        "AWS"
+      ],
+      "tags": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "AWS",
+        "IA",
+        "Chatbot",
+        "Arquitectura cliente-servidor",
+        "CRUD"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "Kreative",
+      "badge": "PHP + MySQL",
+      "estado": "Levantamiento local",
+      "descripcion": "Proyecto web trabajado en entorno local con PHP, MySQL y Composer para revisar configuracion, dependencias y ejecucion.",
+      "impacto": "Refuerza experiencia con stack PHP tradicional, base de datos local, gestor de dependencias y ambiente XAMPP/phpMyAdmin.",
+      "visual": "php",
+      "visual_labels": [
+        "PHP",
+        "MySQL",
+        "Composer"
+      ],
+      "tags": [
+        "PHP",
+        "MySQL",
+        "Composer",
+        "XAMPP",
+        "phpMyAdmin",
+        "CRUD"
       ],
       "repo_url": "",
       "demo_url": ""
@@ -130,18 +519,104 @@
   ],
   "skills": [
     {
+      "categoria": "Lenguajes y formatos",
+      "descripcion": "Base para crear APIs, interfaces, automatizaciones, documentacion y trabajo con datos.",
+      "items": [
+        "Python",
+        "PHP",
+        "Java",
+        "JavaScript",
+        "TypeScript",
+        "HTML",
+        "CSS",
+        "SQL",
+        "Bash",
+        "PowerShell",
+        "JSON",
+        "Markdown"
+      ]
+    },
+    {
       "categoria": "Backend y automatizacion",
+      "descripcion": "Construccion de APIs, servicios, bots, flujos automatizados y logica de negocio mantenible.",
       "items": [
         "Python",
         "Django",
         "Django REST",
+        "PHP backend",
         "Node.js",
         "Express",
-        "Integracion de APIs REST"
+        "Next.js API Routes",
+        "APIs REST",
+        "Webhooks",
+        "Autenticacion",
+        "JWT",
+        "Simple JWT",
+        "RBAC",
+        "Sesiones",
+        "Django ORM",
+        "Validacion de disponibilidad",
+        "Exportacion PDF",
+        "Exportacion Excel",
+        "Exportacion CSV",
+        "Telegram Bot",
+        "Reportes automaticos",
+        "Automatizacion de procesos"
+      ]
+    },
+    {
+      "categoria": "Frontend y productos web",
+      "descripcion": "Construccion de landings, dashboards, SaaS y experiencias responsive para clientes y productos propios.",
+      "items": [
+        "React",
+        "Next.js",
+        "Astro",
+        "Vite",
+        "Tailwind CSS",
+        "Bootstrap 5",
+        "Leaflet.js",
+        "React-i18next",
+        "shadcn/ui",
+        "TanStack Router",
+        "JavaScript",
+        "TypeScript",
+        "HTML/CSS",
+        "Framer Motion",
+        "Recharts",
+        "Lucide Icons",
+        "Responsive design",
+        "SEO tecnico",
+        "Landing pages",
+        "Dashboards",
+        "WordPress",
+        "Divi Builder",
+        "Elementor",
+        "WooCommerce"
+      ]
+    },
+    {
+      "categoria": "Productos, SaaS y clientes",
+      "descripcion": "Experiencia llevando ideas a productos publicables, sitios comerciales y soluciones para negocios.",
+      "items": [
+        "SaaS multi-tenant",
+        "Reservas online",
+        "Sistemas de agendamiento",
+        "Gestion por roles",
+        "Landing comercial",
+        "Formularios de contacto",
+        "WhatsApp CTA",
+        "Catalogos",
+        "E-commerce",
+        "Sistemas GIS",
+        "Totems interactivos",
+        "Documentacion de entrega",
+        "Soporte a clientes",
+        "Arquitectura modular"
       ]
     },
     {
       "categoria": "Infraestructura y sistemas",
+      "descripcion": "Preparacion de entornos, practica con Linux, redes, virtualizacion y soporte operativo.",
       "items": [
         "Linux",
         "Debian",
@@ -149,58 +624,175 @@
         "VirtualBox",
         "Arquitectura de redes",
         "SSH",
-        "Git"
+        "Git",
+        "Nginx",
+        "Gunicorn",
+        "cPanel",
+        "SMTP",
+        "SSL",
+        "DNS",
+        "Hosting tradicional"
       ]
     },
     {
       "categoria": "Cloud e integraciones",
+      "descripcion": "Conexion entre plataformas externas, webhooks, bots y servicios cloud para flujos reales.",
       "items": [
         "Google Calendar API",
         "WhatsApp API",
+        "WhatsApp Cloud API",
+        "Meta Webhooks",
+        "Telegram Bot API",
+        "Gemini API",
+        "RSS / APIs publicas",
+        "Nominatim",
+        "Transbank",
+        "Webpay",
+        "Google OAuth",
+        "Resend",
+        "Mercado Pago",
+        "Calendly",
+        "ManyChat",
+        "Meta Business Suite",
+        "Metricool",
+        "Web3Forms",
         "Dialogflow CX",
         "Google Cloud",
-        "ngrok"
+        "Firebase",
+        "ngrok",
+        "Supabase",
+        "Vercel",
+        "IBM Code Engine",
+        "PythonAnywhere",
+        "AWS EC2",
+        "AWS RDS",
+        "AWS S3",
+        "Cloudflare",
+        "Cloudflare Workers"
       ]
     },
     {
       "categoria": "Bases de datos",
+      "descripcion": "Modelado, consulta, seguridad y reporteria para sistemas transaccionales, prototipos y analisis.",
       "items": [
         "PostgreSQL",
+        "Supabase",
+        "Row Level Security",
         "SQLite",
+        "MySQL",
         "SQL",
-        "DBeaver"
+        "Django ORM",
+        "Prisma",
+        "DBeaver",
+        "Bases de datos GIS",
+        "Exportacion de reportes",
+        "Modelado relacional",
+        "phpMyAdmin"
       ]
     },
     {
-      "categoria": "Frontend y arquitectura",
+      "categoria": "Herramientas de desarrollo",
+      "descripcion": "Herramientas de trabajo diario para versionar, probar, documentar y publicar soluciones.",
       "items": [
-        "Astro",
-        "Tailwind CSS",
-        "JavaScript",
-        "Diseno modular",
+        "Git",
+        "GitHub",
+        "npm",
+        "Node.js",
+        "Docker",
+        "Docker Compose",
+        "Playwright",
+        "VS Code",
+        "DBeaver",
+        "SourceTree",
+        "XAMPP",
+        "Composer",
+        "Figma",
+        "Miro",
+        "Canva",
+        "Notion",
+        "Power BI",
+        "OpenAPI",
+        "Mermaid",
+        "PlantUML",
+        "curl",
+        "PowerShell",
+        "Linux CLI",
         "Documentacion tecnica"
+      ]
+    },
+    {
+      "categoria": "IA, automatizacion y no-code asistido",
+      "descripcion": "Uso de herramientas de IA y plataformas asistidas para prototipar, integrar y acelerar entregas.",
+      "items": [
+        "Dialogflow CX",
+        "Integracion IA",
+        "OpenAI/Codex",
+        "Gemini API",
+        "Claude",
+        "NotebookLM",
+        "v0",
+        "GitHub Copilot",
+        "Prompts tecnicos",
+        "Resumen con IA",
+        "Traduccion asistida",
+        "Deduplicacion SHA256",
+        "Automatizacion de reportes",
+        "Webhooks con IA",
+        "APIs de modelos"
+      ]
+    },
+    {
+      "categoria": "Seguridad, auditoria y conceptos",
+      "descripcion": "Conceptos aplicados en proyectos backend, auditorias academicas, sistemas con roles y despliegues web.",
+      "items": [
+        "Arquitectura cliente-servidor",
+        "CRUD",
+        "CORS",
+        "Rate limiting",
+        "Logging estructurado",
+        "Gestion de incidentes",
+        "Mesa de ayuda",
+        "Soporte TI",
+        "Auditoria de software",
+        "COBIT 2019",
+        "OWASP",
+        "Seguridad web basica",
+        "Variables de entorno",
+        "Deploy",
+        "DNS",
+        "Webhooks",
+        "Geolocalizacion",
+        "GIS",
+        "SaaS multi-tenant",
+        "Trial y planes SaaS"
       ]
     }
   ],
   "experiencia": [
     {
-      "titulo": "Ingenieria en Informatica | INACAP (Estudiante)",
+      "titulo": "Ingenieria en Informatica | INACAP",
       "fecha": "2023 - Presente",
-      "descripcion": "Formacion enfocada en desarrollo web, redes, backend y practica continua con tecnologias actuales y arquitecturas seguras."
+      "descripcion": "Formacion enfocada en desarrollo web, redes, backend, bases de datos y practica continua con tecnologias actuales."
+    },
+    {
+      "titulo": "Practica profesional completada",
+      "fecha": "2026",
+      "descripcion": "Etapa de practica finalizada, reforzando trabajo aplicado, responsabilidad tecnica y comunicacion en entorno real."
     },
     {
       "titulo": "Proyectos de software independientes",
       "fecha": "2024 - Presente",
-      "descripcion": "Diseno e integracion de sistemas reales, desde bots conversacionales y turneros hasta despliegues sobre Linux y consumo de APIs."
+      "descripcion": "Diseno e integracion de sistemas reales: bots conversacionales, turneros, APIs, consumo de servicios externos y despliegues sobre Linux."
     },
     {
       "titulo": "Soporte e infraestructura | Fundacion Educacional Seminario Conciliar",
       "fecha": "Dic 2022 - Presente",
-      "descripcion": "Apoyo en mantenimiento de red, actualizacion de terminales y soporte tecnologico general para la operacion diaria."
+      "descripcion": "Apoyo en mantenimiento de red, actualizacion de terminales, soporte tecnologico general y continuidad operativa."
     }
   ],
   "contacto": {
     "email": "galindez175@gmail.com",
-    "linkedin_path": "/in/christian-galindez-337ab5287"
+    "linkedin_path": "/in/christian-galindez-337ab5287",
+    "pitch": "Estoy abierto a oportunidades backend y a clientes que necesiten landing pages, automatizaciones, integraciones o sistemas a medida."
   }
 }
