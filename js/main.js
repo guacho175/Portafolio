@@ -161,7 +161,7 @@ function projectCard(project, index) {
   const labels = project.visual_labels || tags.slice(0, 3);
   const links = [
     project.repo_url ? `<a class="link" href="${escapeAttr(project.repo_url)}" target="_blank" rel="noopener">Codigo -></a>` : '',
-    project.demo_url ? `<a class="link" href="${escapeAttr(project.demo_url)}" target="_blank" rel="noopener">Demo -></a>` : '',
+    project.demo_url ? `<a class="link" href="${escapeAttr(project.demo_url)}" target="_blank" rel="noopener">Ver -></a>` : '',
   ].filter(Boolean).join('');
 
   return `
