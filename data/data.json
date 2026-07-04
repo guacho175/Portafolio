@@ -673,8 +673,8 @@
     }
   ],
   "contacto": {
+    "pitch": "Enviame un mensaje y te respondere cuando pueda. No necesitas tener todo claro para escribir.",
     "email": "christian.galindez.dev@gmail.com",
-    "linkedin_path": "/in/christian-galindez-337ab5287",
-    "pitch": "Estoy abierto a oportunidades backend y a clientes que necesiten landing pages, automatizaciones, integraciones o sistemas a medida."
+    "linkedin_path": "/in/christian-galindez-337ab5287"
   }
 }

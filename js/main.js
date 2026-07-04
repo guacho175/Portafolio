@@ -76,6 +76,8 @@ function setupUI() {
 
   setupObserver();
   setupContactForm();
+  setupMouseGlow();
+  setupActiveNav();
 }
 
 function populatePortfolio(data) {
@@ -97,6 +99,7 @@ function populatePortfolio(data) {
   renderContact(data);
 
   setupObserver();
+  setupMouseGlow();
 }
 
 function renderVenture(venture) {
@@ -306,11 +309,85 @@ function setupObserver() {
       if (entry.isIntersecting) {
         entry.target.classList.add('show');
         observer.unobserve(entry.target);
+
+        // Animate stat numbers when they appear
+        if (entry.target.classList.contains('stat')) {
+          animateStatNumber(entry.target);
+        }
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal:not(.show)').forEach(el => observer.observe(el));
+}
+
+function animateStatNumber(statEl) {
+  const kEl = statEl.querySelector('.k');
+  if (!kEl) return;
+
+  const raw = kEl.textContent.trim();
+  const match = raw.match(/^(\d+)(\+?)(.*)$/);
+  if (!match) return;
+
+  const target = parseInt(match[1], 10);
+  const suffix = match[2] + match[3];
+  const duration = 1200;
+  const start = performance.now();
+
+  function step(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // ease-out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * target);
+    kEl.textContent = current + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+function setupMouseGlow() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  document.querySelectorAll('.project, .capability-card, .stat').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mouse-x', `${x}%`);
+      card.style.setProperty('--mouse-y', `${y}%`);
+    }, { passive: true });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.removeProperty('--mouse-x');
+      card.style.removeProperty('--mouse-y');
+    }, { passive: true });
+  });
+}
+
+function setupActiveNav() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav a, .mobile-nav a');
+
+  if (!sections.length || !navLinks.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === `#${entry.target.id}`) {
+            link.style.color = 'var(--text)';
+          } else {
+            link.style.color = '';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(s => observer.observe(s));
 }
 
 function flashButton(button, text, timeout = 1600) {
