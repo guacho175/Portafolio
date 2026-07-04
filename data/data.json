@@ -2,8 +2,8 @@
   "perfil": {
     "nombre": "Christian Galindez",
     "rol": "Backend | Automatizacion | Soluciones web",
-    "headline": "Backend, automatizacion y productos web para negocios que necesitan operar mejor.",
-    "descripcion_corta": "Desarrollador enfocado en construir servicios backend, productos web, integraciones y flujos automatizados.\nTrabajo con Python, Django REST, React, Next.js, Node.js y Linux para pasar de una idea a un sistema funcional, documentado y mantenible.",
+    "headline": "Backend, automatizacion y productos web.",
+    "descripcion_corta": "Construyo APIs, sitios web, integraciones y flujos automatizados para que tu negocio opere mejor.",
     "ubicacion": "La Serena, Chile",
     "stack": "Python | Django REST | Node.js | Linux",
     "intereses": "APIs externas | Automatizacion | Ciberseguridad aplicada",

@@ -92,10 +92,10 @@ p {
 
 h1 {
   margin: 0;
-  max-width: 13ch;
-  font-size: clamp(40px, 6.5vw, 78px);
-  line-height: .96;
-  letter-spacing: -.02em;
+  max-width: 18ch;
+  font-size: clamp(30px, 3.8vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.022em;
 }
 
 h2 {
@@ -428,18 +428,18 @@ h3 {
    HERO
    ====================================================== */
 .hero {
-  padding: 80px 0 40px;
+  padding: 48px 0 44px;
 }
 
 .hero .eyebrow {
-  margin-top: 28px;
+  margin-top: 20px;
 }
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
-  gap: 52px;
+  gap: 40px;
 }
 
 .hero-copy {
@@ -447,26 +447,23 @@ h3 {
 }
 
 .hero-lead {
-  max-width: 60ch;
-  margin: 24px 0 0;
+  max-width: 48ch;
+  margin: 16px 0 0;
   color: var(--muted);
-  font-size: 18px;
-  line-height: 1.7;
-  white-space: pre-line;
+  font-size: 15px;
+  line-height: 1.72;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 32px;
+  gap: 10px;
+  margin-top: 26px;
 }
 
+/* hero-tags hidden — replaced by wb-tags in the workbench */
 .hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 28px;
+  display: none;
 }
 
 /* ======================================================
@@ -1542,7 +1539,7 @@ footer {
   }
 
   .hero {
-    padding-top: 48px;
+    padding: 36px 0 32px;
   }
 
   .hero-layout,
@@ -1585,12 +1582,12 @@ footer {
   }
 
   h1 {
-    max-width: 11ch;
-    font-size: clamp(36px, 10vw, 60px);
+    max-width: none;
+    font-size: clamp(28px, 8.5vw, 46px);
   }
 
   .hero-lead {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .hero-actions .btn {
