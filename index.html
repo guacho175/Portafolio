@@ -86,42 +86,45 @@
           <div class="hero-tags" id="hero-tags"></div>
         </div>
 
-        <div class="workbench reveal" aria-label="Vista tecnica de integraciones backend">
-          <div class="workbench-head">
-            <div>
-              <span class="window-dots" aria-hidden="true">
-                <i></i><i></i><i></i>
-              </span>
-              <strong>backend-workbench</strong>
-            </div>
-            <span class="live-badge">activo</span>
+        <div class="workbench reveal" aria-label="Que construyo y como trabajo">
+          <div class="wb-intro">
+            <p class="wb-label">Que puedo hacer por ti</p>
+            <p class="wb-sub">De la idea al producto funcionando.</p>
           </div>
 
-          <div class="workbench-grid">
-            <div class="api-panel">
-              <div class="panel-label">API Gateway</div>
-              <div class="request-line"><span>POST</span> /api/turnos/reservar</div>
-              <pre>{
-  "canal": "whatsapp",
-  "servicio": "agenda",
-  "estado": "sincronizado"
-}</pre>
+          <div class="wb-steps">
+            <div class="wb-step">
+              <span class="wb-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              </span>
+              <strong>Entiendo el problema</strong>
+              <p>Escucho lo que necesitas y defino el enfoque correcto antes de escribir una sola linea.</p>
             </div>
+            <span class="wb-arrow" aria-hidden="true">→</span>
+            <div class="wb-step">
+              <span class="wb-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </span>
+              <strong>Construyo la solucion</strong>
+              <p>Backend, automatizacion, landing o integracion — segun lo que el proyecto requiera.</p>
+            </div>
+            <span class="wb-arrow" aria-hidden="true">→</span>
+            <div class="wb-step">
+              <span class="wb-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </span>
+              <strong>Lo dejo funcionando</strong>
+              <p>Publicado, probado y listo para usar. Sin procesos interminables.</p>
+            </div>
+          </div>
 
-            <div class="phone-panel">
-              <div class="panel-label">Flujo conversacional</div>
-              <div class="chat-row inbound">Hola, quiero reservar una hora</div>
-              <div class="chat-row outbound">Tengo disponibilidad para manana a las 10:30</div>
-              <div class="chat-row inbound">Confirmo</div>
-            </div>
-
-            <div class="sync-panel">
-              <div class="panel-label">Pipeline</div>
-              <div class="sync-step"><span>WhatsApp</span><strong>entrada</strong></div>
-              <div class="sync-step"><span>Django REST</span><strong>validacion</strong></div>
-              <div class="sync-step"><span>PostgreSQL</span><strong>registro</strong></div>
-              <div class="sync-step"><span>Calendar</span><strong>evento</strong></div>
-            </div>
+          <div class="wb-tags">
+            <span class="wb-tag">Sitios web</span>
+            <span class="wb-tag">APIs</span>
+            <span class="wb-tag">Automatizaciones</span>
+            <span class="wb-tag">Integraciones</span>
+            <span class="wb-tag">Bots</span>
+            <span class="wb-tag">Bases de datos</span>
           </div>
         </div>
       </div>
