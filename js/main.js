@@ -48,7 +48,9 @@ function setupUI() {
 
   document.querySelectorAll('[data-copy-email]').forEach(button => {
     button.addEventListener('click', async () => {
-      const email = button.dataset.copy;
+      // Read dataset.copy at click time, not at registration time,
+      // because renderContact() populates it after this runs.
+      const email = button.dataset.copy || document.getElementById('contact-email')?.textContent?.trim();
       if (!email) return;
 
       try {
@@ -76,7 +78,6 @@ function setupUI() {
 
   setupObserver();
   setupContactForm();
-  setupMouseGlow();
   setupActiveNav();
 }
 
@@ -351,17 +352,26 @@ function setupMouseGlow() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   document.querySelectorAll('.project, .capability-card, .stat').forEach(card => {
+    // Inject a glow div once per card to avoid pseudo-element conflicts
+    let glowEl = card.querySelector('.card-glow');
+    if (!glowEl) {
+      glowEl = document.createElement('div');
+      glowEl.className = 'card-glow';
+      glowEl.setAttribute('aria-hidden', 'true');
+      card.appendChild(glowEl);
+    }
+
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
       card.style.setProperty('--mouse-x', `${x}%`);
       card.style.setProperty('--mouse-y', `${y}%`);
+      glowEl.classList.add('active');
     }, { passive: true });
 
     card.addEventListener('mouseleave', () => {
-      card.style.removeProperty('--mouse-x');
-      card.style.removeProperty('--mouse-y');
+      glowEl.classList.remove('active');
     }, { passive: true });
   });
 }

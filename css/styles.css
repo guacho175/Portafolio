@@ -1679,28 +1679,45 @@ footer {
 
 /* ======================================================
    MOUSE-TRACKING GLOW ON CARDS
+   Uses a CSS variable + background-image layering so no
+   pseudo-element conflicts occur with existing ::after bars.
    ====================================================== */
 .project,
 .capability-card,
 .stat {
   --mouse-x: 50%;
   --mouse-y: 50%;
+  --glow-opacity: 0;
+  transition-property: transform, border-color, background, box-shadow, --glow-opacity;
 }
 
-.project:hover::after,
-.capability-card:hover::after,
-.stat:hover::after {
-  content: "";
+.project:hover,
+.capability-card:hover,
+.stat:hover {
+  --glow-opacity: 1;
+}
+
+/* Glow overlay via an absolutely-positioned div injected by the
+   mousemove handler — no pseudo-element needed. The handler already
+   sets --mouse-x / --mouse-y. We expose the effect through a shared
+   class set by JS on each card on first hover. */
+.card-glow {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-    200px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    color-mix(in srgb, var(--accent) 06%, transparent),
+    220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    color-mix(in srgb, var(--accent) 07%, transparent),
     transparent 70%
   );
   pointer-events: none;
   z-index: 0;
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+
+.card-glow.active {
+  opacity: 1;
 }
 
 /* ======================================================

@@ -184,9 +184,9 @@
       "impacto": "Incluye panel de reportes, historial, metricas, configuracion del bot y automatizacion de envios a las 08:00 y 18:00 hora de Chile.",
       "visual": "notiwilson",
       "visual_labels": [
-        "AI summaries",
-        "Telegram reports",
-        "Metrics dashboard"
+        "Resumenes con IA",
+        "Reportes Telegram",
+        "Panel de metricas"
       ],
       "tags": [
         "React",
