@@ -208,10 +208,15 @@ function renderSkills(skills) {
   if (!container) return;
 
   container.innerHTML = skills.map((skill, index) => `
-    <article class="capability-card reveal" style="--i:${index}">
-      <h3>${escapeHtml(skill.categoria)}</h3>
-      ${skill.descripcion ? `<p>${escapeHtml(skill.descripcion)}</p>` : ''}
-      <div class="skill-list">
+    <article class="skill-block reveal" style="--i:${index}">
+      <div class="skill-block-head">
+        <span class="skill-num">${String(index + 1).padStart(2, '0')}</span>
+        <div>
+          <h3>${escapeHtml(skill.categoria)}</h3>
+          ${skill.descripcion ? `<p>${escapeHtml(skill.descripcion)}</p>` : ''}
+        </div>
+      </div>
+      <div class="skill-chips">
         ${(skill.items || []).map(item => `<span class="chip">${escapeHtml(item)}</span>`).join('')}
       </div>
     </article>
@@ -229,7 +234,6 @@ function renderContact(data) {
     button.dataset.copy = email;
   });
   setText('#contact-email', email);
-  setText('#footer-email', email);
 }
 
 function setupContactForm() {
@@ -351,7 +355,7 @@ function animateStatNumber(statEl) {
 function setupMouseGlow() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  document.querySelectorAll('.project, .capability-card, .stat').forEach(card => {
+  document.querySelectorAll('.project, .skill-block, .stat').forEach(card => {
     // Inject a glow div once per card to avoid pseudo-element conflicts
     let glowEl = card.querySelector('.card-glow');
     if (!glowEl) {

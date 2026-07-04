@@ -1166,37 +1166,50 @@ pre {
 }
 
 /* ======================================================
-   SKILLS / CAPABILITIES
+   SKILLS / STACK BLOCKS
    ====================================================== */
 .stack-section {
   background:
     radial-gradient(ellipse 80% 50% at 50% 0%, color-mix(in srgb, var(--accent-2) 06%, transparent), transparent 70%);
 }
 
+/* 2-column grid of 4 blocks — clean and compact */
 .capability-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.capability-card {
-  min-height: 240px;
-  padding: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--surface) 80%, transparent);
-  box-shadow: var(--shadow-card);
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
-  position: relative;
   overflow: hidden;
 }
 
-.capability-card::after {
+.skill-block {
+  padding: 28px 30px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--transition);
+}
+
+/* Internal borders between cells */
+.skill-block:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+.skill-block:nth-child(1),
+.skill-block:nth-child(2) {
+  border-bottom: 1px solid var(--line);
+}
+
+.skill-block:hover {
+  background: color-mix(in srgb, var(--surface-strong) 80%, transparent);
+}
+
+/* Top accent line on hover */
+.skill-block::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 2px;
   background: linear-gradient(90deg, var(--accent-2), var(--accent));
   transform: scaleX(0);
@@ -1204,26 +1217,44 @@ pre {
   transition: transform .32s cubic-bezier(.22, 1, .36, 1);
 }
 
-.capability-card:hover {
-  transform: translateY(-3px);
-  border-color: color-mix(in srgb, var(--accent) 28%, var(--line));
-  box-shadow: var(--shadow-card), var(--shadow-glow);
-}
-
-.capability-card:hover::after {
+.skill-block:hover::after {
   transform: scaleX(1);
 }
 
-.capability-card h3 {
-  font-size: 18px;
-  font-weight: 800;
+.skill-block-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
-.capability-card p {
-  margin: 10px 0 18px;
+.skill-num {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .10em;
+  line-height: 1;
+  padding-top: 4px;
+}
+
+.skill-block h3 {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.skill-block p {
+  margin: 6px 0 0;
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
 }
 
 /* ======================================================
@@ -1546,81 +1577,38 @@ pre {
    FOOTER
    ====================================================== */
 footer {
-  padding: 18px 0 44px;
-  color: var(--muted);
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, .85fr));
-  gap: 24px;
   border-top: 1px solid var(--line);
-  padding-top: 32px;
-}
-
-.footer-brand strong,
-.footer-column h3 {
-  display: block;
-  color: var(--text);
-}
-
-.footer-brand strong {
-  font-size: 17px;
-  font-weight: 800;
-}
-
-.footer-brand p {
-  max-width: 42ch;
-  margin: 12px 0 0;
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.72;
-}
-
-.footer-column h3 {
-  margin: 0 0 14px;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.footer-list,
-.footer-contact {
-  display: grid;
-  gap: 10px;
-}
-
-.footer-list a,
-.footer-list span,
-.footer-contact a,
-.footer-contact span {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-  transition: color var(--transition);
-}
-
-.footer-list a:hover,
-.footer-contact a:hover {
-  color: var(--text);
-}
-
-.footer-copy-btn {
-  width: fit-content;
-  min-height: 36px;
-  padding: 0 12px;
-  font-size: 13px;
 }
 
 .footer-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  padding-top: 24px;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 22px 0;
   font-size: 13px;
+}
+
+.footer-copy {
+  color: var(--muted);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: var(--muted);
+  font-size: 13px;
+  transition: color var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--text);
 }
 
 /* ======================================================
@@ -1673,9 +1661,9 @@ footer {
   transform: none;
 }
 
-/* Stagger reveal for project cards */
+/* Stagger reveal for cards */
 .project.reveal { transition-duration: .55s, .55s; }
-.capability-card.reveal { transition-duration: .50s, .50s; }
+.skill-block.reveal { transition-duration: .50s, .50s; }
 
 /* ======================================================
    MOUSE-TRACKING GLOW ON CARDS
@@ -1683,7 +1671,7 @@ footer {
    pseudo-element conflicts occur with existing ::after bars.
    ====================================================== */
 .project,
-.capability-card,
+.skill-block,
 .stat {
   --mouse-x: 50%;
   --mouse-y: 50%;
@@ -1692,7 +1680,7 @@ footer {
 }
 
 .project:hover,
-.capability-card:hover,
+.skill-block:hover,
 .stat:hover {
   --glow-opacity: 1;
 }
@@ -1751,8 +1739,7 @@ footer {
 
   .hero-layout,
   .venture-panel,
-  .contact-shell,
-  .footer-grid {
+  .contact-shell {
     grid-template-columns: 1fr;
   }
 
@@ -1765,17 +1752,12 @@ footer {
     max-width: 680px;
   }
 
-  .proof-grid,
-  .capability-grid {
+  .proof-grid {
     grid-template-columns: 1fr 1fr;
   }
 
   .project {
     grid-column: span 12;
-  }
-
-  .footer-brand p {
-    max-width: none;
   }
 
   .contact-aside {
@@ -1895,8 +1877,19 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
+  /* On mobile each skill-block spans full width, remove internal side borders */
+  .skill-block:nth-child(odd) {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-block:last-child {
+    border-bottom: none;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 }
 
