@@ -4,7 +4,7 @@ async function init() {
   setupUI();
 
   try {
-    const response = await fetch('data/data.json');
+    const response = await fetch(`data/data.json?v=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     populatePortfolio(data);
@@ -46,20 +46,19 @@ function setupUI() {
     });
   }
 
-  const copyEmailBtn = document.getElementById('copy-email');
-  if (copyEmailBtn) {
-    copyEmailBtn.addEventListener('click', async () => {
-      const email = copyEmailBtn.dataset.copy;
+  document.querySelectorAll('[data-copy-email]').forEach(button => {
+    button.addEventListener('click', async () => {
+      const email = button.dataset.copy;
       if (!email) return;
 
       try {
         await navigator.clipboard.writeText(email);
-        flashButton(copyEmailBtn, 'Email copiado');
+        flashButton(button, 'Email copiado');
       } catch {
-        window.location.href = `mailto:${email}`;
+        flashButton(button, email, 2600);
       }
     });
-  }
+  });
 
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -76,6 +75,7 @@ function setupUI() {
   }, { passive: true });
 
   setupObserver();
+  setupContactForm();
 }
 
 function populatePortfolio(data) {
@@ -92,10 +92,8 @@ function populatePortfolio(data) {
   renderHeroTags(perfil);
   renderStats(data.stats || []);
   renderVenture(data.venture || {});
-  renderCaseStudy(data.case_study || {});
   renderProjects(data.proyectos || [], data.skills || []);
   renderSkills(data.skills || []);
-  renderExperience(data.experiencia || []);
   renderContact(data);
 
   setupObserver();
@@ -121,11 +119,9 @@ function renderVenture(venture) {
 function setGlobalLinks(links) {
   const github = links.github?.url || '#';
   const linkedin = links.linkedin?.url || '#';
-  const email = links.email?.url || '#';
 
   document.querySelectorAll('.link-github').forEach(el => { el.href = github; });
   document.querySelectorAll('.link-linkedin').forEach(el => { el.href = linkedin; });
-  document.querySelectorAll('.link-email').forEach(el => { el.href = email; });
 }
 
 function renderHeroTags(perfil) {
@@ -146,39 +142,6 @@ function renderStats(stats) {
       <span class="t">${escapeHtml(stat.t)}</span>
     </div>
   `).join('');
-}
-
-function renderCaseStudy(caseStudy) {
-  setText('#case-badge', caseStudy.badge || 'Backend + API');
-  setText('#case-title', caseStudy.titulo || 'Turnero y bot de reservas por WhatsApp');
-  setText('#case-summary', caseStudy.resumen || '');
-
-  const results = document.getElementById('case-results');
-  if (results) {
-    results.innerHTML = (caseStudy.resultados || []).map(item => `
-      <div class="case-point">${escapeHtml(item)}</div>
-    `).join('');
-  }
-
-  const board = document.getElementById('case-board');
-  if (!board) return;
-
-  const flow = caseStudy.flujo || [];
-  const stack = caseStudy.stack || [];
-  board.innerHTML = `
-    <div class="flow-map">
-      ${flow.map((step, index) => `
-        <div class="flow-node" style="--i:${index}">
-          <span>${index + 1}</span>
-          <strong>${escapeHtml(step.label)}</strong>
-          <p>${escapeHtml(step.detail)}</p>
-        </div>
-      `).join('')}
-    </div>
-    <div class="case-stack">
-      ${stack.map(item => `<span class="tag">${escapeHtml(item)}</span>`).join('')}
-    </div>
-  `;
 }
 
 function renderProjects(projects, skills = []) {
@@ -251,30 +214,72 @@ function renderSkills(skills) {
   `).join('');
 }
 
-function renderExperience(items) {
-  const container = document.getElementById('experience-timeline');
-  if (!container) return;
-
-  container.innerHTML = items.map((item, index) => `
-    <article class="experience-item reveal" style="--i:${index}">
-      <div class="experience-date">${escapeHtml(item.fecha)}</div>
-      <div>
-        <h3>${escapeHtml(item.titulo)}</h3>
-        <p>${escapeHtml(item.descripcion)}</p>
-      </div>
-    </article>
-  `).join('');
-}
-
 function renderContact(data) {
   const contacto = data.contacto || {};
   const email = contacto.email || '';
   setText('#contact-pitch', contacto.pitch || 'Estoy abierto a oportunidades backend y proyectos con clientes.');
 
-  const copyEmailBtn = document.getElementById('copy-email');
-  if (copyEmailBtn && email) {
-    copyEmailBtn.dataset.copy = email;
-  }
+  if (!email) return;
+
+  document.querySelectorAll('[data-copy-email]').forEach(button => {
+    button.dataset.copy = email;
+  });
+  setText('#contact-email', email);
+  setText('#footer-email', email);
+}
+
+function setupContactForm() {
+  const form = document.getElementById('contact-form');
+  const submitButton = document.getElementById('contact-submit');
+  const status = document.getElementById('form-status');
+  if (!form || !submitButton || !status) return;
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+
+    const payload = {
+      access_key: String(form.elements.access_key?.value || '').trim(),
+      subject: String(form.elements.subject?.value || '').trim(),
+      from_name: String(form.elements.from_name?.value || '').trim(),
+      name: String(form.elements.name?.value || '').trim(),
+      email: String(form.elements.email?.value || '').trim(),
+      message: String(form.elements.message?.value || '').trim(),
+      botcheck: form.elements.botcheck?.checked ? '1' : ''
+    };
+
+    const validationError = validateContactPayload(payload);
+    if (validationError) {
+      setFormStatus(status, validationError, 'error');
+      return;
+    }
+
+    setSubmitting(submitButton, true);
+    setFormStatus(status, 'Enviando...', 'loading');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json().catch(() => null);
+      if (!response.ok || !result?.success) {
+        throw new Error(result?.message || `HTTP ${response.status}`);
+      }
+
+      form.reset();
+      setFormStatus(status, 'Mensaje enviado. Te respondere por correo.', 'success');
+    } catch (error) {
+      console.error('Error sending contact form:', error);
+      setFormStatus(status, 'No se pudo enviar el mensaje. Revisa tu conexion e intentalo otra vez.', 'error');
+    } finally {
+      setSubmitting(submitButton, false);
+    }
+  });
 }
 
 function setupObserver() {
@@ -295,12 +300,32 @@ function setupObserver() {
   document.querySelectorAll('.reveal:not(.show)').forEach(el => observer.observe(el));
 }
 
-function flashButton(button, text) {
+function flashButton(button, text, timeout = 1600) {
   const previous = button.textContent;
   button.textContent = text;
   window.setTimeout(() => {
     button.textContent = previous;
-  }, 1600);
+  }, timeout);
+}
+
+function validateContactPayload(payload) {
+  if (!payload.name) return 'Ingresa tu nombre.';
+  if (!payload.email) return 'Ingresa un correo valido.';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) return 'Ingresa un correo valido.';
+  if (!payload.message) return 'Escribe un mensaje antes de enviar.';
+  if (payload.botcheck) return 'No se pudo validar el envio. Intenta nuevamente.';
+  return '';
+}
+
+function setSubmitting(button, isSubmitting) {
+  button.disabled = isSubmitting;
+  button.textContent = isSubmitting ? 'Enviando...' : 'Enviar mensaje';
+  button.setAttribute('aria-busy', String(isSubmitting));
+}
+
+function setFormStatus(element, text, state) {
+  element.textContent = text;
+  element.dataset.state = state;
 }
 
 function setText(selector, value) {

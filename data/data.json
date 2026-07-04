@@ -54,50 +54,14 @@
       }
     ]
   },
-  "case_study": {
-    "badge": "Backend + WhatsApp + Calendar",
-    "titulo": "Turnero con reservas conversacionales por WhatsApp",
-    "resumen": "Sistema para gestionar disponibilidad, reservas y sincronizacion con Google Calendar usando un backend modular y una experiencia conversacional conectada a WhatsApp Cloud API.",
-    "resultados": [
-      "Convierte mensajes de WhatsApp en reservas estructuradas.",
-      "Centraliza disponibilidad, confirmacion y registro de turnos.",
-      "Deja una base clara para crecer hacia panel administrativo, recordatorios y reportes."
-    ],
-    "flujo": [
-      {
-        "label": "WhatsApp Cloud API",
-        "detail": "Recibe la conversacion y captura la intencion de reserva."
-      },
-      {
-        "label": "Backend Django REST",
-        "detail": "Valida horarios, servicios y reglas antes de confirmar."
-      },
-      {
-        "label": "PostgreSQL",
-        "detail": "Guarda reservas, clientes, estados y trazabilidad."
-      },
-      {
-        "label": "Google Calendar",
-        "detail": "Sincroniza el evento para evitar dobles reservas."
-      }
-    ],
-    "stack": [
-      "Python",
-      "Django REST",
-      "PostgreSQL",
-      "WhatsApp API",
-      "Google Calendar API",
-      "Node.js"
-    ]
-  },
   "links": {
     "linkedin": {
       "url": "http://www.linkedin.com/in/christian-galindez-337ab5287",
       "text": "LinkedIn"
     },
     "email": {
-      "url": "mailto:galindez175@gmail.com",
-      "text": "Email"
+      "url": "#contacto",
+      "text": "Contacto"
     },
     "github": {
       "url": "https://github.com/guacho175",
@@ -243,31 +207,6 @@
       "demo_url": "https://notiwilson.lovable.app/"
     },
     {
-      "titulo": "Turnero y bot de reservas por WhatsApp",
-      "badge": "Backend + API",
-      "estado": "Proyecto bandera",
-      "descripcion": "Sistema de gestion de turnos para profesionales con sincronizacion a Google Calendar e integracion con WhatsApp Cloud API.",
-      "impacto": "Resuelve agenda, confirmacion y registro desde un flujo conversacional conectado al backend.",
-      "visual": "reservas",
-      "visual_labels": [
-        "POST /api/turnos",
-        "WhatsApp -> Django",
-        "Calendar synced"
-      ],
-      "tags": [
-        "Python",
-        "Django REST",
-        "WhatsApp API",
-        "PostgreSQL",
-        "Node.js",
-        "Express",
-        "Webhooks",
-        "ngrok"
-      ],
-      "repo_url": "",
-      "demo_url": ""
-    },
-    {
       "titulo": "Plataforma web modular base",
       "badge": "Frontend",
       "estado": "Arquitectura web",
@@ -377,18 +316,16 @@
     },
     {
       "titulo": "Alpha Docere / Practica profesional",
-      "badge": "PHP + soporte TI",
+      "badge": "Soporte TI",
       "estado": "Practica completada",
       "descripcion": "Trabajo aplicado en sitio institucional, soporte tecnologico, documentacion tecnica y automatizacion basica de atencion.",
-      "impacto": "Refuerza experiencia en entorno real con requerimientos, soporte a usuarios, mantenimiento web, PHP, Java, chatbot y documentacion.",
+      "impacto": "Refuerza experiencia en entorno real con requerimientos, soporte a usuarios, mantenimiento web, Java, chatbot y documentacion.",
       "visual": "practice",
       "visual_labels": [
-        "PHP",
         "Java chatbot",
         "Soporte TI"
       ],
       "tags": [
-        "PHP",
         "Java",
         "HTML",
         "CSS",
@@ -456,8 +393,6 @@
         "Divi Builder",
         "Elementor",
         "WooCommerce",
-        "PHP",
-        "MySQL",
         "Transbank",
         "Webpay",
         "cPanel",
@@ -487,31 +422,7 @@
         "AWS",
         "IA",
         "Chatbot",
-        "Arquitectura cliente-servidor",
-        "CRUD"
-      ],
-      "repo_url": "",
-      "demo_url": ""
-    },
-    {
-      "titulo": "Kreative",
-      "badge": "PHP + MySQL",
-      "estado": "Levantamiento local",
-      "descripcion": "Proyecto web trabajado en entorno local con PHP, MySQL y Composer para revisar configuracion, dependencias y ejecucion.",
-      "impacto": "Refuerza experiencia con stack PHP tradicional, base de datos local, gestor de dependencias y ambiente XAMPP/phpMyAdmin.",
-      "visual": "php",
-      "visual_labels": [
-        "PHP",
-        "MySQL",
-        "Composer"
-      ],
-      "tags": [
-        "PHP",
-        "MySQL",
-        "Composer",
-        "XAMPP",
-        "phpMyAdmin",
-        "CRUD"
+        "Arquitectura cliente-servidor"
       ],
       "repo_url": "",
       "demo_url": ""
@@ -523,7 +434,6 @@
       "descripcion": "Base para crear APIs, interfaces, automatizaciones, documentacion y trabajo con datos.",
       "items": [
         "Python",
-        "PHP",
         "Java",
         "JavaScript",
         "TypeScript",
@@ -543,7 +453,6 @@
         "Python",
         "Django",
         "Django REST",
-        "PHP backend",
         "Node.js",
         "Express",
         "Next.js API Routes",
@@ -679,15 +588,13 @@
         "Supabase",
         "Row Level Security",
         "SQLite",
-        "MySQL",
         "SQL",
         "Django ORM",
         "Prisma",
         "DBeaver",
         "Bases de datos GIS",
         "Exportacion de reportes",
-        "Modelado relacional",
-        "phpMyAdmin"
+        "Modelado relacional"
       ]
     },
     {
@@ -704,8 +611,6 @@
         "VS Code",
         "DBeaver",
         "SourceTree",
-        "XAMPP",
-        "Composer",
         "Figma",
         "Miro",
         "Canva",
@@ -746,7 +651,6 @@
       "descripcion": "Conceptos aplicados en proyectos backend, auditorias academicas, sistemas con roles y despliegues web.",
       "items": [
         "Arquitectura cliente-servidor",
-        "CRUD",
         "CORS",
         "Rate limiting",
         "Logging estructurado",
@@ -766,28 +670,6 @@
         "SaaS multi-tenant",
         "Trial y planes SaaS"
       ]
-    }
-  ],
-  "experiencia": [
-    {
-      "titulo": "Ingenieria en Informatica | INACAP",
-      "fecha": "2023 - Presente",
-      "descripcion": "Formacion enfocada en desarrollo web, redes, backend, bases de datos y practica continua con tecnologias actuales."
-    },
-    {
-      "titulo": "Practica profesional | Alpha Docere",
-      "fecha": "2026",
-      "descripcion": "Practica profesional completada en Alpha Docere, con trabajo aplicado en desarrollo web, PHP, soporte tecnologico, documentacion tecnica y automatizacion basica."
-    },
-    {
-      "titulo": "Proyectos de software independientes",
-      "fecha": "2024 - Presente",
-      "descripcion": "Diseno e integracion de sistemas reales: bots conversacionales, turneros, APIs, consumo de servicios externos y despliegues sobre Linux."
-    },
-    {
-      "titulo": "Soporte e infraestructura | Fundacion Educacional Seminario Conciliar",
-      "fecha": "Dic 2022 - Mar 2026",
-      "descripcion": "Apoyo en mantenimiento de red, actualizacion de terminales, soporte tecnologico general y continuidad operativa hasta marzo de 2026."
     }
   ],
   "contacto": {

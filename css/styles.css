@@ -13,6 +13,7 @@
   --graphite: #111827;
   --soft-cloud: #f5f8ff;
   --danger: #ff6b6b;
+  --success: #34d399;
   --shadow: 0 18px 60px rgba(7, 26, 61, .34);
   --radius: 8px;
   --max: 1160px;
@@ -220,6 +221,12 @@ textarea {
   transform: translateY(-1px);
   border-color: color-mix(in srgb, var(--accent) 62%, var(--line));
   background: color-mix(in srgb, var(--surface-strong) 92%, transparent);
+}
+
+.btn:disabled {
+  cursor: wait;
+  opacity: .74;
+  transform: none;
 }
 
 .btn.primary {
@@ -653,13 +660,6 @@ pre {
   content: "->";
 }
 
-.case-layout {
-  display: grid;
-  grid-template-columns: .82fr 1.18fr;
-  gap: 18px;
-  align-items: stretch;
-}
-
 .venture-section {
   padding-top: 42px;
 }
@@ -735,110 +735,14 @@ pre {
   line-height: 1.6;
 }
 
-.case-copy,
-.case-board,
 .project,
 .capability-card,
-.experience-item,
-.contact-panel {
+.contact-copy,
+.contact-form-card {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--surface) 82%, transparent);
   box-shadow: none;
-}
-
-.case-copy {
-  padding: 24px;
-}
-
-.case-copy h3 {
-  margin-top: 18px;
-}
-
-.case-copy p {
-  margin: 16px 0 0;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.case-points {
-  display: grid;
-  gap: 10px;
-  margin-top: 22px;
-}
-
-.case-point {
-  display: grid;
-  grid-template-columns: 26px 1fr;
-  gap: 10px;
-  align-items: start;
-  color: var(--text);
-  line-height: 1.5;
-}
-
-.case-point::before {
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
-  color: #fff;
-  content: "";
-  font-weight: 900;
-}
-
-.case-board {
-  min-height: 430px;
-  padding: 18px;
-  overflow: hidden;
-}
-
-.flow-map {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.flow-node {
-  min-height: 150px;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 86%, transparent), color-mix(in srgb, var(--surface) 84%, transparent));
-}
-
-.flow-node span {
-  display: inline-flex;
-  width: 32px;
-  height: 32px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--bg);
-  font-weight: 950;
-}
-
-.flow-node strong {
-  display: block;
-  margin-top: 18px;
-  font-size: 15px;
-}
-
-.flow-node p {
-  margin: 9px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.case-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
 }
 
 .projects-grid {
@@ -1071,77 +975,227 @@ pre {
   line-height: 1.6;
 }
 
-.experience-board {
-  display: grid;
-  gap: 12px;
-}
-
-.experience-item {
-  display: grid;
-  grid-template-columns: 190px 1fr;
-  gap: 18px;
-  padding: 18px;
-}
-
-.experience-date {
-  color: var(--accent-3);
-  font-weight: 900;
-}
-
-.experience-item h3 {
-  font-size: 18px;
-}
-
-.experience-item p {
-  margin: 8px 0 0;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
 .contact-section {
   padding-bottom: 60px;
 }
 
-.contact-panel {
+.contact-shell {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 30px;
-  align-items: center;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.contact-copy,
+.contact-form-card {
   padding: 30px;
+}
+
+.contact-copy {
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, transparent), transparent 34%),
     radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--accent-3) 18%, transparent), transparent 18rem),
     color-mix(in srgb, var(--surface) 86%, transparent);
 }
 
+.contact-form-card {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 90%, transparent), color-mix(in srgb, var(--surface) 88%, transparent));
+}
+
+.contact-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.contact-meta-item {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 76%, transparent), color-mix(in srgb, var(--bg) 24%, transparent));
+}
+
+.contact-meta-item span,
+.contact-meta-item strong {
+  display: block;
+}
+
+.contact-meta-item span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.contact-meta-item strong {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.contact-note {
+  margin: 0 0 22px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.contact-form {
+  display: grid;
+  gap: 18px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+}
+
+.form-field label {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 14px 15px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--bg) 36%, var(--surface));
+  color: var(--text);
+  resize: vertical;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--muted);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  outline-offset: 2px;
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+}
+
+.botcheck-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.form-status {
+  min-height: 24px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.form-status[data-state="success"] {
+  color: var(--success);
+}
+
+.form-status[data-state="error"] {
+  color: #ffb4b4;
+}
+
+.form-status[data-state="loading"] {
+  color: var(--accent);
+}
+
 .contact-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 footer {
-  padding: 26px 0 42px;
+  padding: 18px 0 42px;
   color: var(--muted);
 }
 
-.footer-inner {
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, .8fr));
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  padding-top: 28px;
+}
+
+.footer-brand strong,
+.footer-column h3 {
+  display: block;
+  color: var(--text);
+}
+
+.footer-brand strong {
+  font-size: 18px;
+}
+
+.footer-brand p {
+  max-width: 42ch;
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.footer-column h3 {
+  margin: 0 0 14px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.footer-list,
+.footer-contact {
+  display: grid;
+  gap: 10px;
+}
+
+.footer-list a,
+.footer-list span,
+.footer-contact a,
+.footer-contact span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.footer-list a:hover,
+.footer-contact a:hover {
+  color: var(--text);
+}
+
+.footer-copy-btn {
+  width: fit-content;
+  min-height: 38px;
+}
+
+.footer-bottom {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  border-top: 1px solid var(--line);
-  padding-top: 24px;
-}
-
-.footer-inner strong,
-.footer-inner span {
-  display: block;
-}
-
-.footer-inner strong {
-  color: var(--text);
+  padding-top: 22px;
 }
 
 .scroll-top {
@@ -1198,9 +1252,10 @@ footer {
   }
 
   .hero-layout,
-  .case-layout,
   .venture-panel,
-  .contact-panel {
+  .contact-shell,
+  .contact-meta,
+  .footer-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1217,8 +1272,8 @@ footer {
     grid-column: span 12;
   }
 
-  .contact-actions {
-    justify-content: flex-start;
+  .footer-brand p {
+    max-width: none;
   }
 }
 
@@ -1246,6 +1301,7 @@ footer {
     width: 100%;
   }
 
+  .form-grid,
   .workbench-grid,
   .sync-panel,
   .flow-map {
@@ -1272,16 +1328,13 @@ footer {
     margin-top: 14px;
   }
 
-  .experience-item {
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .form-actions,
+  .footer-bottom {
+    display: grid;
+    justify-content: stretch;
   }
 
-  .footer-inner {
-    display: block;
-  }
-
-  .footer-inner .section-link {
+  .footer-bottom .section-link {
     margin-top: 16px;
   }
 }

@@ -37,12 +37,10 @@
         </a>
 
         <nav class="nav" aria-label="Secciones principales">
-          <a href="#case">Caso</a>
           <a href="#orbynex">Orbynex</a>
           <a href="#projects">Proyectos</a>
           <a href="#skills">Stack</a>
-          <a href="#experience">Experiencia</a>
-          <a href="#contact">Contacto</a>
+          <a href="#contacto">Contacto</a>
         </nav>
 
         <div class="actions">
@@ -58,12 +56,10 @@
       </div>
 
       <nav class="mobile-nav" id="mobileNav" aria-label="Secciones moviles">
-        <a href="#case">Caso</a>
         <a href="#orbynex">Orbynex</a>
         <a href="#projects">Proyectos</a>
         <a href="#skills">Stack</a>
-        <a href="#experience">Experiencia</a>
-        <a href="#contact">Contacto</a>
+        <a href="#contacto">Contacto</a>
       </nav>
     </div>
   </header>
@@ -82,9 +78,9 @@
           <p class="hero-lead" id="hero-desc"></p>
 
           <div class="hero-actions">
-            <a class="btn primary" href="#case">Ver caso destacado</a>
+            <a class="btn primary" href="#projects">Ver proyectos</a>
             <a class="btn" id="btn-cv" href="#" target="_blank" rel="noopener">Descargar CV</a>
-            <a class="btn quiet link-email" href="#">Contactar</a>
+            <a class="btn quiet" href="#contacto">Contactar</a>
           </div>
 
           <div class="hero-tags" id="hero-tags"></div>
@@ -153,29 +149,6 @@
       </div>
     </section>
 
-    <section class="section-block case-section" id="case" aria-labelledby="case-heading">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Proyecto bandera</p>
-            <h2 id="case-heading">Caso de estudio</h2>
-          </div>
-          <a class="section-link" href="#contact">Disponible para pega backend y clientes</a>
-        </div>
-
-        <div class="case-layout">
-          <div class="case-copy reveal">
-            <span class="badge" id="case-badge"></span>
-            <h3 id="case-title"></h3>
-            <p id="case-summary"></p>
-            <div class="case-points" id="case-results"></div>
-          </div>
-
-          <div class="case-board reveal" id="case-board"></div>
-        </div>
-      </div>
-    </section>
-
     <section class="section-block" id="projects" aria-labelledby="projects-heading">
       <div class="container">
         <div class="section-head">
@@ -206,45 +179,115 @@
       </div>
     </section>
 
-    <section class="section-block" id="experience" aria-labelledby="experience-heading">
+    <section class="section-block contact-section" id="contacto" aria-labelledby="contact-heading">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Base profesional</p>
-            <h2 id="experience-heading">Experiencia y formacion</h2>
-            <p class="section-desc">Trayectoria combinando estudios, proyectos propios y soporte tecnologico real.</p>
-          </div>
-        </div>
-
-        <div class="experience-board" id="experience-timeline"></div>
-      </div>
-    </section>
-
-    <section class="section-block contact-section" id="contact" aria-labelledby="contact-heading">
-      <div class="container">
-        <div class="contact-panel reveal">
-          <div>
+        <div class="contact-shell">
+          <div class="contact-copy reveal">
             <p class="eyebrow">Contacto directo</p>
             <h2 id="contact-heading">Conversemos sobre backend, automatizacion o clientes</h2>
             <p class="section-desc" id="contact-pitch"></p>
+
+            <div class="contact-meta" aria-label="Datos de contacto">
+              <article class="contact-meta-item">
+                <span>Correo de respuesta</span>
+                <strong id="contact-email">galindez175@gmail.com</strong>
+              </article>
+              <article class="contact-meta-item">
+                <span>Tipo de consultas</span>
+                <strong>Backend, automatizacion y sitios comerciales</strong>
+              </article>
+              <article class="contact-meta-item">
+                <span>Canales activos</span>
+                <strong>Formulario, LinkedIn y GitHub</strong>
+              </article>
+            </div>
+
+            <div class="contact-actions">
+              <button class="btn primary" type="button" data-copy-email>Copiar email</button>
+              <a class="btn" href="#projects">Ver proyectos</a>
+              <a class="btn quiet link-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="btn quiet link-github" href="#" target="_blank" rel="noopener">GitHub</a>
+            </div>
           </div>
 
-          <div class="contact-actions">
-            <a class="btn primary link-email" href="#">Enviar email</a>
-            <button class="btn" id="copy-email" type="button">Copiar email</button>
-            <a class="btn quiet link-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn quiet link-github" href="#" target="_blank" rel="noopener">GitHub</a>
+          <div class="contact-form-card reveal">
+            <p class="contact-note">Cuéntame el contexto, objetivo y plazo. El mensaje se envía por Web3Forms al correo asociado al sitio.</p>
+
+            <form class="contact-form" id="contact-form" novalidate>
+              <input type="hidden" name="access_key" value="f1db6074-f8c9-4930-9d18-9f3fea62ae00" />
+              <input type="hidden" name="subject" value="Nueva consulta desde el sitio web de Orbynex Digital" />
+              <input type="hidden" name="from_name" value="Sitio web Orbynex Digital" />
+              <input class="botcheck-field" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="name">Nombre</label>
+                  <input id="name" type="text" name="name" autocomplete="name" required />
+                </div>
+
+                <div class="form-field">
+                  <label for="email">Correo</label>
+                  <input id="email" type="email" name="email" inputmode="email" autocomplete="email" required />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn primary" id="contact-submit" type="submit">Enviar mensaje</button>
+                <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </section>
 
     <footer>
-      <div class="container footer-inner">
-        <div>
-          <strong>Christian Galindez</strong>
-          <span>&copy; <span id="year"></span>. HTML, CSS y JavaScript.</span>
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <strong>Orbynex Digital</strong>
+          <p>Soluciones digitales para automatizar procesos, crear presencia web profesional e integrar herramientas inteligentes para negocios.</p>
         </div>
+
+        <div class="footer-column">
+          <h3>Navegacion</h3>
+          <div class="footer-list">
+            <a href="#top">Inicio</a>
+            <a href="#orbynex">Servicios</a>
+            <a href="#orbynex">Soluciones</a>
+            <a href="#contacto">Contacto</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Servicios</h3>
+          <div class="footer-list">
+            <span>Landing pages</span>
+            <span>Automatizacion</span>
+            <span>Integraciones</span>
+            <span>IA aplicada</span>
+            <span>Analitica basica</span>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contacto</h3>
+          <div class="footer-contact">
+            <span id="footer-email">galindez175@gmail.com</span>
+            <button class="btn quiet footer-copy-btn" type="button" data-copy-email>Copiar email</button>
+            <a href="#contacto">Ir al formulario</a>
+            <a class="link-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="link-github" href="#" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <span>&copy; 2026 Orbynex Digital. Todos los derechos reservados.</span>
         <a class="section-link" href="#top">Volver arriba</a>
       </div>
     </footer>
