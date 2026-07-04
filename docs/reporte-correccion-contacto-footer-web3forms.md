@@ -29,6 +29,7 @@ El CTA principal de contacto y la logica asociada no usaban un formulario real. 
 
 - Se agrego un formulario real en la seccion `#contacto`.
 - El formulario envia por `fetch()` a `https://api.web3forms.com/submit`.
+- Se rediseño el frontend del formulario con encabezado propio, panel de contexto, placeholders, ayuda visual y estados por campo.
 - Se incluyeron los campos requeridos:
   - `access_key`
   - `subject`
@@ -50,6 +51,8 @@ El CTA principal de contacto y la logica asociada no usaban un formulario real. 
 - Formato de correo valido.
 - Mensaje requerido.
 - Bloqueo de envio si `botcheck` viene marcado.
+- Mensajes de error visibles debajo de cada campo.
+- Marcado accesible con `aria-invalid` en campos invalidos.
 - Estado `Enviando...` durante el submit.
 - Mensaje de exito cuando Web3Forms responde correctamente.
 - Mensaje de error cuando faltan datos o falla la validacion del cliente.
@@ -60,6 +63,7 @@ El CTA principal de contacto y la logica asociada no usaban un formulario real. 
 - Se incorporo marca `Orbynex Digital`, descripcion corta, navegacion, servicios y contacto.
 - Se conservaron solo redes reales existentes en el proyecto: LinkedIn y GitHub.
 - Se mejoro espaciado, contraste, jerarquia tipografica y comportamiento responsive.
+- En movil, el formulario queda antes del panel informativo para que la accion principal aparezca mas rapido.
 
 ## Pruebas realizadas
 
@@ -70,7 +74,8 @@ El CTA principal de contacto y la logica asociada no usaban un formulario real. 
   - resultado: `Mensaje enviado. Te respondere por correo.`
   - resultado adicional: formulario reseteado despues del exito.
 - Prueba real de error de cliente:
-  - resultado: `Ingresa tu nombre.`
+  - resultado general: `Ingresa tu nombre.`
+  - errores por campo: nombre, correo y mensaje.
 - Revision de consola en navegador:
   - resultado: sin errores ni warnings durante la carga y el envio probado.
 - Revision global de enlaces:
@@ -123,6 +128,8 @@ Resultado:
 ## Resultado final
 
 El contacto del sitio quedo unificado en `#contacto`, con formulario funcional sobre Web3Forms, validaciones visibles, estado de exito probado y footer redisenado con una presentacion mas profesional y ordenada.
+
+Correo visible final: `christian.galindez.dev@gmail.com`.
 
 ## Pendientes
 

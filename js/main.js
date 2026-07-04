@@ -234,8 +234,19 @@ function setupContactForm() {
   const status = document.getElementById('form-status');
   if (!form || !submitButton || !status) return;
 
+  ['name', 'email', 'message'].forEach(fieldName => {
+    const field = form.elements[fieldName];
+    if (!field) return;
+
+    field.addEventListener('input', () => {
+      setFieldError(form, fieldName, '');
+      if (status.dataset.state === 'error') setFormStatus(status, 'Listo para enviar.', '');
+    });
+  });
+
   form.addEventListener('submit', async event => {
     event.preventDefault();
+    clearFieldErrors(form);
 
     const payload = {
       access_key: String(form.elements.access_key?.value || '').trim(),
@@ -247,9 +258,10 @@ function setupContactForm() {
       botcheck: form.elements.botcheck?.checked ? '1' : ''
     };
 
-    const validationError = validateContactPayload(payload);
-    if (validationError) {
-      setFormStatus(status, validationError, 'error');
+    const validation = validateContactPayload(payload);
+    if (!validation.isValid) {
+      applyFieldErrors(form, validation.fields);
+      setFormStatus(status, validation.message, 'error');
       return;
     }
 
@@ -272,6 +284,7 @@ function setupContactForm() {
       }
 
       form.reset();
+      clearFieldErrors(form);
       setFormStatus(status, 'Mensaje enviado. Te respondere por correo.', 'success');
     } catch (error) {
       console.error('Error sending contact form:', error);
@@ -309,12 +322,30 @@ function flashButton(button, text, timeout = 1600) {
 }
 
 function validateContactPayload(payload) {
-  if (!payload.name) return 'Ingresa tu nombre.';
-  if (!payload.email) return 'Ingresa un correo valido.';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) return 'Ingresa un correo valido.';
-  if (!payload.message) return 'Escribe un mensaje antes de enviar.';
-  if (payload.botcheck) return 'No se pudo validar el envio. Intenta nuevamente.';
-  return '';
+  const fields = {};
+
+  if (!payload.name) fields.name = 'Ingresa tu nombre.';
+  if (!payload.email) {
+    fields.email = 'Ingresa tu correo.';
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+    fields.email = 'Ingresa un correo valido.';
+  }
+  if (!payload.message) fields.message = 'Escribe un mensaje antes de enviar.';
+
+  if (payload.botcheck) {
+    return {
+      isValid: false,
+      fields,
+      message: 'No se pudo validar el envio. Intenta nuevamente.'
+    };
+  }
+
+  const firstMessage = fields.name || fields.email || fields.message || '';
+  return {
+    isValid: !firstMessage,
+    fields,
+    message: firstMessage || ''
+  };
 }
 
 function setSubmitting(button, isSubmitting) {
@@ -326,6 +357,27 @@ function setSubmitting(button, isSubmitting) {
 function setFormStatus(element, text, state) {
   element.textContent = text;
   element.dataset.state = state;
+}
+
+function applyFieldErrors(form, errors) {
+  Object.entries(errors).forEach(([fieldName, message]) => {
+    setFieldError(form, fieldName, message);
+  });
+}
+
+function clearFieldErrors(form) {
+  ['name', 'email', 'message'].forEach(fieldName => {
+    setFieldError(form, fieldName, '');
+  });
+}
+
+function setFieldError(form, fieldName, message) {
+  const field = form.elements[fieldName];
+  const error = document.getElementById(`${fieldName}-error`);
+  if (!field || !error) return;
+
+  field.setAttribute('aria-invalid', message ? 'true' : 'false');
+  error.textContent = message;
 }
 
 function setText(selector, value) {

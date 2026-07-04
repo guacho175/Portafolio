@@ -181,37 +181,61 @@
 
     <section class="section-block contact-section" id="contacto" aria-labelledby="contact-heading">
       <div class="container">
-        <div class="contact-shell">
-          <div class="contact-copy reveal">
+        <div class="contact-section-head reveal">
+          <div>
             <p class="eyebrow">Contacto directo</p>
             <h2 id="contact-heading">Conversemos sobre backend, automatizacion o clientes</h2>
             <p class="section-desc" id="contact-pitch"></p>
+          </div>
+          <span class="contact-badge">Formulario Web3Forms</span>
+        </div>
 
-            <div class="contact-meta" aria-label="Datos de contacto">
-              <article class="contact-meta-item">
-                <span>Correo de respuesta</span>
-                <strong id="contact-email">galindez175@gmail.com</strong>
-              </article>
-              <article class="contact-meta-item">
-                <span>Tipo de consultas</span>
-                <strong>Backend, automatizacion y sitios comerciales</strong>
-              </article>
-              <article class="contact-meta-item">
-                <span>Canales activos</span>
-                <strong>Formulario, LinkedIn y GitHub</strong>
-              </article>
+        <div class="contact-shell">
+          <aside class="contact-aside reveal" aria-label="Informacion antes de enviar">
+            <div class="contact-kicker">
+              <span class="contact-dot" aria-hidden="true"></span>
+              <span>Respuesta directa al correo indicado</span>
             </div>
+
+            <div class="contact-aside-main">
+              <strong>Cuéntame qué necesitas resolver.</strong>
+              <p>Mientras mas claro sea el contexto, mas rapido puedo responder con un siguiente paso concreto.</p>
+            </div>
+
+            <dl class="contact-details">
+              <div>
+                <dt>Correo</dt>
+                <dd id="contact-email">christian.galindez.dev@gmail.com</dd>
+              </div>
+              <div>
+                <dt>Consultas</dt>
+                <dd>Backend, automatizacion, landing pages e integraciones.</dd>
+              </div>
+              <div>
+                <dt>Canales</dt>
+                <dd>Formulario, LinkedIn y GitHub.</dd>
+              </div>
+            </dl>
+
+            <ol class="contact-steps" aria-label="Proceso de contacto">
+              <li><span>01</span>Envias el brief</li>
+              <li><span>02</span>Reviso alcance y prioridad</li>
+              <li><span>03</span>Te respondo con el siguiente paso</li>
+            </ol>
 
             <div class="contact-actions">
               <button class="btn primary" type="button" data-copy-email>Copiar email</button>
-              <a class="btn" href="#projects">Ver proyectos</a>
               <a class="btn quiet link-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
               <a class="btn quiet link-github" href="#" target="_blank" rel="noopener">GitHub</a>
             </div>
-          </div>
+          </aside>
 
           <div class="contact-form-card reveal">
-            <p class="contact-note">Cuéntame el contexto, objetivo y plazo. El mensaje se envía por Web3Forms al correo asociado al sitio.</p>
+            <div class="form-card-head">
+              <span>Mensaje seguro</span>
+              <h3>Enviar consulta</h3>
+              <p>Completa los campos y el mensaje llegara al correo configurado en Web3Forms.</p>
+            </div>
 
             <form class="contact-form" id="contact-form" novalidate>
               <input type="hidden" name="access_key" value="f1db6074-f8c9-4930-9d18-9f3fea62ae00" />
@@ -222,23 +246,27 @@
               <div class="form-grid">
                 <div class="form-field">
                   <label for="name">Nombre</label>
-                  <input id="name" type="text" name="name" autocomplete="name" required />
+                  <input id="name" type="text" name="name" autocomplete="name" placeholder="Tu nombre o empresa" aria-describedby="name-error" required />
+                  <span class="field-error" id="name-error"></span>
                 </div>
 
                 <div class="form-field">
                   <label for="email">Correo</label>
-                  <input id="email" type="email" name="email" inputmode="email" autocomplete="email" required />
+                  <input id="email" type="email" name="email" inputmode="email" autocomplete="email" placeholder="correo@empresa.cl" aria-describedby="email-error" required />
+                  <span class="field-error" id="email-error"></span>
                 </div>
               </div>
 
               <div class="form-field">
                 <label for="message">Mensaje</label>
-                <textarea id="message" name="message" rows="6" required></textarea>
+                <textarea id="message" name="message" rows="7" placeholder="Describe el objetivo, el problema actual y cualquier plazo importante." aria-describedby="message-error form-helper" required></textarea>
+                <span class="field-error" id="message-error"></span>
+                <span class="form-helper" id="form-helper">Ejemplo: necesito una landing, automatizar un flujo o integrar herramientas.</span>
               </div>
 
               <div class="form-actions">
                 <button class="btn primary" id="contact-submit" type="submit">Enviar mensaje</button>
-                <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                <p class="form-status" id="form-status" role="status" aria-live="polite">Listo para enviar.</p>
               </div>
             </form>
           </div>
@@ -277,7 +305,7 @@
         <div class="footer-column">
           <h3>Contacto</h3>
           <div class="footer-contact">
-            <span id="footer-email">galindez175@gmail.com</span>
+            <span id="footer-email">christian.galindez.dev@gmail.com</span>
             <button class="btn quiet footer-copy-btn" type="button" data-copy-email>Copiar email</button>
             <a href="#contacto">Ir al formulario</a>
             <a class="link-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
