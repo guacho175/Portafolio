@@ -48,7 +48,9 @@ function setupUI() {
 
   document.querySelectorAll('[data-copy-email]').forEach(button => {
     button.addEventListener('click', async () => {
-      const email = button.dataset.copy;
+      // Read dataset.copy at click time, not at registration time,
+      // because renderContact() populates it after this runs.
+      const email = button.dataset.copy || document.getElementById('contact-email')?.textContent?.trim();
       if (!email) return;
 
       try {
@@ -76,6 +78,7 @@ function setupUI() {
 
   setupObserver();
   setupContactForm();
+  setupActiveNav();
 }
 
 function populatePortfolio(data) {
@@ -97,6 +100,7 @@ function populatePortfolio(data) {
   renderContact(data);
 
   setupObserver();
+  setupMouseGlow();
 }
 
 function renderVenture(venture) {
@@ -157,7 +161,7 @@ function projectCard(project, index) {
   const labels = project.visual_labels || tags.slice(0, 3);
   const links = [
     project.repo_url ? `<a class="link" href="${escapeAttr(project.repo_url)}" target="_blank" rel="noopener">Codigo -></a>` : '',
-    project.demo_url ? `<a class="link" href="${escapeAttr(project.demo_url)}" target="_blank" rel="noopener">Demo -></a>` : '',
+    project.demo_url ? `<a class="link" href="${escapeAttr(project.demo_url)}" target="_blank" rel="noopener">Ver -></a>` : '',
   ].filter(Boolean).join('');
 
   return `
@@ -204,10 +208,15 @@ function renderSkills(skills) {
   if (!container) return;
 
   container.innerHTML = skills.map((skill, index) => `
-    <article class="capability-card reveal" style="--i:${index}">
-      <h3>${escapeHtml(skill.categoria)}</h3>
-      ${skill.descripcion ? `<p>${escapeHtml(skill.descripcion)}</p>` : ''}
-      <div class="skill-list">
+    <article class="skill-block reveal" style="--i:${index}">
+      <div class="skill-block-head">
+        <span class="skill-num">${String(index + 1).padStart(2, '0')}</span>
+        <div>
+          <h3>${escapeHtml(skill.categoria)}</h3>
+          ${skill.descripcion ? `<p>${escapeHtml(skill.descripcion)}</p>` : ''}
+        </div>
+      </div>
+      <div class="skill-chips">
         ${(skill.items || []).map(item => `<span class="chip">${escapeHtml(item)}</span>`).join('')}
       </div>
     </article>
@@ -225,7 +234,6 @@ function renderContact(data) {
     button.dataset.copy = email;
   });
   setText('#contact-email', email);
-  setText('#footer-email', email);
 }
 
 function setupContactForm() {
@@ -242,6 +250,17 @@ function setupContactForm() {
       setFieldError(form, fieldName, '');
       if (status.dataset.state === 'error') setFormStatus(status, 'Listo para enviar.', '');
     });
+
+    // Validate email format on blur so the user sees the error right away
+    if (fieldName === 'email') {
+      field.addEventListener('blur', () => {
+        const val = field.value.trim();
+        if (!val) return;
+        if (!/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(val)) {
+          setFieldError(form, 'email', 'Ingresa un correo valido (ejemplo: nombre@correo.com).');
+        }
+      });
+    }
   });
 
   form.addEventListener('submit', async event => {
@@ -306,11 +325,94 @@ function setupObserver() {
       if (entry.isIntersecting) {
         entry.target.classList.add('show');
         observer.unobserve(entry.target);
+
+        // Animate stat numbers when they appear
+        if (entry.target.classList.contains('stat')) {
+          animateStatNumber(entry.target);
+        }
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal:not(.show)').forEach(el => observer.observe(el));
+}
+
+function animateStatNumber(statEl) {
+  const kEl = statEl.querySelector('.k');
+  if (!kEl) return;
+
+  const raw = kEl.textContent.trim();
+  const match = raw.match(/^(\d+)(\+?)(.*)$/);
+  if (!match) return;
+
+  const target = parseInt(match[1], 10);
+  const suffix = match[2] + match[3];
+  const duration = 1200;
+  const start = performance.now();
+
+  function step(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    // ease-out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * target);
+    kEl.textContent = current + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+function setupMouseGlow() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  document.querySelectorAll('.project, .skill-block, .stat').forEach(card => {
+    // Inject a glow div once per card to avoid pseudo-element conflicts
+    let glowEl = card.querySelector('.card-glow');
+    if (!glowEl) {
+      glowEl = document.createElement('div');
+      glowEl.className = 'card-glow';
+      glowEl.setAttribute('aria-hidden', 'true');
+      card.appendChild(glowEl);
+    }
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mouse-x', `${x}%`);
+      card.style.setProperty('--mouse-y', `${y}%`);
+      glowEl.classList.add('active');
+    }, { passive: true });
+
+    card.addEventListener('mouseleave', () => {
+      glowEl.classList.remove('active');
+    }, { passive: true });
+  });
+}
+
+function setupActiveNav() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav a, .mobile-nav a');
+
+  if (!sections.length || !navLinks.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === `#${entry.target.id}`) {
+            link.style.color = 'var(--text)';
+          } else {
+            link.style.color = '';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(s => observer.observe(s));
 }
 
 function flashButton(button, text, timeout = 1600) {
@@ -327,8 +429,8 @@ function validateContactPayload(payload) {
   if (!payload.name) fields.name = 'Ingresa tu nombre.';
   if (!payload.email) {
     fields.email = 'Ingresa tu correo.';
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
-    fields.email = 'Ingresa un correo valido.';
+  } else if (!/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(payload.email)) {
+    fields.email = 'Ingresa un correo valido (ejemplo: nombre@correo.com).';
   }
   if (!payload.message) fields.message = 'Escribe un mensaje antes de enviar.';
 
