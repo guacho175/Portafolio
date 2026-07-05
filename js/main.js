@@ -250,6 +250,17 @@ function setupContactForm() {
       setFieldError(form, fieldName, '');
       if (status.dataset.state === 'error') setFormStatus(status, 'Listo para enviar.', '');
     });
+
+    // Validate email format on blur so the user sees the error right away
+    if (fieldName === 'email') {
+      field.addEventListener('blur', () => {
+        const val = field.value.trim();
+        if (!val) return;
+        if (!/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(val)) {
+          setFieldError(form, 'email', 'Ingresa un correo valido (ejemplo: nombre@correo.com).');
+        }
+      });
+    }
   });
 
   form.addEventListener('submit', async event => {
@@ -418,8 +429,8 @@ function validateContactPayload(payload) {
   if (!payload.name) fields.name = 'Ingresa tu nombre.';
   if (!payload.email) {
     fields.email = 'Ingresa tu correo.';
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
-    fields.email = 'Ingresa un correo valido.';
+  } else if (!/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(payload.email)) {
+    fields.email = 'Ingresa un correo valido (ejemplo: nombre@correo.com).';
   }
   if (!payload.message) fields.message = 'Escribe un mensaje antes de enviar.';
 
