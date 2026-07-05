@@ -86,7 +86,7 @@ body {
     radial-gradient(ellipse 50% 60% at 50% 100%, rgba(20, 99, 255, .06) 0%, transparent 65%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 100%);
   color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   /* No CSS transition on background — JS handles smoothness via lerp */
@@ -134,12 +134,28 @@ p {
   text-wrap: pretty;
 }
 
+h1,
+h2,
+h3 {
+  font-family: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
 h1 {
   margin: 0;
   max-width: 18ch;
   font-size: clamp(30px, 3.8vw, 52px);
   line-height: 1.08;
   letter-spacing: -.022em;
+}
+
+/* Gradient accent word inside the hero headline */
+#hero-headline .grad,
+.grad-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 55%, var(--accent-3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 h2 {
@@ -553,7 +569,81 @@ h3 {
    ====================================================== */
 .hero {
   padding: 48px 0 44px;
+  position: relative;
 }
+
+/* ── Floating hero stickers ── */
+.hero-floaters {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-layout {
+  position: relative;
+  z-index: 1;
+}
+
+.floater {
+  position: absolute;
+  display: inline-flex;
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  animation: floater-drift var(--dur, 6s) ease-in-out var(--del, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+.floater--emoji {
+  font-size: 30px;
+  filter: saturate(1.1);
+  animation-name: floater-emoji;
+}
+
+@keyframes floater-drift {
+  0%, 100% {
+    opacity: .12;
+    transform: translate(-50%, calc(-50% + 0px)) rotate(var(--rot, 0deg)) scale(.92);
+  }
+  50% {
+    opacity: .26;
+    transform: translate(-50%, calc(-50% - 20px)) rotate(calc(var(--rot, 0deg) + 8deg)) scale(1.04);
+  }
+}
+
+@keyframes floater-emoji {
+  0%, 100% { opacity: .55; transform: translate(-50%, -50%) rotate(-4deg); }
+  50%      { opacity: .9;  transform: translate(-50%, calc(-50% - 12px)) rotate(5deg); }
+}
+
+[data-theme="light"] .floater { opacity: 0; }
+[data-theme="light"] .floater--emoji { opacity: .7; }
+
+/* ── Ambient side-gutter floaters across the whole page ── */
+.page-floaters {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floater--page {
+  position: absolute;
+  display: inline-flex;
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  animation: floater-drift var(--dur, 8s) ease-in-out var(--del, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+/* Keep icons out of the reading column on narrower screens */
+@media (max-width: 1180px) {
+  .page-floaters { display: none; }
+}
+
+[data-theme="light"] .floater--page { opacity: 0; }
 
 .hero .eyebrow {
   margin-top: 20px;
@@ -907,44 +997,95 @@ h3 {
   background: var(--line);
 }
 
+/* ── Flip service cards ── */
 .venture-service {
-  min-height: 160px;
+  min-height: 172px;
+  background: transparent;
+  perspective: 1100px;
+  outline: none;
+}
+
+.vs-flip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 172px;
+  transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Only flip where a real pointer can hover — avoids janky taps on mobile */
+@media (hover: hover) and (pointer: fine) {
+  .venture-service:hover .vs-flip,
+  .venture-service:focus-within .vs-flip {
+    transform: rotateY(180deg);
+  }
+}
+
+.vs-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
   padding: 22px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.vs-front {
   background: color-mix(in srgb, var(--surface) 72%, transparent);
-  transition: background var(--transition);
 }
 
-.venture-service:hover {
-  background: color-mix(in srgb, var(--surface-strong) 84%, transparent);
+.vs-back {
+  background:
+    radial-gradient(ellipse 90% 80% at 20% 0%, color-mix(in srgb, var(--pc, var(--accent)) 20%, transparent), transparent 70%),
+    color-mix(in srgb, var(--surface-strong) 92%, transparent);
+  transform: rotateY(180deg);
+  border-top: 2px solid var(--pc, var(--accent));
+  justify-content: center;
 }
 
-.venture-service span {
+.vs-num {
   display: inline-flex;
   width: 34px;
   height: 34px;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--accent) 14%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
-  color: var(--accent);
+  background: color-mix(in srgb, var(--pc, var(--accent)) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--pc, var(--accent)) 34%, transparent);
+  color: var(--pc, var(--accent));
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 12px;
   font-weight: 900;
 }
 
-.venture-service strong {
+.vs-face strong {
   display: block;
   margin-top: 16px;
   font-size: 15px;
   font-weight: 800;
 }
 
-.venture-service p {
+.vs-back strong {
+  margin-top: 0;
+  color: var(--pc, var(--accent));
+}
+
+.vs-face p {
   margin: 8px 0 0;
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
+}
+
+.vs-back p {
+  color: var(--text);
+}
+
+.vs-back .vs-num {
+  background: color-mix(in srgb, var(--pc, var(--accent)) 24%, transparent);
+  border-color: color-mix(in srgb, var(--pc, var(--accent)) 50%, transparent);
 }
 
 /* ======================================================
@@ -952,153 +1093,150 @@ h3 {
    ====================================================== */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .project {
-  grid-column: span 6;
+  position: relative;
+  perspective: 1000px;
+}
+
+/* Tilting inner card — driven by --rx/--ry set from JS */
+.project-inner {
+  position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 440px;
+  height: 100%;
+  min-height: 380px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--surface) 84%, transparent);
+  background:
+    radial-gradient(ellipse 120% 90% at 50% -10%, color-mix(in srgb, var(--pc, var(--accent)) 10%, transparent), transparent 60%),
+    color-mix(in srgb, var(--surface) 82%, transparent);
   box-shadow: var(--shadow-card);
-  transition: transform .28s cubic-bezier(.22, 1, .36, 1), border-color .22s ease, background .22s ease, box-shadow .28s ease;
-  position: relative;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+  transition:
+    transform .18s cubic-bezier(.22, 1, .36, 1),
+    border-color .28s ease,
+    box-shadow .32s ease;
+  will-change: transform;
 }
 
-.project::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 04%, transparent), transparent 50%);
-  opacity: 0;
-  transition: opacity .28s ease;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.project:hover {
-  transform: translateY(-6px) scale(1.008);
-  border-color: color-mix(in srgb, var(--accent) 42%, var(--line));
-  background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+.project:hover .project-inner {
+  border-color: color-mix(in srgb, var(--pc, var(--accent)) 48%, var(--line));
   box-shadow:
     var(--shadow),
-    0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent) inset,
-    0 0 48px rgba(0, 212, 255, .13);
+    0 0 0 1px color-mix(in srgb, var(--pc, var(--accent)) 20%, transparent) inset,
+    0 22px 48px color-mix(in srgb, var(--pc, var(--accent)) 18%, transparent);
 }
 
-.project:hover::before {
-  opacity: 1;
-}
-
-.project-visual {
-  position: relative;
-  overflow: hidden;
-  height: 168px;
-  flex-shrink: 0;
-  border-bottom: 1px solid var(--line);
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--accent-2) 20%, transparent) 0%, transparent 50%),
-    linear-gradient(45deg, color-mix(in srgb, var(--accent-3) 14%, transparent) 0%, transparent 55%),
-    var(--surface-strong);
-}
-
-.project-visual::before {
+/* Animated top accent line */
+.project-line {
   position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, .05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, .05) 1px, transparent 1px);
-  background-size: 26px 26px;
-  content: "";
-}
-
-.project-visual::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
-  height: 50%;
-  background: linear-gradient(to top, color-mix(in srgb, var(--surface) 60%, transparent), transparent);
+  height: 2px;
+  z-index: 3;
+  background: linear-gradient(90deg, transparent, var(--pc, var(--accent)), transparent);
+  opacity: 0;
+  transform: translateX(-40%);
+  transition: opacity .4s ease, transform .6s cubic-bezier(.16, 1, .3, 1);
 }
 
-.visual-lines {
-  position: absolute;
-  inset: 20px;
-  display: grid;
-  align-content: center;
-  gap: 10px;
-  z-index: 1;
+.project:hover .project-line {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-.visual-chip {
-  width: max-content;
-  max-width: 100%;
-  padding: 7px 11px;
-  border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
-  border-radius: var(--radius);
-  background: color-mix(in srgb, var(--bg) 56%, transparent);
-  color: var(--text);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 11px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  backdrop-filter: blur(8px);
+.project .card-glow {
+  background: radial-gradient(
+    300px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    color-mix(in srgb, var(--pc, var(--accent)) 16%, transparent),
+    transparent 72%
+  );
 }
 
-.visual-chip:nth-child(2) {
-  margin-left: auto;
-  border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
-  color: var(--accent);
-}
-
-.visual-chip:nth-child(3) {
-  margin-left: 20%;
-  color: var(--accent-soft);
-  border-color: color-mix(in srgb, var(--accent-3) 30%, var(--line));
-}
-
-.project-body {
+.project-content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 20px;
+  gap: 13px;
+  padding: 22px;
   flex: 1;
-  position: relative;
-  z-index: 1;
+  transform: translateZ(30px);
 }
 
-.project-top {
+.project-head {
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
 
+.project-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--pc, var(--accent)) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--pc, var(--accent)) 32%, transparent);
+  color: var(--pc, var(--accent));
+  transition: transform var(--transition);
+}
+
+.project:hover .project-icon {
+  transform: translateY(-2px) scale(1.06);
+}
+
+.project .badge {
+  border-color: color-mix(in srgb, var(--pc, var(--accent)) 28%, var(--line));
+  color: color-mix(in srgb, var(--pc, var(--accent)) 78%, var(--text));
+  background: color-mix(in srgb, var(--pc, var(--accent)) 08%, transparent);
+}
+
 .project h3 {
   font-size: 19px;
-  font-weight: 800;
+  font-weight: 700;
+  letter-spacing: -.01em;
 }
 
 .project p {
   margin: 0;
   color: var(--muted);
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.62;
+}
+
+.visual-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.visual-label {
+  padding: 4px 9px;
+  border: 1px dashed color-mix(in srgb, var(--pc, var(--accent)) 34%, var(--line));
+  border-radius: var(--radius);
+  color: color-mix(in srgb, var(--pc, var(--accent)) 82%, var(--text));
+  background: color-mix(in srgb, var(--pc, var(--accent)) 06%, transparent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .01em;
 }
 
 .impact {
   padding: 12px 14px;
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--pc, var(--accent));
   border-radius: 0 var(--radius) var(--radius) 0;
-  background: color-mix(in srgb, var(--accent) 08%, transparent);
+  background: color-mix(in srgb, var(--pc, var(--accent)) 08%, transparent);
   color: var(--text);
   font-size: 13px;
   line-height: 1.55;
@@ -1164,6 +1302,35 @@ h3 {
   color: var(--accent);
   background: color-mix(in srgb, var(--accent) 06%, transparent);
   transform: translateY(-1px);
+}
+
+.link span { transition: transform var(--transition); }
+.link:hover span { transform: translateX(3px); }
+
+/* Per-card accent for project tags and links */
+.project .tag:hover {
+  border-color: color-mix(in srgb, var(--pc, var(--accent)) 42%, var(--line));
+  background: color-mix(in srgb, var(--pc, var(--accent)) 08%, transparent);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--pc, var(--accent)) 18%, transparent);
+}
+
+.project .link--demo {
+  border-color: transparent;
+  color: #06111a;
+  background: var(--pc, var(--accent));
+  font-weight: 800;
+}
+
+.project .link--demo:hover {
+  color: #06111a;
+  filter: brightness(1.08);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--pc, var(--accent)) 40%, transparent);
+}
+
+.project .link:not(.link--demo):hover {
+  border-color: color-mix(in srgb, var(--pc, var(--accent)) 46%, var(--line));
+  color: var(--pc, var(--accent));
+  background: color-mix(in srgb, var(--pc, var(--accent)) 07%, transparent);
 }
 
 /* ======================================================
@@ -1526,9 +1693,46 @@ h3 {
    FOOTER
    ====================================================== */
 footer {
+  position: relative;
+  overflow: hidden;
   border-top: 1px solid var(--line);
   background: color-mix(in srgb, var(--bg) 60%, var(--surface));
   color: var(--muted);
+}
+
+/* ── Footer icon rain ── */
+.footer-rain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.footer-rain .rain-drop {
+  position: absolute;
+  top: 0;
+  display: inline-flex;
+  transform: translateY(-140%);
+  animation: rain-fall var(--dur, 7s) linear var(--del, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes rain-fall {
+  0%   { transform: translateY(-140%) rotate(0deg); opacity: 0; }
+  10%  { opacity: .28; }
+  85%  { opacity: .28; }
+  100% { transform: translateY(760%) rotate(200deg); opacity: 0; }
+}
+
+.footer-top,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-rain { display: none; }
 }
 
 /* --- Top zone: brand + nav columns --- */
@@ -1812,8 +2016,8 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 
-  .project {
-    grid-column: span 12;
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
 }
@@ -1931,6 +2135,10 @@ footer {
   }
 
   .capability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
     grid-template-columns: 1fr;
   }
 

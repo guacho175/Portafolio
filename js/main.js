@@ -87,9 +87,8 @@ function populatePortfolio(data) {
 
   document.title = `${perfil.nombre || 'Christian Galindez'} | Backend, APIs e Integraciones`;
   setText('#hero-disponibilidad', perfil.disponibilidad);
-  setText('#hero-headline', perfil.headline || `Backend aplicado para sistemas reales.`);
+  renderHeadline('#hero-headline', perfil.headline || `Backend aplicado para sistemas reales.`);
   setText('#hero-desc', perfil.descripcion_corta);
-  setHref('#btn-cv', perfil.cv_url);
 
   setGlobalLinks(links);
   renderHeroTags(perfil);
@@ -101,6 +100,124 @@ function populatePortfolio(data) {
 
   setupObserver();
   setupMouseGlow();
+  setupHeroFloaters();
+  setupPageFloaters();
+  setupFooterRain();
+  setupTilt();
+}
+
+/* Shared tech icon paths (lucide-style) used across floater effects */
+const FLOATER_ICONS = [
+  { d: '<path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/>', c: '#4f9eff' },
+  { d: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>', c: '#a78bfa' },
+  { d: '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>', c: '#34d399' },
+  { d: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>', c: '#fb923c' },
+  { d: '<rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/>', c: '#f472b6' },
+  { d: '<polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/>', c: '#fbbf24' },
+  { d: '<rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6 6h.01M6 18h.01"/>', c: '#38bdf8' },
+  { d: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>', c: '#c084fc' },
+  { d: '<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>', c: '#2dd4bf' },
+];
+
+function floaterSvg(pathData, color, size, stroke = 1.3) {
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${stroke}" stroke-linecap="round" stroke-linejoin="round">${pathData}</svg>`;
+}
+
+/* ── Floating icon/emoji stickers in the hero ── */
+function setupHeroFloaters() {
+  const layer = document.getElementById('hero-floaters');
+  if (!layer || layer.childElementCount) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const icons = [
+    { d: '<path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/>', x: 6, y: 16, s: 40, dur: 6, del: 0, c: '#4f9eff', r: -14 },
+    { d: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>', x: 88, y: 10, s: 30, dur: 5, del: 0.6, c: '#a78bfa', r: 10 },
+    { d: '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>', x: 90, y: 58, s: 38, dur: 7, del: 1.4, c: '#34d399', r: 6 },
+    { d: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>', x: 4, y: 64, s: 32, dur: 5.5, del: 0.3, c: '#fb923c', r: -8 },
+    { d: '<rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/>', x: 46, y: 6, s: 26, dur: 8, del: 1.8, c: '#f472b6', r: 18 },
+    { d: '<path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/>', x: 72, y: 20, s: 28, dur: 6.5, del: 1.1, c: '#38bdf8', r: -12 },
+    { d: '<polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/>', x: 14, y: 40, s: 24, dur: 7, del: 0.5, c: '#fbbf24', r: 8 },
+    { d: '<rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6 6h.01M6 18h.01"/>', x: 80, y: 78, s: 28, dur: 6, del: 1.6, c: '#34d399', r: -6 },
+    { d: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>', x: 60, y: 86, s: 22, dur: 5.5, del: 1, c: '#fbbf24', r: 14 },
+  ];
+
+  const svg = i => `<svg width="${i.s}" height="${i.s}" viewBox="0 0 24 24" fill="none" stroke="${i.c}" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${i.d}</svg>`;
+
+  layer.innerHTML = icons.map(i =>
+    `<span class="floater" style="left:${i.x}%;top:${i.y}%;--rot:${i.r}deg;--dur:${i.dur}s;--del:${i.del}s;">${svg(i)}</span>`
+  ).join('') + [
+    { e: '🚀', x: 89, y: 26, d: 4.2, l: 0 },
+    { e: '⚡', x: 5, y: 74, d: 3.8, l: 0.5 },
+    { e: '💡', x: 22, y: 12, d: 4.6, l: 0.9 },
+    { e: '🌐', x: 70, y: 82, d: 4.0, l: 1.3 },
+  ].map(s => `<span class="floater floater--emoji" style="left:${s.x}%;top:${s.y}%;--dur:${s.d}s;--del:${s.l}s;">${s.e}</span>`).join('');
+}
+
+/* ── Ambient icons drifting along both side gutters of the whole page ── */
+function setupPageFloaters() {
+  const layer = document.getElementById('page-floaters');
+  if (!layer || layer.childElementCount) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Fixed layer stays visible while scrolling, so a handful per side is enough.
+  const spots = [
+    { side: 'left', x: 3, y: 14 }, { side: 'right', x: 96, y: 20 },
+    { side: 'left', x: 5, y: 38 }, { side: 'right', x: 94, y: 46 },
+    { side: 'left', x: 2, y: 62 }, { side: 'right', x: 97, y: 68 },
+    { side: 'left', x: 6, y: 86 }, { side: 'right', x: 95, y: 90 },
+  ];
+
+  layer.innerHTML = spots.map((s, i) => {
+    const ic = FLOATER_ICONS[i % FLOATER_ICONS.length];
+    const size = 26 + (i % 3) * 8;
+    const dur = 7 + (i % 4);
+    const del = (i * 0.6).toFixed(1);
+    const rot = (i % 2 === 0 ? -1 : 1) * (6 + (i % 3) * 4);
+    return `<span class="floater floater--page" style="left:${s.x}%;top:${s.y}%;--rot:${rot}deg;--dur:${dur}s;--del:${del}s;">${floaterSvg(ic.d, ic.c, size)}</span>`;
+  }).join('');
+}
+
+/* ── Icons raining down inside the footer ── */
+function setupFooterRain() {
+  const layer = document.getElementById('footer-rain');
+  if (!layer || layer.childElementCount) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const drops = 14;
+  let html = '';
+  for (let i = 0; i < drops; i++) {
+    const ic = FLOATER_ICONS[i % FLOATER_ICONS.length];
+    const left = ((i + 0.5) * (100 / drops) + (i % 2 ? 2.5 : -2.5)).toFixed(1);
+    const size = 16 + (i % 4) * 6;
+    const dur = (5 + (i % 5) * 1.4).toFixed(1);
+    const del = (i * 0.5).toFixed(1);
+    html += `<span class="rain-drop" style="left:${left}%;--size:${size}px;--dur:${dur}s;--del:${del}s;">${floaterSvg(ic.d, ic.c, size)}</span>`;
+  }
+  layer.innerHTML = html;
+}
+
+/* ── 3D tilt on project cards ── */
+function setupTilt() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  document.querySelectorAll('.project').forEach(card => {
+    const inner = card.querySelector('.project-inner');
+    if (!inner) return;
+
+    card.addEventListener('pointermove', e => {
+      const rect = card.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width;
+      const py = (e.clientY - rect.top) / rect.height;
+      inner.style.setProperty('--rx', `${(py - 0.5) * -9}deg`);
+      inner.style.setProperty('--ry', `${(px - 0.5) * 11}deg`);
+    }, { passive: true });
+
+    card.addEventListener('pointerleave', () => {
+      inner.style.setProperty('--rx', '0deg');
+      inner.style.setProperty('--ry', '0deg');
+    }, { passive: true });
+  });
 }
 
 function renderVenture(venture) {
@@ -111,11 +228,22 @@ function renderVenture(venture) {
   const container = document.getElementById('venture-services');
   if (!container) return;
 
+  const accents = ['#4f9eff', '#a78bfa', '#34d399', '#fb923c', '#f472b6', '#fbbf24'];
+
   container.innerHTML = (venture.servicios || []).map((service, index) => `
-    <article class="venture-service">
-      <span>${String(index + 1).padStart(2, '0')}</span>
-      <strong>${escapeHtml(service.titulo)}</strong>
-      <p>${escapeHtml(service.descripcion)}</p>
+    <article class="venture-service" style="--pc:${accents[index % accents.length]};">
+      <div class="vs-flip">
+        <div class="vs-face vs-front">
+          <span class="vs-num">${String(index + 1).padStart(2, '0')}</span>
+          <strong>${escapeHtml(service.titulo)}</strong>
+          <p>${escapeHtml(service.descripcion)}</p>
+        </div>
+        <div class="vs-face vs-back">
+          <span class="vs-num">${String(index + 1).padStart(2, '0')}</span>
+          <strong>${escapeHtml(service.titulo)}</strong>
+          <p>${escapeHtml(service.descripcion)}</p>
+        </div>
+      </div>
     </article>
   `).join('');
 }
@@ -156,30 +284,41 @@ function renderProjects(projects, skills = []) {
   renderProjectFilters(projects, skills);
 }
 
+const PROJECT_ACCENTS = [
+  '#4f9eff', '#a78bfa', '#34d399', '#fb923c', '#f472b6', '#fbbf24',
+  '#38bdf8', '#c084fc', '#2dd4bf', '#f59e0b', '#f87171', '#60a5fa'
+];
+
 function projectCard(project, index) {
   const tags = project.tags || [];
   const labels = project.visual_labels || tags.slice(0, 3);
+  const accent = PROJECT_ACCENTS[index % PROJECT_ACCENTS.length];
   const links = [
-    project.repo_url ? `<a class="link" href="${escapeAttr(project.repo_url)}" target="_blank" rel="noopener">Codigo -></a>` : '',
-    project.demo_url ? `<a class="link" href="${escapeAttr(project.demo_url)}" target="_blank" rel="noopener">Ver -></a>` : '',
+    project.repo_url ? `<a class="link" href="${escapeAttr(project.repo_url)}" target="_blank" rel="noopener">Codigo <span aria-hidden="true">-></span></a>` : '',
+    project.demo_url ? `<a class="link link--demo" href="${escapeAttr(project.demo_url)}" target="_blank" rel="noopener">Ver proyecto <span aria-hidden="true">-></span></a>` : '',
   ].filter(Boolean).join('');
 
   return `
-    <article class="project reveal" style="--i:${index}" data-tags="${escapeAttr(tags.join('|'))}">
-      <div class="project-visual visual-${escapeAttr(project.visual || 'backend')}">
-        <div class="visual-lines">
-          ${labels.map(label => `<span class="visual-chip">${escapeHtml(label)}</span>`).join('')}
-        </div>
-      </div>
-      <div class="project-body">
-        <div class="project-top">
+    <article class="project reveal" style="--i:${index}; --pc:${accent};" data-tags="${escapeAttr(tags.join('|'))}">
+      <div class="project-inner">
+        <span class="project-line" aria-hidden="true"></span>
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="project-content">
+          <div class="project-head">
+            <span class="project-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+            </span>
+            <span class="badge">${escapeHtml(project.estado || project.badge || 'Proyecto')}</span>
+          </div>
           <h3>${escapeHtml(project.titulo)}</h3>
-          <span class="badge">${escapeHtml(project.estado || project.badge || 'Proyecto')}</span>
+          <p>${escapeHtml(project.descripcion)}</p>
+          ${project.impacto ? `<div class="impact">${escapeHtml(project.impacto)}</div>` : ''}
+          <div class="visual-labels" aria-hidden="true">
+            ${labels.map(label => `<span class="visual-label">${escapeHtml(label)}</span>`).join('')}
+          </div>
+          <div class="tags">${tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div>
+          ${links ? `<div class="links">${links}</div>` : ''}
         </div>
-        <p>${escapeHtml(project.descripcion)}</p>
-        ${project.impacto ? `<div class="impact">${escapeHtml(project.impacto)}</div>` : ''}
-        <div class="tags">${tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}</div>
-        ${links ? `<div class="links">${links}</div>` : ''}
       </div>
     </article>
   `;
@@ -560,6 +699,39 @@ function setFieldError(form, fieldName, message) {
 function setText(selector, value) {
   const element = document.querySelector(selector);
   if (element && value !== undefined && value !== null) element.textContent = value;
+}
+
+/* Render the headline text unchanged, wrapping a keyword in a gradient span.
+   The visible text is identical — only styling changes. */
+function renderHeadline(selector, value) {
+  const element = document.querySelector(selector);
+  if (!element || !value) return;
+
+  const keywords = ['automatizacion', 'automatización', 'productos web', 'backend'];
+  const lower = value.toLowerCase();
+  let matchIndex = -1;
+  let matchWord = '';
+  keywords.forEach(word => {
+    const i = lower.indexOf(word);
+    if (i !== -1 && (matchIndex === -1 || i < matchIndex)) {
+      matchIndex = i;
+      matchWord = value.substr(i, word.length);
+    }
+  });
+
+  if (matchIndex === -1) {
+    element.textContent = value;
+    return;
+  }
+
+  const before = document.createTextNode(value.slice(0, matchIndex));
+  const grad = document.createElement('span');
+  grad.className = 'grad';
+  grad.textContent = matchWord;
+  const after = document.createTextNode(value.slice(matchIndex + matchWord.length));
+
+  element.textContent = '';
+  element.append(before, grad, after);
 }
 
 function setHref(selector, value) {

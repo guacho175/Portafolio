@@ -18,12 +18,19 @@
   <link rel="canonical" href="https://guacho175.github.io" />
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body data-theme="dark">
   <a class="skip-link" href="#main">Saltar al contenido</a>
   <div class="bg-grid" aria-hidden="true"></div>
+  <div class="page-floaters" id="page-floaters" aria-hidden="true"></div>
 
   <header class="topbar">
     <div class="container">
@@ -66,6 +73,7 @@
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-floaters" id="hero-floaters" aria-hidden="true"></div>
       <div class="container hero-layout">
         <div class="hero-copy reveal">
           <span class="status-pill">
@@ -79,7 +87,6 @@
 
           <div class="hero-actions">
             <a class="btn primary" href="#projects">Ver proyectos</a>
-            <a class="btn" id="btn-cv" href="#" target="_blank" rel="noopener">Descargar CV</a>
             <a class="btn quiet" href="#contacto">Contactar</a>
           </div>
 
@@ -143,7 +150,6 @@
             <p class="section-desc" id="venture-summary"></p>
             <div class="venture-actions">
               <a class="btn primary" id="venture-link" href="#" target="_blank" rel="noopener">Ver Orbynex</a>
-              <a class="btn quiet" href="#projects">Ver proyectos aplicados</a>
             </div>
           </div>
 
@@ -236,6 +242,7 @@
     </section>
 
     <footer>
+      <div class="footer-rain" id="footer-rain" aria-hidden="true"></div>
       <div class="container footer-top">
         <div class="footer-brand">
           <span class="logo footer-logo" aria-hidden="true">CG</span>
