@@ -34,7 +34,7 @@
   "venture": {
     "nombre": "orbynex.digital",
     "url": "https://orbynexdigital.cl/",
-    "resumen": "Mi marca de soluciones web y automatizacion digital para negocios pequenos: landing pages, integraciones, flujos entre herramientas y documentacion clara para que lo implementado se pueda mantener.",
+    "resumen": "Mi marca de soluciones web y automatizacion digital para negocios: landing pages, integraciones, flujos entre herramientas y documentacion clara para que lo implementado se pueda mantener.",
     "servicios": [
       {
         "titulo": "Landing pages",
@@ -98,7 +98,7 @@
         "Roles"
       ],
       "repo_url": "",
-      "demo_url": "https://agendapro.orbynexdigital.cl/"
+      "demo_url": ""
     },
     {
       "titulo": "orbynex.digital",

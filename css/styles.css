@@ -620,6 +620,31 @@ h3 {
 [data-theme="light"] .floater { opacity: 0; }
 [data-theme="light"] .floater--emoji { opacity: .7; }
 
+/* ── Ambient side-gutter floaters across the whole page ── */
+.page-floaters {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floater--page {
+  position: absolute;
+  display: inline-flex;
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  animation: floater-drift var(--dur, 8s) ease-in-out var(--del, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+/* Keep icons out of the reading column on narrower screens */
+@media (max-width: 1180px) {
+  .page-floaters { display: none; }
+}
+
+[data-theme="light"] .floater--page { opacity: 0; }
+
 .hero .eyebrow {
   margin-top: 20px;
 }
@@ -989,9 +1014,12 @@ h3 {
   transition: transform .6s cubic-bezier(.4, 0, .2, 1);
 }
 
-.venture-service:hover .vs-flip,
-.venture-service:focus-visible .vs-flip {
-  transform: rotateY(180deg);
+/* Only flip where a real pointer can hover — avoids janky taps on mobile */
+@media (hover: hover) and (pointer: fine) {
+  .venture-service:hover .vs-flip,
+  .venture-service:focus-within .vs-flip {
+    transform: rotateY(180deg);
+  }
 }
 
 .vs-face {
@@ -1055,15 +1083,9 @@ h3 {
   color: var(--text);
 }
 
-.vs-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: auto;
-  padding-top: 12px;
-  color: var(--pc, var(--accent));
-  font-size: 12px;
-  font-weight: 700;
+.vs-back .vs-num {
+  background: color-mix(in srgb, var(--pc, var(--accent)) 24%, transparent);
+  border-color: color-mix(in srgb, var(--pc, var(--accent)) 50%, transparent);
 }
 
 /* ======================================================
@@ -1671,9 +1693,46 @@ h3 {
    FOOTER
    ====================================================== */
 footer {
+  position: relative;
+  overflow: hidden;
   border-top: 1px solid var(--line);
   background: color-mix(in srgb, var(--bg) 60%, var(--surface));
   color: var(--muted);
+}
+
+/* ── Footer icon rain ── */
+.footer-rain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.footer-rain .rain-drop {
+  position: absolute;
+  top: 0;
+  display: inline-flex;
+  transform: translateY(-140%);
+  animation: rain-fall var(--dur, 7s) linear var(--del, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes rain-fall {
+  0%   { transform: translateY(-140%) rotate(0deg); opacity: 0; }
+  10%  { opacity: .28; }
+  85%  { opacity: .28; }
+  100% { transform: translateY(760%) rotate(200deg); opacity: 0; }
+}
+
+.footer-top,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-rain { display: none; }
 }
 
 /* --- Top zone: brand + nav columns --- */

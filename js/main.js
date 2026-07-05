@@ -89,7 +89,6 @@ function populatePortfolio(data) {
   setText('#hero-disponibilidad', perfil.disponibilidad);
   renderHeadline('#hero-headline', perfil.headline || `Backend aplicado para sistemas reales.`);
   setText('#hero-desc', perfil.descripcion_corta);
-  setHref('#btn-cv', perfil.cv_url);
 
   setGlobalLinks(links);
   renderHeroTags(perfil);
@@ -102,7 +101,26 @@ function populatePortfolio(data) {
   setupObserver();
   setupMouseGlow();
   setupHeroFloaters();
+  setupPageFloaters();
+  setupFooterRain();
   setupTilt();
+}
+
+/* Shared tech icon paths (lucide-style) used across floater effects */
+const FLOATER_ICONS = [
+  { d: '<path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/>', c: '#4f9eff' },
+  { d: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>', c: '#a78bfa' },
+  { d: '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>', c: '#34d399' },
+  { d: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/>', c: '#fb923c' },
+  { d: '<rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/>', c: '#f472b6' },
+  { d: '<polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/>', c: '#fbbf24' },
+  { d: '<rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6 6h.01M6 18h.01"/>', c: '#38bdf8' },
+  { d: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>', c: '#c084fc' },
+  { d: '<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>', c: '#2dd4bf' },
+];
+
+function floaterSvg(pathData, color, size, stroke = 1.3) {
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${stroke}" stroke-linecap="round" stroke-linejoin="round">${pathData}</svg>`;
 }
 
 /* ── Floating icon/emoji stickers in the hero ── */
@@ -133,6 +151,49 @@ function setupHeroFloaters() {
     { e: '💡', x: 22, y: 12, d: 4.6, l: 0.9 },
     { e: '🌐', x: 70, y: 82, d: 4.0, l: 1.3 },
   ].map(s => `<span class="floater floater--emoji" style="left:${s.x}%;top:${s.y}%;--dur:${s.d}s;--del:${s.l}s;">${s.e}</span>`).join('');
+}
+
+/* ── Ambient icons drifting along both side gutters of the whole page ── */
+function setupPageFloaters() {
+  const layer = document.getElementById('page-floaters');
+  if (!layer || layer.childElementCount) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Fixed layer stays visible while scrolling, so a handful per side is enough.
+  const spots = [
+    { side: 'left', x: 3, y: 14 }, { side: 'right', x: 96, y: 20 },
+    { side: 'left', x: 5, y: 38 }, { side: 'right', x: 94, y: 46 },
+    { side: 'left', x: 2, y: 62 }, { side: 'right', x: 97, y: 68 },
+    { side: 'left', x: 6, y: 86 }, { side: 'right', x: 95, y: 90 },
+  ];
+
+  layer.innerHTML = spots.map((s, i) => {
+    const ic = FLOATER_ICONS[i % FLOATER_ICONS.length];
+    const size = 26 + (i % 3) * 8;
+    const dur = 7 + (i % 4);
+    const del = (i * 0.6).toFixed(1);
+    const rot = (i % 2 === 0 ? -1 : 1) * (6 + (i % 3) * 4);
+    return `<span class="floater floater--page" style="left:${s.x}%;top:${s.y}%;--rot:${rot}deg;--dur:${dur}s;--del:${del}s;">${floaterSvg(ic.d, ic.c, size)}</span>`;
+  }).join('');
+}
+
+/* ── Icons raining down inside the footer ── */
+function setupFooterRain() {
+  const layer = document.getElementById('footer-rain');
+  if (!layer || layer.childElementCount) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const drops = 14;
+  let html = '';
+  for (let i = 0; i < drops; i++) {
+    const ic = FLOATER_ICONS[i % FLOATER_ICONS.length];
+    const left = ((i + 0.5) * (100 / drops) + (i % 2 ? 2.5 : -2.5)).toFixed(1);
+    const size = 16 + (i % 4) * 6;
+    const dur = (5 + (i % 5) * 1.4).toFixed(1);
+    const del = (i * 0.5).toFixed(1);
+    html += `<span class="rain-drop" style="left:${left}%;--size:${size}px;--dur:${dur}s;--del:${del}s;">${floaterSvg(ic.d, ic.c, size)}</span>`;
+  }
+  layer.innerHTML = html;
 }
 
 /* ── 3D tilt on project cards ── */
@@ -170,15 +231,15 @@ function renderVenture(venture) {
   const accents = ['#4f9eff', '#a78bfa', '#34d399', '#fb923c', '#f472b6', '#fbbf24'];
 
   container.innerHTML = (venture.servicios || []).map((service, index) => `
-    <article class="venture-service" style="--pc:${accents[index % accents.length]};" tabindex="0">
+    <article class="venture-service" style="--pc:${accents[index % accents.length]};">
       <div class="vs-flip">
         <div class="vs-face vs-front">
           <span class="vs-num">${String(index + 1).padStart(2, '0')}</span>
           <strong>${escapeHtml(service.titulo)}</strong>
           <p>${escapeHtml(service.descripcion)}</p>
-          <span class="vs-hint">Pasa el cursor <span aria-hidden="true">-></span></span>
         </div>
         <div class="vs-face vs-back">
+          <span class="vs-num">${String(index + 1).padStart(2, '0')}</span>
           <strong>${escapeHtml(service.titulo)}</strong>
           <p>${escapeHtml(service.descripcion)}</p>
         </div>
