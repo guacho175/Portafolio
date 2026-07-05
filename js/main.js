@@ -320,6 +320,13 @@ function setupObserver() {
     return;
   }
 
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reducedMotion) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('show'));
+    return;
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -332,12 +339,14 @@ function setupObserver() {
         }
       }
     });
-  }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
   document.querySelectorAll('.reveal:not(.show)').forEach(el => observer.observe(el));
 }
 
 function animateStatNumber(statEl) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const kEl = statEl.querySelector('.k');
   if (!kEl) return;
 
@@ -347,14 +356,14 @@ function animateStatNumber(statEl) {
 
   const target = parseInt(match[1], 10);
   const suffix = match[2] + match[3];
-  const duration = 1200;
+  const duration = 1400;
   const start = performance.now();
 
   function step(now) {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
-    // ease-out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
+    // ease-out quart — faster start, crisp landing
+    const eased = 1 - Math.pow(1 - progress, 4);
     const current = Math.round(eased * target);
     kEl.textContent = current + suffix;
     if (progress < 1) requestAnimationFrame(step);
@@ -364,7 +373,40 @@ function animateStatNumber(statEl) {
 }
 
 function setupMouseGlow() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Interactive background gradient that follows the mouse ── */
+  if (!reducedMotion) {
+    let rafBg = null;
+    let targetX = 50, targetY = 30;
+    let currentX = 50, currentY = 30;
+
+    document.addEventListener('mousemove', (e) => {
+      targetX = (e.clientX / window.innerWidth) * 100;
+      targetY = (e.clientY / window.innerHeight) * 100;
+
+      if (!rafBg) {
+        rafBg = requestAnimationFrame(tickBg);
+      }
+    }, { passive: true });
+
+    function tickBg() {
+      // Smooth lerp — 6% per frame ≈ ~100ms settle at 60fps
+      const lerpFactor = 0.06;
+      currentX += (targetX - currentX) * lerpFactor;
+      currentY += (targetY - currentY) * lerpFactor;
+
+      document.body.style.setProperty('--glow-x', `${currentX.toFixed(2)}%`);
+      document.body.style.setProperty('--glow-y', `${currentY.toFixed(2)}%`);
+      document.body.style.setProperty('--glow-opacity-bg', '1');
+
+      const stillMoving = Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05;
+      rafBg = stillMoving ? requestAnimationFrame(tickBg) : null;
+    }
+  }
+
+  /* ── Per-card mouse-tracking glow ── */
+  if (reducedMotion) return;
 
   document.querySelectorAll('.project, .skill-block, .stat').forEach(card => {
     // Inject a glow div once per card to avoid pseudo-element conflicts
@@ -380,14 +422,31 @@ function setupMouseGlow() {
       const rect = card.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
-      card.style.setProperty('--mouse-x', `${x}%`);
-      card.style.setProperty('--mouse-y', `${y}%`);
+      card.style.setProperty('--mouse-x', `${x.toFixed(1)}%`);
+      card.style.setProperty('--mouse-y', `${y.toFixed(1)}%`);
       glowEl.classList.add('active');
     }, { passive: true });
 
     card.addEventListener('mouseleave', () => {
       glowEl.classList.remove('active');
     }, { passive: true });
+  });
+
+  /* ── Ripple effect on .btn.primary ── */
+  document.querySelectorAll('.btn.primary').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 1.5;
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
+      btn.appendChild(ripple);
+
+      ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+    });
   });
 }
 
