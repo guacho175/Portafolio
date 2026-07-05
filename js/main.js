@@ -320,6 +320,13 @@ function setupObserver() {
     return;
   }
 
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reducedMotion) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('show'));
+    return;
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -332,12 +339,14 @@ function setupObserver() {
         }
       }
     });
-  }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
   document.querySelectorAll('.reveal:not(.show)').forEach(el => observer.observe(el));
 }
 
 function animateStatNumber(statEl) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const kEl = statEl.querySelector('.k');
   if (!kEl) return;
 
@@ -347,14 +356,14 @@ function animateStatNumber(statEl) {
 
   const target = parseInt(match[1], 10);
   const suffix = match[2] + match[3];
-  const duration = 1200;
+  const duration = 1400;
   const start = performance.now();
 
   function step(now) {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
-    // ease-out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
+    // ease-out quart — faster start, crisp landing
+    const eased = 1 - Math.pow(1 - progress, 4);
     const current = Math.round(eased * target);
     kEl.textContent = current + suffix;
     if (progress < 1) requestAnimationFrame(step);
@@ -364,10 +373,60 @@ function animateStatNumber(statEl) {
 }
 
 function setupMouseGlow() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    // Reveal cards without animation
+    document.querySelectorAll('.project, .skill-block, .stat').forEach(card => {
+      card.querySelector('.card-glow') || (() => {
+        const g = document.createElement('div');
+        g.className = 'card-glow';
+        g.setAttribute('aria-hidden', 'true');
+        card.appendChild(g);
+      })();
+    });
+    setupRipple();
+    return;
+  }
 
+  /* ── Interactive background gradient — persistent RAF loop ──
+     Strategy: one RAF loop runs continuously while the page is active.
+     mousemove only writes targetX/targetY (no RAF scheduling there).
+     This prevents the "stuck" bug where the loop cancels early when
+     the mouse moves faster than the lerp can keep up.
+  ── */
+  let targetX = 50, targetY = 30;
+  let currentX = 50, currentY = 30;
+  let mouseActive = false;
+
+  document.addEventListener('mousemove', (e) => {
+    targetX = (e.clientX / window.innerWidth) * 100;
+    targetY = (e.clientY / window.innerHeight) * 100;
+    mouseActive = true;
+  }, { passive: true });
+
+  // Higher lerp = snappier tracking, lower = more drag. 0.10 is a good balance.
+  const LERP = 0.10;
+  const THRESHOLD = 0.02; // stop writing to DOM when this close (avoids pointless repaints)
+
+  function bgLoop() {
+    if (mouseActive) {
+      const dx = targetX - currentX;
+      const dy = targetY - currentY;
+      currentX += dx * LERP;
+      currentY += dy * LERP;
+
+      if (Math.abs(dx) > THRESHOLD || Math.abs(dy) > THRESHOLD) {
+        document.body.style.setProperty('--glow-x', `${currentX.toFixed(2)}%`);
+        document.body.style.setProperty('--glow-y', `${currentY.toFixed(2)}%`);
+        document.body.style.setProperty('--glow-opacity-bg', '1');
+      }
+    }
+    requestAnimationFrame(bgLoop);
+  }
+  requestAnimationFrame(bgLoop);
+
+  /* ── Per-card mouse-tracking glow ── */
   document.querySelectorAll('.project, .skill-block, .stat').forEach(card => {
-    // Inject a glow div once per card to avoid pseudo-element conflicts
     let glowEl = card.querySelector('.card-glow');
     if (!glowEl) {
       glowEl = document.createElement('div');
@@ -376,18 +435,34 @@ function setupMouseGlow() {
       card.appendChild(glowEl);
     }
 
-    card.addEventListener('mousemove', (e) => {
+    // Use pointermove (coalesced) — better performance than mousemove for rapid gestures
+    card.addEventListener('pointermove', (e) => {
       const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      card.style.setProperty('--mouse-x', `${x}%`);
-      card.style.setProperty('--mouse-y', `${y}%`);
+      card.style.setProperty('--mouse-x', `${(((e.clientX - rect.left) / rect.width) * 100).toFixed(1)}%`);
+      card.style.setProperty('--mouse-y', `${(((e.clientY - rect.top) / rect.height) * 100).toFixed(1)}%`);
       glowEl.classList.add('active');
     }, { passive: true });
 
-    card.addEventListener('mouseleave', () => {
+    card.addEventListener('pointerleave', () => {
       glowEl.classList.remove('active');
     }, { passive: true });
+  });
+
+  setupRipple();
+}
+
+/* ── Ripple effect on .btn.primary ── */
+function setupRipple() {
+  document.querySelectorAll('.btn.primary').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 1.5;
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px;`;
+      btn.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+    });
   });
 }
 
