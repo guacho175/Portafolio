@@ -206,27 +206,7 @@
       "repo_url": "",
       "demo_url": "https://notiwilson.lovable.app/"
     },
-    {
-      "titulo": "Plataforma web modular base",
-      "badge": "Frontend",
-      "estado": "Arquitectura web",
-      "descripcion": "Sitio estructurado con componentes, layouts y criterios de escalabilidad visual para mantener orden y rendimiento.",
-      "impacto": "Base reutilizable para proyectos donde el contenido debe crecer sin perder claridad.",
-      "visual": "frontend",
-      "visual_labels": [
-        "Layout",
-        "Componentes",
-        "SEO / performance"
-      ],
-      "tags": [
-        "Astro",
-        "Tailwind CSS",
-        "HTML/JS",
-        "Arquitectura modular"
-      ],
-      "repo_url": "",
-      "demo_url": ""
-    },
+
     {
       "titulo": "Laboratorio de ciberseguridad e infraestructura",
       "badge": "Redes y OS",
@@ -289,31 +269,7 @@
       "repo_url": "",
       "demo_url": ""
     },
-    {
-      "titulo": "Sistema GIS interactivo",
-      "badge": "Datos geograficos",
-      "estado": "Proyecto academico",
-      "descripcion": "Proyecto academico para visualizar incidentes y ubicaciones sobre capas cartograficas dinamicas en la web.",
-      "impacto": "Convierte datos geograficos en una interfaz consultable para analisis visual.",
-      "visual": "gis",
-      "visual_labels": [
-        "Capas GIS",
-        "Django",
-        "Mapa interactivo"
-      ],
-      "tags": [
-        "Python",
-        "Django",
-        "Bases de datos GIS",
-        "Leaflet.js",
-        "Geolocalizacion",
-        "Nominatim",
-        "PostgreSQL",
-        "SQLite"
-      ],
-      "repo_url": "",
-      "demo_url": ""
-    },
+
     {
       "titulo": "Alpha Docere / Practica profesional",
       "badge": "Soporte TI",
