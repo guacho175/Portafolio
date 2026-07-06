@@ -734,7 +734,25 @@ function renderHeadline(selector, value) {
   if (!before.textContent && afterText.startsWith(', ')) {
     const mobileBreak = document.createElement('br');
     mobileBreak.className = 'hero-mobile-break';
-    element.append(before, grad, document.createTextNode(', '), mobileBreak, document.createTextNode(afterText.slice(2)));
+    const mobileText = afterText.slice(2);
+    const productIndex = mobileText.toLowerCase().indexOf('productos web');
+
+    if (productIndex > 0) {
+      const productBreak = document.createElement('br');
+      productBreak.className = 'hero-mobile-break';
+      element.append(
+        before,
+        grad,
+        document.createTextNode(', '),
+        mobileBreak,
+        document.createTextNode(mobileText.slice(0, productIndex)),
+        productBreak,
+        document.createTextNode(mobileText.slice(productIndex))
+      );
+      return;
+    }
+
+    element.append(before, grad, document.createTextNode(', '), mobileBreak, document.createTextNode(mobileText));
     return;
   }
 

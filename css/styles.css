@@ -2041,6 +2041,19 @@ footer {
     width: min(100% - 28px, var(--max));
   }
 
+  body,
+  .section-block,
+  .section-head,
+  .section-desc,
+  .proof-grid,
+  .venture-copy,
+  .project,
+  .skill-block,
+  .contact-section,
+  footer {
+    text-align: center;
+  }
+
   .theme-btn {
     width: 42px;
     padding: 0;
@@ -2051,7 +2064,7 @@ footer {
     max-width: none;
     margin-right: auto;
     margin-left: auto;
-    font-size: clamp(28px, 8vw, 32px);
+    font-size: clamp(27px, 7.4vw, 30px);
     line-height: 1.12;
     overflow-wrap: break-word;
   }
@@ -2099,6 +2112,12 @@ footer {
 
   .hero-actions .btn {
     width: 100%;
+  }
+
+  .hero-actions,
+  .venture-actions,
+  .form-actions {
+    justify-content: center;
   }
 
   .form-grid {
@@ -2157,12 +2176,67 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .venture-copy {
+    display: grid;
+    justify-items: center;
+  }
+
+  .venture-copy h2,
+  .section-desc {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .section-block {
     padding: 58px 0;
   }
 
   .section-head {
     display: block;
+  }
+
+  .section-link {
+    justify-content: center;
+  }
+
+  .stat,
+  .project-content,
+  .skill-block,
+  .form-card-head {
+    align-items: center;
+  }
+
+  .project-head {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .project p,
+  .impact,
+  .skill-block p,
+  .form-card-head p,
+  .footer-brand p {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .impact {
+    border-left: 0;
+    border-top: 3px solid var(--pc, var(--accent));
+    border-radius: var(--radius);
+  }
+
+  .visual-labels,
+  .tags,
+  .links,
+  .skill-chips,
+  .skill-list {
+    justify-content: center;
+  }
+
+  .skill-block-head {
+    flex-direction: column;
+    align-items: center;
   }
 
   .contact-section {
@@ -2182,9 +2256,20 @@ footer {
     padding: 22px;
   }
 
+  .form-field label,
+  .field-error,
+  .form-helper {
+    text-align: center;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    text-align: left;
+  }
+
   .form-status {
     max-width: none;
-    text-align: left;
+    text-align: center;
   }
 
   .section-link {
@@ -2198,17 +2283,27 @@ footer {
   }
 
   .footer-brand {
+    flex-direction: column;
+    align-items: center;
     max-width: none;
   }
 
   .footer-nav {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
     gap: 32px;
+  }
+
+  .footer-col {
+    align-items: center;
   }
 
   .footer-bottom {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
+    text-align: center;
   }
 
   .form-actions,
@@ -2244,7 +2339,7 @@ footer {
 
   .footer-bottom {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
   }
 }
