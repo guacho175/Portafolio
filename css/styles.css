@@ -158,6 +158,10 @@ h1 {
   color: transparent;
 }
 
+#hero-title {
+  line-height: 1.12;
+}
+
 .hero-mobile-break {
   display: none;
 }
@@ -2166,6 +2170,7 @@ footer {
 
   .wb-step-tags {
     justify-content: center;
+    width: 100%;
   }
 
   .wb-arrow {
