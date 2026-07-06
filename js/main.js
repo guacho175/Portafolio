@@ -295,7 +295,7 @@ function projectCard(project, index) {
   const accent = PROJECT_ACCENTS[index % PROJECT_ACCENTS.length];
   const links = [
     project.repo_url ? `<a class="link" href="${escapeAttr(project.repo_url)}" target="_blank" rel="noopener">Codigo <span aria-hidden="true">-></span></a>` : '',
-    project.demo_url ? `<a class="link link--demo" href="${escapeAttr(project.demo_url)}" target="_blank" rel="noopener">Ver proyecto <span aria-hidden="true">-></span></a>` : '',
+    project.demo_url ? `<a class="link link--demo" href="${escapeAttr(project.demo_url)}" target="_blank" rel="noopener">${escapeHtml(project.cta || 'Ver proyecto')} <span aria-hidden="true">-></span></a>` : '',
   ].filter(Boolean).join('');
 
   return `

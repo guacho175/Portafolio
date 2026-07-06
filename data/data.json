@@ -70,6 +70,77 @@
   },
   "proyectos": [
     {
+      "titulo": "E-commerce Demo Orbynex",
+      "badge": "E-commerce",
+      "estado": "Demo comercial",
+      "descripcion": "Demo de tienda online con catalogo de productos, carrito de compra, checkout y flujo de pago integrado.",
+      "impacto": "Muestra practica de una solucion e-commerce para vender productos o servicios, con catalogo, carrito, panel de productos, imagenes optimizadas, checkout y pasarela de pago.",
+      "visual": "ecommerce",
+      "visual_labels": [
+        "Catalogo",
+        "Carrito",
+        "Checkout"
+      ],
+      "tags": [
+        "React",
+        "Supabase",
+        "Vercel",
+        "E-commerce",
+        "Checkout",
+        "Flow API"
+      ],
+      "repo_url": "",
+      "demo_url": "https://tienda-orbynexdigital.vercel.app/",
+      "cta": "Ver demo"
+    },
+    {
+      "titulo": "Tu Barrio Limpio",
+      "badge": "Django",
+      "estado": "Sistema web",
+      "descripcion": "Sistema web para reportar y gestionar focos de microbasurales, con autenticacion, roles de usuario y flujo de gestion para seguimiento municipal/comunitario.",
+      "impacto": "Backend Django, autenticacion, roles, formularios, base de datos y despliegue.",
+      "visual": "gis",
+      "visual_labels": [
+        "Django",
+        "Auth + roles",
+        "Gestion"
+      ],
+      "tags": [
+        "Django",
+        "Python",
+        "Backend",
+        "Auth",
+        "Base de datos",
+        "PythonAnywhere"
+      ],
+      "repo_url": "",
+      "demo_url": "https://christiangalindez.pythonanywhere.com/",
+      "cta": "Ver sistema"
+    },
+    {
+      "titulo": "Smart Feed Reporter / Noticias Orbynex",
+      "badge": "Noticias",
+      "estado": "Portal publico",
+      "descripcion": "Portal publico de noticias que consume endpoints de contenido y presenta articulos, categorias y archivo editorial en una interfaz web desplegada en Vercel.",
+      "impacto": "Frontend de noticias, consumo de endpoints, categorias, contenido dinamico y despliegue.",
+      "visual": "noticias",
+      "visual_labels": [
+        "Frontend",
+        "Endpoints",
+        "Contenido"
+      ],
+      "tags": [
+        "Frontend",
+        "API",
+        "Noticias",
+        "Vercel",
+        "Contenido dinamico"
+      ],
+      "repo_url": "",
+      "demo_url": "https://noticias-orby-nexdigital.vercel.app/",
+      "cta": "Ver portal"
+    },
+    {
       "titulo": "AgendaPro Orbynex",
       "badge": "SaaS salud",
       "estado": "Producto web",
@@ -152,29 +223,6 @@
       ],
       "repo_url": "",
       "demo_url": "https://dos27studiopublicitario.cl/"
-    },
-    {
-      "titulo": "Smart Feed Reporter",
-      "badge": "Dashboard IA",
-      "estado": "Dashboard de reportes",
-      "descripcion": "Aplicacion de reporteria para analizar, ordenar y presentar informacion de feed/contenido en una experiencia tipo dashboard.",
-      "impacto": "Organiza datos de contenido en una vista clara para facilitar seguimiento, analisis y toma de decisiones.",
-      "visual": "dashboard",
-      "visual_labels": [
-        "Python + React",
-        "Reporter",
-        "Dashboard"
-      ],
-      "tags": [
-        "Python",
-        "React",
-        "Vite",
-        "Dashboard",
-        "Analisis de datos",
-        "API"
-      ],
-      "repo_url": "",
-      "demo_url": ""
     },
     {
       "titulo": "NotiWilson",
@@ -290,44 +338,6 @@
         "Soporte TI",
         "Documentacion tecnica",
         "Gestion de incidentes"
-      ],
-      "repo_url": "",
-      "demo_url": ""
-    },
-    {
-      "titulo": "Tu Barrio Limpio / Microbasurales",
-      "badge": "Django + GIS",
-      "estado": "Proyecto academico avanzado",
-      "descripcion": "Sistema web para denuncias, monitoreo territorial y gestion de microbasurales con roles, mapas, API REST, auditoria y controles de seguridad.",
-      "impacto": "Integra geolocalizacion, reportabilidad, estados de atencion, roles operativos y criterios de auditoria COBIT/OWASP para mejorar trazabilidad.",
-      "visual": "gis",
-      "visual_labels": [
-        "Django 5",
-        "GIS + Leaflet",
-        "COBIT / OWASP"
-      ],
-      "tags": [
-        "Python",
-        "Django",
-        "Django REST",
-        "Bootstrap 5",
-        "Leaflet.js",
-        "JWT",
-        "PostgreSQL",
-        "SQLite",
-        "GIS",
-        "Geolocalizacion",
-        "Nominatim",
-        "Power BI",
-        "PythonAnywhere",
-        "AWS EC2",
-        "AWS RDS",
-        "AWS S3",
-        "Nginx",
-        "Gunicorn",
-        "Cloudflare",
-        "COBIT",
-        "OWASP"
       ],
       "repo_url": "",
       "demo_url": ""
