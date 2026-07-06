@@ -728,10 +728,17 @@ function renderHeadline(selector, value) {
   const grad = document.createElement('span');
   grad.className = 'grad';
   grad.textContent = matchWord;
-  const after = document.createTextNode(value.slice(matchIndex + matchWord.length));
+  const afterText = value.slice(matchIndex + matchWord.length);
 
   element.textContent = '';
-  element.append(before, grad, after);
+  if (!before.textContent && afterText.startsWith(', ')) {
+    const mobileBreak = document.createElement('br');
+    mobileBreak.className = 'hero-mobile-break';
+    element.append(before, grad, document.createTextNode(', '), mobileBreak, document.createTextNode(afterText.slice(2)));
+    return;
+  }
+
+  element.append(before, grad, document.createTextNode(afterText));
 }
 
 function setHref(selector, value) {

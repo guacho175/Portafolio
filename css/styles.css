@@ -158,6 +158,10 @@ h1 {
   color: transparent;
 }
 
+.hero-mobile-break {
+  display: none;
+}
+
 h2 {
   margin: 0;
   font-size: clamp(28px, 4vw, 46px);
@@ -675,7 +679,7 @@ h3 {
   margin-top: 26px;
 }
 
-/* hero-tags hidden — replaced by wb-tags in the workbench */
+/* hero-tags hidden; the process cards carry their own stage chips. */
 .hero-tags {
   display: none;
 }
@@ -685,6 +689,8 @@ h3 {
    ====================================================== */
 .workbench {
   position: relative;
+  width: 100%;
+  min-width: 0;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -744,18 +750,19 @@ h3 {
 
 /* Three-step process row */
 .wb-steps {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 14px;
+  padding: 22px 24px 24px;
 }
 
 .wb-step {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 18px 16px;
+  min-height: 224px;
+  gap: 10px;
+  padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: color-mix(in srgb, var(--bg) 40%, transparent);
@@ -768,6 +775,7 @@ h3 {
 }
 
 .wb-icon {
+  order: 1;
   display: inline-flex;
   width: 34px;
   height: 34px;
@@ -781,6 +789,7 @@ h3 {
 }
 
 .wb-step strong {
+  order: 2;
   color: var(--text);
   font-size: 13px;
   font-weight: 800;
@@ -788,6 +797,8 @@ h3 {
 }
 
 .wb-step p {
+  order: 3;
+  flex: 1;
   margin: 0;
   color: var(--muted);
   font-size: 12px;
@@ -795,27 +806,26 @@ h3 {
 }
 
 .wb-arrow {
+  display: none;
   color: color-mix(in srgb, var(--accent) 40%, transparent);
   font-size: 18px;
-  flex-shrink: 0;
 }
 
-/* Tag row */
-.wb-tags {
+/* Stage tags */
+.wb-step-tags {
+  order: 4;
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
-  padding: 0 24px 22px;
-  border-top: 1px solid var(--line);
-  padding-top: 16px;
+  gap: 6px;
+  margin-top: auto;
 }
 
 .wb-tag {
-  padding: 4px 11px;
+  padding: 4px 9px;
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 620;
   background: color-mix(in srgb, var(--surface) 60%, transparent);
   transition:
@@ -2010,6 +2020,7 @@ footer {
 
   .workbench {
     max-width: 680px;
+    margin-inline: auto;
   }
 
   .proof-grid {
@@ -2038,11 +2049,52 @@ footer {
 
   h1 {
     max-width: none;
-    font-size: clamp(28px, 8.5vw, 46px);
+    margin-right: auto;
+    margin-left: auto;
+    font-size: clamp(28px, 8vw, 32px);
+    line-height: 1.12;
+    overflow-wrap: break-word;
+  }
+
+  #hero-headline {
+    display: block;
+    max-width: 100%;
+  }
+
+  .hero-mobile-break {
+    display: block;
+  }
+
+  .hero-copy {
+    text-align: center;
+  }
+
+  .status-pill {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    width: min(100%, 31rem);
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+    justify-items: center;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.35;
+    font-size: 12px;
+  }
+
+  .status-pill span:last-child {
+    min-width: 0;
+    max-width: 26ch;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .hero-lead {
-    font-size: 15px;
+    max-width: 30ch;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 14px;
   }
 
   .hero-actions .btn {
@@ -2054,8 +2106,47 @@ footer {
   }
 
   .wb-steps {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 22px;
+  }
+
+  .workbench {
+    max-width: 100%;
+  }
+
+  .wb-intro {
+    padding: 22px 18px 0;
+  }
+
+  .wb-label {
+    line-height: 1.35;
+  }
+
+  .wb-sub {
+    max-width: 24ch;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 16px;
+    overflow-wrap: anywhere;
+  }
+
+  .wb-intro,
+  .wb-step {
+    text-align: center;
+  }
+
+  .wb-step {
+    min-height: 0;
+    align-items: center;
+  }
+
+  .wb-step p {
+    max-width: 34ch;
+  }
+
+  .wb-step-tags {
+    justify-content: center;
   }
 
   .wb-arrow {
