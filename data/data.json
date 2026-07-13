@@ -94,6 +94,32 @@
       "cta": "Ver demo"
     },
     {
+      "titulo": "Orbynex WooCommerce Demo",
+      "badge": "WordPress + WooCommerce",
+      "estado": "Demo tecnico publicado",
+      "descripcion": "E-commerce WordPress desarrollado con tema propio, WooCommerce Blocks, autenticacion personalizada, checkout chileno e integracion Flow mediante plugin adaptador propio.",
+      "impacto": "Muestra una implementacion comercial completa: tema reutilizable, plugins propios, registro con verificacion de correo, region/comuna para Chile, carrito, checkout y conciliacion preparada para pagos Flow.",
+      "visual": "woocommerce",
+      "visual_labels": [
+        "Tema propio",
+        "Plugins propios",
+        "Flow Bridge"
+      ],
+      "tags": [
+        "WordPress",
+        "WooCommerce",
+        "PHP",
+        "Flow API",
+        "Plugins",
+        "Checkout",
+        "Autenticacion",
+        "E-commerce"
+      ],
+      "repo_url": "",
+      "demo_url": "https://wordpress.orbynexdigital.cl/",
+      "cta": "Ver demo"
+    },
+    {
       "titulo": "Tu Barrio Limpio",
       "badge": "Django",
       "estado": "Sistema web",
