@@ -251,6 +251,33 @@
       "demo_url": "https://dos27studiopublicitario.cl/"
     },
     {
+      "titulo": "Eterna Flor DyT",
+      "badge": "Cliente web",
+      "estado": "Catalogo comercial",
+      "descripcion": "Sitio comercial para un emprendimiento floral de La Serena, con ramos personalizados, colecciones especiales, macetas florales y peluches.",
+      "impacto": "Organiza un catalogo visual amplio por categorias, presenta fotografias reales y convierte consultas en pedidos coordinados directamente por WhatsApp.",
+      "visual": "cliente",
+      "visual_labels": [
+        "Next.js",
+        "Catalogo por categorias",
+        "WhatsApp CTA"
+      ],
+      "tags": [
+        "Next.js",
+        "React",
+        "Vercel",
+        "SEO",
+        "Responsive",
+        "WhatsApp",
+        "Catalogo",
+        "Optimizacion de imagenes",
+        "Diseno web"
+      ],
+      "repo_url": "",
+      "demo_url": "https://eterna-flor-dyt.vercel.app/",
+      "cta": "Ver sitio"
+    },
+    {
       "titulo": "NotiWilson",
       "badge": "Bot + dashboard",
       "estado": "Demo activa",
