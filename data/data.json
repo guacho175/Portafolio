@@ -69,6 +69,33 @@
   },
   "proyectos": [
     {
+      "titulo": "Cotizador Orbynex",
+      "badge": "SaaS / Herramienta web",
+      "estado": "Producto web",
+      "descripcion": "Herramienta web para generar y gestionar cotizaciones automatizadas. Integra Gemini IA (Google GenAI) para la edicion y sugerencia de textos persuasivos.",
+      "impacto": "Agiliza el proceso de ventas mediante generacion de PDFs en tiempo real, gestion de datos con Supabase y asistencia de IA para mejorar la redaccion de las propuestas.",
+      "visual": "cotizador",
+      "visual_labels": [
+        "React + Vite",
+        "Cotizaciones PDF",
+        "Gemini IA"
+      ],
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "TanStack Router",
+        "Supabase",
+        "Vercel",
+        "Generacion PDF",
+        "Google GenAI",
+        "SaaS"
+      ],
+      "repo_url": "",
+      "demo_url": "https://cotizador.orbynexdigital.cl/",
+      "cta": "Ver cotizador"
+    },
+    {
       "titulo": "E-commerce Demo Orbynex",
       "badge": "E-commerce",
       "estado": "Demo comercial",
@@ -252,24 +279,24 @@
     {
       "titulo": "Eterna Flor DyT",
       "badge": "Cliente web",
-      "estado": "Catalogo comercial",
-      "descripcion": "Sitio comercial para un emprendimiento floral de La Serena, con ramos personalizados, colecciones especiales, macetas florales y peluches.",
-      "impacto": "Organiza un catalogo visual amplio por categorias, presenta fotografias reales y convierte consultas en pedidos coordinados directamente por WhatsApp.",
+      "estado": "Catalogo autoadministrable",
+      "descripcion": "Sitio comercial autoadministrable para un emprendimiento floral de La Serena. Utiliza Sanity CMS para la gestion independiente de su catalogo, ramos personalizados y colecciones especiales.",
+      "impacto": "Organiza un catalogo visual amplio administrado dinamicamente por el cliente. Presenta fotografias reales y convierte consultas en pedidos coordinados directamente por WhatsApp.",
       "visual": "cliente",
       "visual_labels": [
-        "Next.js",
-        "Catalogo por categorias",
+        "Next.js + Sanity",
+        "Catalogo dinamico",
         "WhatsApp CTA"
       ],
       "tags": [
         "Next.js",
         "React",
+        "Sanity CMS",
         "Vercel",
         "SEO",
         "Responsive",
         "WhatsApp",
         "Catalogo",
-        "Optimizacion de imagenes",
         "Diseno web"
       ],
       "repo_url": "",
@@ -291,20 +318,24 @@
       "tags": [
         "React",
         "TypeScript",
+        "Vite",
         "TanStack Router",
+        "TanStack Query",
         "shadcn/ui",
         "Recharts",
+        "Framer Motion",
         "Telegram Bot",
         "IA",
         "Dashboard",
         "Gemini API",
         "RSS",
         "Supabase",
-        "Vercel",
-        "SHA256"
+        "Cloudflare R2",
+        "Vercel"
       ],
       "repo_url": "",
-      "demo_url": ""
+      "demo_url": "https://notiwilson.orbynexdigital.cl/",
+      "cta": "Ver dashboard"
     },
 
     {
