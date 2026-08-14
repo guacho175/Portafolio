@@ -1,17 +1,33 @@
 document.addEventListener('DOMContentLoaded', init);
 
+let currentLang = localStorage.getItem('portfolio-language') || 'es';
+
 async function init() {
   setupUI();
+  setupI18n();
 
   try {
-    const response = await fetch(`data/data.json?v=${Date.now()}`, { cache: 'no-store' });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const response = await fetch(`data/i18n/${currentLang}.json?v=${Date.now()}`, { cache: 'no-store' });
+    if (!response.ok) {
+        if(currentLang !== 'es') {
+            currentLang = 'es';
+            localStorage.setItem('portfolio-language', 'es');
+            updateLangSelectorUI();
+            const fallbackResp = await fetch(`data/i18n/es.json?v=${Date.now()}`, { cache: 'no-store' });
+            if (fallbackResp.ok) {
+                const data = await fallbackResp.json();
+                populatePortfolio(data);
+                return;
+            }
+        }
+        throw new Error(`HTTP ${response.status}`);
+    }
     const data = await response.json();
     populatePortfolio(data);
   } catch (err) {
     console.error('Error fetching data:', err);
     setText('#hero-headline', 'Portafolio tecnico no disponible');
-    setText('#hero-desc', 'No se pudo cargar data/data.json. Levanta el sitio con levantar.bat y revisa que el archivo exista.');
+    setText('#hero-desc', 'No se pudo cargar data/i18n/es.json. Levanta el sitio con levantar.bat y revisa que el archivo exista.');
   }
 }
 
@@ -85,7 +101,9 @@ function populatePortfolio(data) {
   const perfil = data.perfil || {};
   const links = data.links || {};
 
-  document.title = `${perfil.nombre || 'Christian Galindez'} | Backend, APIs e Integraciones`;
+  applyTranslations(data.ui);
+
+  document.title = data.ui?.meta?.title || `${perfil.nombre || 'Christian Galindez'} | Backend, APIs e Integraciones`;
   setText('#hero-disponibilidad', perfil.disponibilidad);
   renderHeadline('#hero-headline', perfil.headline || `Backend aplicado para sistemas reales.`);
   setText('#hero-desc', perfil.descripcion_corta);
@@ -775,4 +793,81 @@ function escapeHtml(value = '') {
 
 function escapeAttr(value = '') {
   return escapeHtml(value).replaceAll('`', '&#096;');
+}
+
+function applyTranslations(ui) {
+  if(!ui) return;
+  const getVal = (obj, path) => path.split('.').reduce((o, i) => (o ? o[i] : null), obj);
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = getVal(ui, key);
+    if(val) el.innerHTML = val;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const val = getVal(ui, key);
+    if(val) el.placeholder = val;
+  });
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria-label');
+    const val = getVal(ui, key);
+    if(val) el.setAttribute('aria-label', val);
+  });
+  
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.content = getVal(ui, 'meta.desc') || '';
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.content = getVal(ui, 'meta.og_desc') || '';
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.content = getVal(ui, 'meta.title') || '';
+}
+
+function setupI18n() {
+  document.documentElement.lang = currentLang;
+  const htmlRoot = document.getElementById('html-root');
+  if (htmlRoot) htmlRoot.lang = currentLang;
+
+  const btn = document.querySelector('#langSelector button');
+  const dropdown = document.getElementById('langDropdown');
+  if (!btn || !dropdown) return;
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = dropdown.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
+      dropdown.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  dropdown.querySelectorAll('button').forEach(langBtn => {
+    langBtn.addEventListener('click', () => {
+      const lang = langBtn.getAttribute('data-lang');
+      if (lang && lang !== currentLang) {
+        localStorage.setItem('portfolio-language', lang);
+        window.location.reload();
+      }
+      dropdown.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+  
+  updateLangSelectorUI();
+}
+
+function updateLangSelectorUI() {
+  const display = document.getElementById('currentLangDisplay');
+  if (display) display.textContent = currentLang.toUpperCase();
+  
+  const dropdown = document.getElementById('langDropdown');
+  if (dropdown) {
+    dropdown.querySelectorAll('button').forEach(btn => {
+      btn.setAttribute('data-active', btn.getAttribute('data-lang') === currentLang ? 'true' : 'false');
+    });
+  }
 }
