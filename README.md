@@ -25,9 +25,17 @@ En Windows:
 
 También se puede usar `levantar.bat` o `ABRIR_PORTAFOLIO.bat`. El script busca un puerto libre entre `5500` y `5510` y requiere Python 3 disponible como `python` o `py`.
 
-## Cambiar contenido
+## Cambiar contenido (Internacionalización)
 
-Edita `data/data.json` para actualizar perfil, proyectos, capacidades, enlaces y datos de contacto. Los cambios estructurales pueden requerir ajustes coordinados en `index.html`, `js/main.js` y `css/styles.css`.
+El sitio soporta Español, Inglés y Portugués cargando datos dinámicamente desde `data/i18n/{lang}.json`. Para agregar una nueva cadena o proyecto:
+
+1. **Añadir clave en ES:** Agrega la información en `data/i18n/es.json`.
+2. **Añadir clave en EN:** Traduce y agrega exactamente la misma clave en `data/i18n/en.json`.
+3. **Añadir clave en PT:** Traduce y agrega exactamente la misma clave en `data/i18n/pt.json`.
+4. Si es texto estático, pon la clave en el nodo `"ui"` y úsala desde el HTML (ej. `data-i18n="ui.mi.clave"`).
+5. Ejecuta `node scripts/check-i18n.js` para comprobar que los tres idiomas tengan paridad de claves.
+
+Los cambios estructurales pueden requerir ajustes coordinados en `index.html`, `js/main.js` y `css/styles.css`.
 
 ## Validación
 

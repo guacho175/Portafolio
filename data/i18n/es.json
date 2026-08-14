@@ -69,6 +69,31 @@
   },
   "proyectos": [
     {
+      "titulo": "Forma / Arte Abstracto",
+      "badge": "Generador procedural + IA",
+      "estado": "Producto web",
+      "descripcion": "Catalogo web de arte abstracto generado algoritmicamente. Permite la creacion de piezas unicas mediante constructores procedurales y modelos de Cloudflare Workers AI.",
+      "impacto": "Arquitectura serverless completa con galeria publica y panel de administracion privado. Utiliza bases de datos (D1) y almacenamiento (R2) para gestionar de forma eficiente el catalogo de imagenes y vectores.",
+      "visual": "ai",
+      "visual_labels": [
+        "Workers AI",
+        "Arte Procedural",
+        "Cloudflare D1 + R2"
+      ],
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Cloudflare Workers",
+        "Workers AI",
+        "Cloudflare D1",
+        "Cloudflare R2"
+      ],
+      "repo_url": "",
+      "demo_url": "https://arte.galindezdev.lat/",
+      "cta": "Ver galeria"
+    },
+    {
       "titulo": "Cotizador Orbynex",
       "badge": "SaaS / Herramienta web",
       "estado": "Producto web",
@@ -337,7 +362,6 @@
       "demo_url": "https://notiwilson.orbynexdigital.cl/",
       "cta": "Ver dashboard"
     },
-
     {
       "titulo": "Laboratorio de ciberseguridad e infraestructura",
       "badge": "Redes y OS",
@@ -400,7 +424,6 @@
       "repo_url": "",
       "demo_url": ""
     },
-
     {
       "titulo": "Alpha Docere / Practica profesional",
       "badge": "Soporte TI",
@@ -566,5 +589,100 @@
     "pitch": "Enviame un mensaje y te respondere cuando pueda. No necesitas tener todo claro para escribir.",
     "email": "christian.galindez.dev@gmail.com",
     "linkedin_path": "/in/christian-galindez-337ab5287"
+  },
+  "ui": {
+    "meta": {
+      "title": "Christian Galindez | Backend, APIs e Integraciones",
+      "desc": "Portafolio tecnico de Christian Galindez: backend, APIs, automatizacion, Linux e integraciones.",
+      "og_desc": "Portafolio tecnico con proyectos backend, automatizacion, integraciones y experiencia en infraestructura."
+    },
+    "a11y": {
+      "skip": "Saltar al contenido",
+      "home": "Ir al inicio",
+      "nav": "Secciones principales",
+      "mobile_nav": "Secciones moviles",
+      "menu_open": "Abrir menu",
+      "theme": "Cambiar tema",
+      "footer_nav": "Navegacion del footer",
+      "wb_title": "Qué puedo construir",
+      "wb_step1": "Backend y APIs",
+      "wb_step2": "Productos web completos",
+      "wb_step3": "Automatización e integraciones"
+    },
+    "brand": {
+      "logo": "CG",
+      "name": "Christian Galindez",
+      "role": "Desarrollador backend"
+    },
+    "nav": {
+      "orbynex": "Orbynex",
+      "projects": "Proyectos",
+      "skills": "Stack",
+      "contact": "Contacto"
+    },
+    "theme": "Tema",
+    "hero": {
+      "eyebrow": "Portafolio tecnico",
+      "btn_projects": "Ver proyectos",
+      "btn_contact": "Contactar"
+    },
+    "wb": {
+      "eyebrow": "QUÉ PUEDO CONSTRUIR",
+      "desc": "Soluciones web funcionales desde la lógica del negocio hasta el despliegue.",
+      "steps": [
+        {
+          "title": "Backend y APIs",
+          "desc": "Desarrollo APIs, autenticación, roles, bases de datos y lógica de negocio para sistemas web."
+        },
+        {
+          "title": "Productos web completos",
+          "desc": "Construyo sitios, formularios, paneles administrativos y vistas responsive conectadas a datos reales."
+        },
+        {
+          "title": "Automatización e integraciones",
+          "desc": "Integro formularios, correos, pagos, analítica, dashboards y flujos que reducen trabajo manual."
+        }
+      ]
+    },
+    "orbynex": {
+      "eyebrow": "Marca propia",
+      "btn": "Ver Orbynex"
+    },
+    "projects": {
+      "eyebrow": "Trabajo aplicado",
+      "title": "Proyectos",
+      "desc": "Una seleccion de lo que he construido: backends, productos web, integraciones y automatizaciones reales.",
+      "marquee": "Tecnologias en movimiento"
+    },
+    "skills": {
+      "eyebrow": "Stack y criterio tecnico",
+      "title": "Capacidades",
+      "desc": "Herramientas que uso para construir, integrar, desplegar y mantener soluciones reales."
+    },
+    "contact": {
+      "eyebrow": "Contacto",
+      "title": "Tienes una idea o necesitas ayuda con tu sitio?",
+      "form_label": "Formulario directo",
+      "form_title": "Enviar mensaje",
+      "form_desc": "Completa los campos y te respondere al correo que indiques.",
+      "name_lbl": "Nombre",
+      "name_ph": "Tu nombre o empresa",
+      "email_lbl": "Correo",
+      "email_ph": "correo@empresa.cl",
+      "msg_lbl": "Mensaje",
+      "msg_ph": "Cuentame que necesitas o en que puedo ayudarte.",
+      "msg_help": "No importa si todavia no tienes todo claro, puedes escribir igual.",
+      "btn": "Enviar mensaje",
+      "status_ready": "Listo para enviar."
+    },
+    "footer": {
+      "logo": "CG",
+      "name": "Christian Galindez",
+      "desc": "Desarrollador backend enfocado en construir productos web, automatizaciones e integraciones.",
+      "col_sections": "Secciones",
+      "col_contact": "Contacto",
+      "rights": "Todos los derechos reservados.",
+      "top": "Volver arriba"
+    }
   }
 }

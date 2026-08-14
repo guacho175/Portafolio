@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" id="html-root">
 
 <head>
   <meta charset="utf-8" />
@@ -36,45 +36,55 @@
 </head>
 
 <body data-theme="dark">
-  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="page-floaters" id="page-floaters" aria-hidden="true"></div>
 
   <header class="topbar">
     <div class="container">
       <div class="topbar-inner">
-        <a class="brand" href="#top" aria-label="Ir al inicio">
-          <span class="logo" aria-hidden="true">CG</span>
+        <a class="brand" href="#top" aria-label="Ir al inicio" data-i18n-aria-label="a11y.home">
+          <span class="logo" aria-hidden="true" data-i18n="brand.logo">CG</span>
           <span>
-            <strong>Christian Galindez</strong>
-            <small>Desarrollador backend</small>
+            <strong data-i18n="brand.name">Christian Galindez</strong>
+            <small data-i18n="brand.role">Desarrollador backend</small>
           </span>
         </a>
 
-        <nav class="nav" aria-label="Secciones principales">
-          <a href="#orbynex">Orbynex</a>
-          <a href="#projects">Proyectos</a>
-          <a href="#skills">Stack</a>
-          <a href="#contacto">Contacto</a>
+        <nav class="nav" aria-label="Secciones principales" data-i18n-aria-label="a11y.nav">
+          <a href="#orbynex" data-i18n="nav.orbynex">Orbynex</a>
+          <a href="#projects" data-i18n="nav.projects">Proyectos</a>
+          <a href="#skills" data-i18n="nav.skills">Stack</a>
+          <a href="#contacto" data-i18n="nav.contact">Contacto</a>
         </nav>
 
         <div class="actions">
-          <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" aria-expanded="false"
-            aria-controls="mobileNav">
+          <div class="lang-selector" id="langSelector">
+            <button class="icon-btn" aria-label="Idioma" aria-expanded="false" aria-controls="langDropdown">
+              🌐 <span id="currentLangDisplay">ES</span>
+            </button>
+            <div class="lang-dropdown" id="langDropdown" aria-hidden="true">
+              <button type="button" data-lang="es">Español</button>
+              <button type="button" data-lang="en">English</button>
+              <button type="button" data-lang="pt">Português</button>
+            </div>
+          </div>
+
+          <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" data-i18n-aria-label="a11y.menu_open" aria-expanded="false" aria-controls="mobileNav">
             <span aria-hidden="true"></span>
           </button>
-          <button class="btn theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema">
+          <button class="btn theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema" data-i18n-aria-label="a11y.theme">
             <span class="theme-dot" aria-hidden="true"></span>
             Tema
           </button>
         </div>
       </div>
 
-      <nav class="mobile-nav" id="mobileNav" aria-label="Secciones moviles">
-        <a href="#orbynex">Orbynex</a>
-        <a href="#projects">Proyectos</a>
-        <a href="#skills">Stack</a>
-        <a href="#contacto">Contacto</a>
+      <nav class="mobile-nav" id="mobileNav" aria-label="Secciones moviles" data-i18n-aria-label="a11y.mobile_nav">
+        <a href="#orbynex" data-i18n="nav.orbynex">Orbynex</a>
+        <a href="#projects" data-i18n="nav.projects">Proyectos</a>
+        <a href="#skills" data-i18n="nav.skills">Stack</a>
+        <a href="#contacto" data-i18n="nav.contact">Contacto</a>
       </nav>
     </div>
   </header>
@@ -89,22 +99,22 @@
             <span id="hero-disponibilidad"></span>
           </span>
 
-          <p class="eyebrow">Portafolio tecnico</p>
+          <p class="eyebrow" data-i18n="hero.eyebrow">Portafolio tecnico</p>
           <h1 id="hero-title"><span id="hero-headline"></span></h1>
           <p class="hero-lead" id="hero-desc"></p>
 
           <div class="hero-actions">
-            <a class="btn primary" href="#projects">Ver proyectos</a>
-            <a class="btn quiet" href="#contacto">Contactar</a>
+            <a class="btn primary" href="#projects" data-i18n="hero.btn_projects">Ver proyectos</a>
+            <a class="btn quiet" href="#contacto" data-i18n="hero.btn_contact">Contactar</a>
           </div>
 
           <div class="hero-tags" id="hero-tags"></div>
         </div>
 
-        <div class="workbench reveal" aria-label="Qué puedo construir">
+        <div class="workbench reveal" aria-label="Qué puedo construir" data-i18n-aria-label="a11y.wb_title">
           <div class="wb-intro">
-            <p class="wb-label">QUÉ PUEDO CONSTRUIR</p>
-            <p class="wb-sub">Soluciones web funcionales desde la lógica del negocio hasta el despliegue.</p>
+            <p class="wb-label" data-i18n="wb.eyebrow">QUÉ PUEDO CONSTRUIR</p>
+            <p class="wb-sub" data-i18n="wb.desc">Soluciones web funcionales desde la lógica del negocio hasta el despliegue.</p>
           </div>
 
           <div class="wb-steps">
@@ -112,9 +122,9 @@
               <span class="wb-icon" aria-hidden="true">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
               </span>
-              <strong>Backend y APIs</strong>
-              <p>Desarrollo APIs, autenticación, roles, bases de datos y lógica de negocio para sistemas web.</p>
-              <div class="wb-step-tags" aria-label="Backend y APIs">
+              <strong data-i18n="wb.steps.0.title">Backend y APIs</strong>
+              <p data-i18n="wb.steps.0.desc">Desarrollo APIs, autenticación, roles, bases de datos y lógica de negocio para sistemas web.</p>
+              <div class="wb-step-tags" aria-label="Backend y APIs" data-i18n-aria-label="a11y.wb_step1">
                 <span class="wb-tag">APIs</span>
                 <span class="wb-tag">Auth</span>
                 <span class="wb-tag">Base de datos</span>
@@ -125,9 +135,9 @@
               <span class="wb-icon" aria-hidden="true">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
               </span>
-              <strong>Productos web completos</strong>
-              <p>Construyo sitios, formularios, paneles administrativos y vistas responsive conectadas a datos reales.</p>
-              <div class="wb-step-tags" aria-label="Productos web completos">
+              <strong data-i18n="wb.steps.1.title">Productos web completos</strong>
+              <p data-i18n="wb.steps.1.desc">Construyo sitios, formularios, paneles administrativos y vistas responsive conectadas a datos reales.</p>
+              <div class="wb-step-tags" aria-label="Productos web completos" data-i18n-aria-label="a11y.wb_step2">
                 <span class="wb-tag">Web</span>
                 <span class="wb-tag">Paneles</span>
                 <span class="wb-tag">Responsive</span>
@@ -138,9 +148,9 @@
               <span class="wb-icon" aria-hidden="true">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               </span>
-              <strong>Automatización e integraciones</strong>
-              <p>Integro formularios, correos, pagos, analítica, dashboards y flujos que reducen trabajo manual.</p>
-              <div class="wb-step-tags" aria-label="Automatización e integraciones">
+              <strong data-i18n="wb.steps.2.title">Automatización e integraciones</strong>
+              <p data-i18n="wb.steps.2.desc">Integro formularios, correos, pagos, analítica, dashboards y flujos que reducen trabajo manual.</p>
+              <div class="wb-step-tags" aria-label="Automatización e integraciones" data-i18n-aria-label="a11y.wb_step3">
                 <span class="wb-tag">Integraciones</span>
                 <span class="wb-tag">Automatización</span>
                 <span class="wb-tag">Deploy</span>
@@ -159,11 +169,11 @@
       <div class="container">
         <div class="venture-panel reveal">
           <div class="venture-copy">
-            <p class="eyebrow">Marca propia</p>
+            <p class="eyebrow" data-i18n="orbynex.eyebrow">Marca propia</p>
             <h2 id="orbynex-heading"><span id="venture-name"></span></h2>
             <p class="section-desc" id="venture-summary"></p>
             <div class="venture-actions">
-              <a class="btn primary" id="venture-link" href="#" target="_blank" rel="noopener">Ver Orbynex</a>
+              <a class="btn primary" id="venture-link" href="#" target="_blank" rel="noopener" data-i18n="orbynex.btn">Ver Orbynex</a>
             </div>
           </div>
 
@@ -176,11 +186,11 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <p class="eyebrow">Trabajo aplicado</p>
-            <h2 id="projects-heading">Proyectos</h2>
-            <p class="section-desc">Una seleccion de lo que he construido: backends, productos web, integraciones y automatizaciones reales.</p>
+            <p class="eyebrow" data-i18n="projects.eyebrow">Trabajo aplicado</p>
+            <h2 id="projects-heading" data-i18n="projects.title">Proyectos</h2>
+            <p class="section-desc" data-i18n="projects.desc">Una seleccion de lo que he construido: backends, productos web, integraciones y automatizaciones reales.</p>
           </div>
-          <span class="pill">Tecnologias en movimiento</span>
+          <span class="pill" data-i18n="projects.marquee">Tecnologias en movimiento</span>
         </div>
 
         <div class="tech-marquee" id="filter-bar" aria-label="Tecnologias usadas en proyectos"></div>
@@ -192,9 +202,9 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <p class="eyebrow">Stack y criterio tecnico</p>
-            <h2 id="skills-heading">Capacidades</h2>
-            <p class="section-desc">Herramientas que uso para construir, integrar, desplegar y mantener soluciones reales.</p>
+            <p class="eyebrow" data-i18n="skills.eyebrow">Stack y criterio tecnico</p>
+            <h2 id="skills-heading" data-i18n="skills.title">Capacidades</h2>
+            <p class="section-desc" data-i18n="skills.desc">Herramientas que uso para construir, integrar, desplegar y mantener soluciones reales.</p>
           </div>
         </div>
 
@@ -205,17 +215,17 @@
     <section class="section-block contact-section" id="contacto" aria-labelledby="contact-heading">
       <div class="container">
         <div class="contact-section-head reveal">
-          <p class="eyebrow">Contacto</p>
-          <h2 id="contact-heading">Tienes una idea o necesitas ayuda con tu sitio?</h2>
+          <p class="eyebrow" data-i18n="contact.eyebrow">Contacto</p>
+          <h2 id="contact-heading" data-i18n="contact.title">Tienes una idea o necesitas ayuda con tu sitio?</h2>
           <p class="section-desc" id="contact-pitch"></p>
         </div>
 
         <div class="contact-shell">
           <div class="contact-form-card reveal">
             <div class="form-card-head form-card-head--center">
-              <span>Formulario directo</span>
-              <h3>Enviar mensaje</h3>
-              <p>Completa los campos y te respondere al correo que indiques.</p>
+              <span data-i18n="contact.form_label">Formulario directo</span>
+              <h3 data-i18n="contact.form_title">Enviar mensaje</h3>
+              <p data-i18n="contact.form_desc">Completa los campos y te respondere al correo que indiques.</p>
             </div>
 
             <form class="contact-form" id="contact-form" novalidate>
@@ -226,28 +236,28 @@
 
               <div class="form-grid">
                 <div class="form-field">
-                  <label for="name">Nombre</label>
-                  <input id="name" type="text" name="name" autocomplete="name" placeholder="Tu nombre o empresa" aria-describedby="name-error" required />
+                  <label for="name" data-i18n="contact.name_lbl">Nombre</label>
+                  <input id="name" type="text" name="name" autocomplete="name" placeholder="Tu nombre o empresa" data-i18n-placeholder="contact.name_ph" aria-describedby="name-error" required />
                   <span class="field-error" id="name-error"></span>
                 </div>
 
                 <div class="form-field">
-                  <label for="email">Correo</label>
-                  <input id="email" type="email" name="email" inputmode="email" autocomplete="email" placeholder="correo@empresa.cl" aria-describedby="email-error" required />
+                  <label for="email" data-i18n="contact.email_lbl">Correo</label>
+                  <input id="email" type="email" name="email" inputmode="email" autocomplete="email" placeholder="correo@empresa.cl" data-i18n-placeholder="contact.email_ph" aria-describedby="email-error" required />
                   <span class="field-error" id="email-error"></span>
                 </div>
               </div>
 
               <div class="form-field">
-                <label for="message">Mensaje</label>
-                <textarea id="message" name="message" rows="6" placeholder="Cuentame que necesitas o en que puedo ayudarte." aria-describedby="message-error form-helper" required></textarea>
+                <label for="message" data-i18n="contact.msg_lbl">Mensaje</label>
+                <textarea id="message" name="message" rows="6" placeholder="Cuentame que necesitas o en que puedo ayudarte." data-i18n-placeholder="contact.msg_ph" aria-describedby="message-error form-helper" required></textarea>
                 <span class="field-error" id="message-error"></span>
-                <span class="form-helper" id="form-helper">No importa si todavia no tienes todo claro, puedes escribir igual.</span>
+                <span class="form-helper" id="form-helper" data-i18n="contact.msg_help">No importa si todavia no tienes todo claro, puedes escribir igual.</span>
               </div>
 
               <div class="form-actions">
-                <button class="btn primary" id="contact-submit" type="submit">Enviar mensaje</button>
-                <p class="form-status" id="form-status" role="status" aria-live="polite">Listo para enviar.</p>
+                <button class="btn primary" id="contact-submit" type="submit" data-i18n="contact.btn">Enviar mensaje</button>
+                <p class="form-status" id="form-status" role="status" aria-live="polite" data-i18n="contact.status_ready">Listo para enviar.</p>
               </div>
             </form>
           </div>
@@ -259,23 +269,23 @@
       <div class="footer-rain" id="footer-rain" aria-hidden="true"></div>
       <div class="container footer-top">
         <div class="footer-brand">
-          <span class="logo footer-logo" aria-hidden="true">CG</span>
+          <span class="logo footer-logo" aria-hidden="true" data-i18n="footer.logo">CG</span>
           <div>
-            <strong>Christian Galindez</strong>
-            <p>Desarrollador backend enfocado en construir productos web, automatizaciones e integraciones.</p>
+            <strong data-i18n="footer.name">Christian Galindez</strong>
+            <p data-i18n="footer.desc">Desarrollador backend enfocado en construir productos web, automatizaciones e integraciones.</p>
           </div>
         </div>
 
-        <nav class="footer-nav" aria-label="Navegacion del footer">
+        <nav class="footer-nav" aria-label="Navegacion del footer" data-i18n-aria-label="a11y.footer_nav">
           <div class="footer-col">
-            <span class="footer-col-title">Secciones</span>
-            <a href="#orbynex">Orbynex</a>
-            <a href="#projects">Proyectos</a>
-            <a href="#skills">Stack</a>
-            <a href="#contacto">Contacto</a>
+            <span class="footer-col-title" data-i18n="footer.col_sections">Secciones</span>
+            <a href="#orbynex" data-i18n="nav.orbynex">Orbynex</a>
+            <a href="#projects" data-i18n="nav.projects">Proyectos</a>
+            <a href="#skills" data-i18n="nav.skills">Stack</a>
+            <a href="#contacto" data-i18n="nav.contact">Contacto</a>
           </div>
           <div class="footer-col">
-            <span class="footer-col-title">Contacto</span>
+            <span class="footer-col-title" data-i18n="footer.col_contact">Contacto</span>
             <span class="footer-email" id="contact-email">christian.galindez.dev@gmail.com</span>
             <a class="link-linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
             <a class="link-github" href="#" target="_blank" rel="noopener">GitHub</a>
@@ -284,8 +294,8 @@
       </div>
 
       <div class="container footer-bottom">
-        <span class="footer-copy">&copy; <span id="year"></span> Christian Galindez. Todos los derechos reservados.</span>
-        <a class="section-link footer-up" href="#top">Volver arriba</a>
+        <span class="footer-copy">&copy; <span id="year"></span> Christian Galindez. <span data-i18n="footer.rights">Todos los derechos reservados.</span></span>
+        <a class="section-link footer-up" href="#top" data-i18n="footer.top">Volver arriba</a>
       </div>
     </footer>
   </main>

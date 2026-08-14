@@ -20,7 +20,7 @@ REQUIRED_PATHS = (
     "index.html",
     "css/styles.css",
     "js/main.js",
-    "data/data.json",
+    "data/i18n/es.json",
     "docs/README.md",
     "docs/PROJECT_STATE.md",
     "docs/architecture.md",
@@ -98,10 +98,10 @@ def validate() -> list[str]:
             errors.append(f"Falta el archivo requerido: {relative}")
 
     try:
-        with (ROOT / "data/data.json").open(encoding="utf-8") as handle:
+        with (ROOT / "data/i18n/es.json").open(encoding="utf-8") as handle:
             json.load(handle)
     except (OSError, json.JSONDecodeError) as exc:
-        errors.append(f"data/data.json no es válido: {exc}")
+        errors.append(f"data/i18n/es.json no es válido: {exc}")
 
     parser = IndexParser()
     parser.feed((ROOT / "index.html").read_text(encoding="utf-8"))

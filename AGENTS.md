@@ -14,11 +14,14 @@
 - Validación del repositorio: `python scripts/check_repository.py`.
 - No hay comandos de test, lint o build para la aplicación estática.
 
-## Implementación
+## Implementación e Internacionalización (i18n)
 
 - Mantén los cambios dentro del alcance solicitado y evita dependencias nuevas.
 - Revisa `git status` y el diff antes de editar. Conserva cambios ajenos y no reviertas archivos que no controla tu tarea.
-- Edita `data/data.json` para contenido. Mantén sincronizados los IDs de `index.html` consumidos por `js/main.js`.
+- **Todo nuevo contenido visible al usuario incorporado al portafolio debe implementarse simultáneamente en Español (`es`), Inglés (`en`) y Portugués (`pt`).**
+- Español es el idioma fuente y fallback. Ningún agente debe agregar contenido textual solamente en Español.
+- Si se agrega, modifica o elimina una cadena visible o un proyecto/dato dinámico, deben actualizarse las traducciones `es`, `en` y `pt` correspondientes en `data/i18n/` dentro del mismo cambio.
+- No añadas claves únicamente a un idioma; mantén sincronizadas las tres traducciones. Las claves estáticas se colocan dentro del nodo `"ui"`.
 - No leas, imprimas ni versiones secretos, archivos `.env`, logs o datos personales.
 
 ## Impacto documental obligatorio

@@ -11,26 +11,30 @@ El portafolio es un sitio estático sin framework ni bundler. Vercel sirve direc
 index.html
 ├── css/styles.css
 ├── js/main.js
-├── data/data.json
+├── data/i18n/
+│   ├── es.json
+│   ├── en.json
+│   └── pt.json
 └── assets/
 ```
 
 ## Flujo de datos
 
-Al cargar `DOMContentLoaded`, `js/main.js` solicita `data/data.json` y renderiza perfil, estadísticas, Orbynex, proyectos, capacidades y contacto en elementos existentes de `index.html`.
+Al cargar `DOMContentLoaded`, `js/main.js` determina el idioma desde `localStorage`, solicita `data/i18n/{lang}.json` y renderiza perfil, estadísticas, Orbynex, proyectos, capacidades y contacto en elementos existentes de `index.html`. 
+La internacionalización incluye los atributos `data-i18n`, `data-i18n-placeholder` y `data-i18n-aria-label` en el HTML para mapear dinámicamente las claves de traducción, manteniendo el sistema 100% estático.
 
 ```text
-data/data.json → fetch() en js/main.js → mutación del DOM en index.html
+data/i18n/{lang}.json → fetch() en js/main.js → mutación del DOM en index.html
 ```
 
 Los IDs y clases consultados por JavaScript forman un contrato interno. Un cambio estructural en HTML debe revisar los selectores correspondientes en JavaScript y CSS.
 
 ## Responsabilidades
 
-- `index.html`: semántica, secciones, formulario, metadatos y referencias a recursos.
+- `index.html`: estructura visual y nodos con atributos `data-i18n` para internacionalización.
 - `css/styles.css`: tokens visuales, temas, responsive y animaciones.
-- `js/main.js`: carga, renderizado, navegación, filtros, tema, animaciones y envío del formulario.
-- `data/data.json`: contenido editable y enlaces de proyectos.
+- `js/main.js`: carga, renderizado de i18n y datos dinámicos, navegación, filtros, tema, animaciones y envío del formulario.
+- `data/i18n/*.json`: contenido editable, traducciones, enlaces de proyectos y textos UI.
 - `assets/`: favicon y vista previa social.
 
 ## Integraciones externas

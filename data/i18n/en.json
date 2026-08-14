@@ -1,0 +1,688 @@
+{
+  "perfil": {
+    "nombre": "Christian Galindez",
+    "rol": "Backend | Automation | Web Solutions",
+    "headline": "Backend developer focused on complete web products.",
+    "descripcion_corta": "I build functional sites, dashboards, APIs, and integrations for real projects, businesses, and digital processes.",
+    "ubicacion": "La Serena, Chile",
+    "stack": "Python | Django REST | Node.js | Linux",
+    "intereses": "External APIs | Automation | Applied Cybersecurity",
+    "disponibilidad": "Available for IT opportunities, web projects, and automation",
+    "hero_tags": [
+      "La Serena, Chile",
+      "Python / Django REST / Node.js",
+      "React / Next.js / Astro",
+      "APIs, bots, SaaS, and integrations",
+      "Clients, automation, and web systems"
+    ]
+  },
+  "stats": [
+    {
+      "k": "10+",
+      "t": "projects built spanning backend, web products, integrations, and infrastructure"
+    },
+    {
+      "k": "3+",
+      "t": "years training in development, networking, and IT support"
+    },
+    {
+      "k": "65+",
+      "t": "technologies, languages, APIs, tools, and concepts applied in real projects and labs"
+    }
+  ],
+  "venture": {
+    "nombre": "orbynex.digital",
+    "url": "https://orbynexdigital.cl/",
+    "resumen": "My brand for web solutions and digital automation for businesses: landing pages, integrations, cross-tool workflows, and clear documentation so the implemented solution can be maintained.",
+    "servicios": [
+      {
+        "titulo": "Landing pages",
+        "descripcion": "Pages focused on explaining services, capturing leads, and building trust from the first click."
+      },
+      {
+        "titulo": "Smart workflows",
+        "descripcion": "Automations between forms, spreadsheets, emails, and tools to reduce manual work."
+      },
+      {
+        "titulo": "Tool integration",
+        "descripcion": "Connecting platforms via APIs and webhooks to avoid duplicate data and operational errors."
+      },
+      {
+        "titulo": "Documentation and support",
+        "descripcion": "Organized handoffs so the business understands how to use, review, and maintain the solution."
+      }
+    ]
+  },
+  "links": {
+    "linkedin": {
+      "url": "http://www.linkedin.com/in/christian-galindez-337ab5287",
+      "text": "LinkedIn"
+    },
+    "email": {
+      "url": "#contacto",
+      "text": "Contact"
+    },
+    "github": {
+      "url": "https://github.com/guacho175",
+      "text": "GitHub"
+    }
+  },
+  "proyectos": [
+    {
+      "titulo": "Forma / Arte Abstracto",
+      "badge": "Procedural generator + AI",
+      "estado": "Web product",
+      "descripcion": "Web catalog of algorithmically generated abstract art. Allows the creation of unique pieces through procedural builders and Cloudflare Workers AI models.",
+      "impacto": "Complete serverless architecture with a public gallery and private admin dashboard. Uses databases (D1) and storage (R2) to efficiently manage the image and vector catalog.",
+      "visual": "ai",
+      "visual_labels": [
+        "Workers AI",
+        "Procedural Art",
+        "Cloudflare D1 + R2"
+      ],
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Cloudflare Workers",
+        "Workers AI",
+        "Cloudflare D1",
+        "Cloudflare R2"
+      ],
+      "repo_url": "",
+      "demo_url": "https://arte.galindezdev.lat/",
+      "cta": "View gallery"
+    },
+    {
+      "titulo": "Cotizador Orbynex",
+      "badge": "SaaS / Web tool",
+      "estado": "Web product",
+      "descripcion": "Web tool to generate and manage automated quotes. Integrates Gemini IA (Google GenAI) for editing and suggesting persuasive texts.",
+      "impacto": "Streamlines the sales process through real-time PDF generation, data management with Supabase, and AI assistance to improve proposal writing.",
+      "visual": "cotizador",
+      "visual_labels": [
+        "React + Vite",
+        "PDF Quotes",
+        "Gemini IA"
+      ],
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "TanStack Router",
+        "Supabase",
+        "Vercel",
+        "PDF Generation",
+        "Google GenAI",
+        "SaaS"
+      ],
+      "repo_url": "",
+      "demo_url": "https://cotizador.orbynexdigital.cl/",
+      "cta": "View quoting tool"
+    },
+    {
+      "titulo": "E-commerce Demo Orbynex",
+      "badge": "E-commerce",
+      "estado": "Commercial demo",
+      "descripcion": "Online store demo with product catalog, shopping cart, checkout, and integrated payment flow.",
+      "impacto": "Practical showcase of an e-commerce solution to sell products or services, featuring a catalog, cart, product dashboard, optimized images, checkout, and payment gateway.",
+      "visual": "ecommerce",
+      "visual_labels": [
+        "Catalog",
+        "Cart",
+        "Checkout"
+      ],
+      "tags": [
+        "React",
+        "Supabase",
+        "Vercel",
+        "E-commerce",
+        "Checkout",
+        "Flow API"
+      ],
+      "repo_url": "",
+      "demo_url": "https://tienda-orbynexdigital.vercel.app/",
+      "cta": "View demo"
+    },
+    {
+      "titulo": "Orbynex WooCommerce Demo",
+      "badge": "WordPress + WooCommerce",
+      "estado": "Published technical demo",
+      "descripcion": "WordPress e-commerce developed with a custom theme, WooCommerce Blocks, custom authentication, Chilean checkout, and Flow integration through a custom adapter plugin.",
+      "impacto": "Showcases a complete commercial implementation: reusable theme, custom plugins, email verification registration, Chilean regions/communes, cart, checkout, and ready-for-Flow payment reconciliation.",
+      "visual": "woocommerce",
+      "visual_labels": [
+        "Custom theme",
+        "Custom plugins",
+        "Flow Bridge"
+      ],
+      "tags": [
+        "WordPress",
+        "WooCommerce",
+        "PHP",
+        "Flow API",
+        "Plugins",
+        "Checkout",
+        "Authentication",
+        "E-commerce"
+      ],
+      "repo_url": "",
+      "demo_url": "https://ecommerce.orbynexdigital.cl/",
+      "cta": "View demo"
+    },
+    {
+      "titulo": "Tu Barrio Limpio",
+      "badge": "Django",
+      "estado": "Web system",
+      "descripcion": "Web system for reporting and managing micro-dump hotspots, with authentication, user roles, and a management workflow for municipal/community tracking.",
+      "impacto": "Django backend, authentication, roles, forms, database, and deployment.",
+      "visual": "gis",
+      "visual_labels": [
+        "Django",
+        "Auth + roles",
+        "Management"
+      ],
+      "tags": [
+        "Django",
+        "Python",
+        "Backend",
+        "Auth",
+        "Database",
+        "PythonAnywhere"
+      ],
+      "repo_url": "",
+      "demo_url": "https://christiangalindez.pythonanywhere.com/",
+      "cta": "View system"
+    },
+    {
+      "titulo": "Smart Feed Reporter / Noticias Orbynex",
+      "badge": "News",
+      "estado": "Public portal",
+      "descripcion": "Public news portal that consumes content endpoints and presents articles, categories, and an editorial archive in a web interface deployed on Vercel.",
+      "impacto": "News frontend, endpoint consumption, categories, dynamic content, and deployment.",
+      "visual": "noticias",
+      "visual_labels": [
+        "Frontend",
+        "Endpoints",
+        "Content"
+      ],
+      "tags": [
+        "Frontend",
+        "API",
+        "News",
+        "Vercel",
+        "Dynamic content"
+      ],
+      "repo_url": "",
+      "demo_url": "https://noticias-orby-nexdigital.vercel.app/",
+      "cta": "View portal"
+    },
+    {
+      "titulo": "AgendaPro Orbynex",
+      "badge": "Healthcare SaaS",
+      "estado": "Web product",
+      "descripcion": "Multi-tenant software for healthcare professionals and small clinics. Centralizes patients, appointments, availability, online booking, and role-based management.",
+      "impacto": "Includes public booking, data isolation per organization, overlap prevention, and exportable PDF/Excel reports.",
+      "visual": "saas",
+      "visual_labels": [
+        "Multi-tenant",
+        "RLS / roles",
+        "PDF + Excel"
+      ],
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Supabase",
+        "PostgreSQL",
+        "RLS",
+        "SaaS",
+        "PDF",
+        "Excel",
+        "Google OAuth",
+        "Resend",
+        "Mercado Pago",
+        "CSV",
+        "Roles"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "orbynex.digital",
+      "badge": "Own brand",
+      "estado": "Web solutions",
+      "descripcion": "Commercial landing page offering digital automation, websites, integrations, and practical workflows for small businesses.",
+      "impacto": "Converts my technical offer into a clear commercial presence, with services, process, plans, and direct WhatsApp contact.",
+      "visual": "orbynex",
+      "visual_labels": [
+        "Landing pages",
+        "Automation",
+        "APIs + webhooks"
+      ],
+      "tags": [
+        "Landing pages",
+        "Automation",
+        "Integrations",
+        "SEO",
+        "WhatsApp",
+        "Calendly",
+        "ManyChat",
+        "Metricool",
+        "Meta Business Suite"
+      ],
+      "repo_url": "",
+      "demo_url": "https://orbynexdigital.cl/"
+    },
+    {
+      "titulo": "DOS27 Studio Publicitario",
+      "badge": "Web client",
+      "estado": "Commercial landing",
+      "descripcion": "Site for an advertising studio focused on graphic design, printing, branding, corporate materials, digital marketing, and websites.",
+      "impacto": "Presents services, visual portfolio, process, WhatsApp contact, and a high-contrast graphic identity for direct sales.",
+      "visual": "cliente",
+      "visual_labels": [
+        "React SPA",
+        "Services + portfolio",
+        "WhatsApp CTA"
+      ],
+      "tags": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Framer Motion",
+        "SEO",
+        "Responsive",
+        "WhatsApp",
+        "Graphic design",
+        "Branding",
+        "Digital marketing"
+      ],
+      "repo_url": "",
+      "demo_url": "https://dos27studiopublicitario.cl/"
+    },
+    {
+      "titulo": "Eterna Flor DyT",
+      "badge": "Web client",
+      "estado": "Self-managed catalog",
+      "descripcion": "Self-managed commercial site for a floral business in La Serena. Uses Sanity CMS for independent catalog management, custom bouquets, and special collections.",
+      "impacto": "Organizes a broad visual catalog dynamically managed by the client. Features real photos and converts inquiries into orders coordinated directly via WhatsApp.",
+      "visual": "cliente",
+      "visual_labels": [
+        "Next.js + Sanity",
+        "Dynamic catalog",
+        "WhatsApp CTA"
+      ],
+      "tags": [
+        "Next.js",
+        "React",
+        "Sanity CMS",
+        "Vercel",
+        "SEO",
+        "Responsive",
+        "WhatsApp",
+        "Catalog",
+        "Web design"
+      ],
+      "repo_url": "",
+      "demo_url": "https://eterna-flor-dyt.vercel.app/",
+      "cta": "View site"
+    },
+    {
+      "titulo": "NotiWilson",
+      "badge": "Bot + dashboard",
+      "estado": "Active demo",
+      "descripcion": "Dashboard for the tech reporting agent: gathers AI, Cloud, and event news, summarizes/translates them with AI, and prepares Telegram deliveries.",
+      "impacto": "Includes reports dashboard, history, metrics, bot configuration, and automated deliveries at 08:00 and 18:00 Chile time.",
+      "visual": "notiwilson",
+      "visual_labels": [
+        "AI Summaries",
+        "Telegram Reports",
+        "Metrics Dashboard"
+      ],
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "TanStack Router",
+        "TanStack Query",
+        "shadcn/ui",
+        "Recharts",
+        "Framer Motion",
+        "Telegram Bot",
+        "AI",
+        "Dashboard",
+        "Gemini API",
+        "RSS",
+        "Supabase",
+        "Cloudflare R2",
+        "Vercel"
+      ],
+      "repo_url": "",
+      "demo_url": "https://notiwilson.orbynexdigital.cl/",
+      "cta": "View dashboard"
+    },
+    {
+      "titulo": "Laboratorio de ciberseguridad e infraestructura",
+      "badge": "Networking and OS",
+      "estado": "Technical lab",
+      "descripcion": "Virtualized environment with simulated machines and networks for auditing, isolated testing, and technical practice with Linux systems.",
+      "impacto": "Enables practice in networking, hardening, SSH, and analysis in a controlled environment.",
+      "visual": "infra",
+      "visual_labels": [
+        "Debian host",
+        "Kali lab",
+        "SSH / networking"
+      ],
+      "tags": [
+        "Debian",
+        "Kali Linux",
+        "VirtualBox",
+        "Networking",
+        "SSH"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "Agente conversacional con Dialogflow CX",
+      "badge": "AI",
+      "estado": "AI Integration",
+      "descripcion": "Conversational workflows to guide scheduling through NLP and webhooks connected to a booking backend.",
+      "impacto": "Organizes conversations and prepares clean data for the backend.",
+      "visual": "ai",
+      "visual_labels": [
+        "Detected intent",
+        "Webhook",
+        "Guided booking"
+      ],
+      "tags": [
+        "Dialogflow CX",
+        "Google Cloud",
+        "Webhooks"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "API de transformacion con IA",
+      "badge": "API Services",
+      "estado": "API Service",
+      "descripcion": "Backend API to receive images via base64 or URL, process them with AI models, and return a newly generated output.",
+      "impacto": "Exposes AI processing as a consumable service for other systems.",
+      "visual": "api",
+      "visual_labels": [
+        "base64 / URL",
+        "AI model",
+        "JSON response"
+      ],
+      "tags": [
+        "Backend API",
+        "AI Integration",
+        "IBM Code Engine"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "Alpha Docere / Practica profesional",
+      "badge": "IT Support",
+      "estado": "Completed internship",
+      "descripcion": "Applied work on an institutional site, providing tech support, technical documentation, and basic customer service automation.",
+      "impacto": "Reinforces experience in a real environment handling requirements, user support, web maintenance, Java, chatbot, and documentation.",
+      "visual": "practice",
+      "visual_labels": [
+        "Java chatbot",
+        "IT Support"
+      ],
+      "tags": [
+        "Java",
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Chatbot",
+        "IT Support",
+        "Technical documentation",
+        "Incident management"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "GRAVO.cl / E-commerce",
+      "badge": "WordPress + store",
+      "estado": "Commercial site",
+      "descripcion": "Redesign, maintenance, and support of a WordPress e-commerce site, focused on commercial presence, catalog, payments, and web operations.",
+      "impacto": "Hands-on work with WordPress administration, visual editing, hosting, SSL, migration, content, store management, and operational support.",
+      "visual": "ecommerce",
+      "visual_labels": [
+        "WordPress",
+        "WooCommerce",
+        "Webpay"
+      ],
+      "tags": [
+        "WordPress",
+        "Divi Builder",
+        "Elementor",
+        "WooCommerce",
+        "Transbank",
+        "Webpay",
+        "cPanel",
+        "SSL",
+        "SMTP",
+        "SEO"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    },
+    {
+      "titulo": "Brujula Digital / Totem IA",
+      "badge": "Academic project",
+      "estado": "Thesis / prototype",
+      "descripcion": "Totem-style system to guide users via a web interface, backend, database, and AI assistance in the service flow.",
+      "impacto": "Combines interactive experience, backend, data, and cloud deployment to resolve automated guidance in an on-site context.",
+      "visual": "totem",
+      "visual_labels": [
+        "React",
+        "Node.js",
+        "AWS"
+      ],
+      "tags": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "AWS",
+        "AI",
+        "Chatbot",
+        "Client-server architecture"
+      ],
+      "repo_url": "",
+      "demo_url": ""
+    }
+  ],
+  "skills": [
+    {
+      "categoria": "Backend and automation",
+      "descripcion": "APIs, services, bots, automated workflows, and business logic.",
+      "items": [
+        "Python",
+        "Django REST",
+        "Node.js",
+        "Express",
+        "REST APIs",
+        "Webhooks",
+        "JWT",
+        "RBAC",
+        "Telegram Bot",
+        "Process automation",
+        "PDF / Excel export",
+        "PostgreSQL",
+        "SQLite",
+        "Django ORM",
+        "Prisma",
+        "Row Level Security"
+      ]
+    },
+    {
+      "categoria": "Frontend and web products",
+      "descripcion": "Landings, dashboards, SaaS, and responsive experiences for clients and personal products.",
+      "items": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Astro",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Framer Motion",
+        "Recharts",
+        "Leaflet.js",
+        "WordPress",
+        "WooCommerce",
+        "Technical SEO",
+        "Responsive design"
+      ]
+    },
+    {
+      "categoria": "Cloud, integrations, and DevOps",
+      "descripcion": "Platform connection, deployment, and operation of production services.",
+      "items": [
+        "Supabase",
+        "Vercel",
+        "AWS EC2 / RDS / S3",
+        "Cloudflare",
+        "Google Cloud",
+        "Docker",
+        "Nginx",
+        "Gunicorn",
+        "Linux",
+        "Git",
+        "SSH",
+        "WhatsApp API",
+        "Google Calendar API",
+        "Gemini API",
+        "Mercado Pago",
+        "Transbank"
+      ]
+    },
+    {
+      "categoria": "Infrastructure, security, and tools",
+      "descripcion": "Environments, auditing, networking, and daily work tools.",
+      "items": [
+        "Debian",
+        "Kali Linux",
+        "VirtualBox",
+        "OWASP",
+        "COBIT 2019",
+        "CORS",
+        "Rate limiting",
+        "VS Code",
+        "GitHub",
+        "Docker Compose",
+        "OpenAPI",
+        "Power BI",
+        "Figma",
+        "Dialogflow CX"
+      ]
+    }
+  ],
+  "contacto": {
+    "pitch": "Send me a message and I'll reply as soon as I can. You don't need to have everything figured out to write.",
+    "email": "christian.galindez.dev@gmail.com",
+    "linkedin_path": "/in/christian-galindez-337ab5287"
+  },
+  "ui": {
+    "meta": {
+      "title": "Christian Galindez | Backend, APIs and Integrations",
+      "desc": "Christian Galindez's technical portfolio: backend, APIs, automation, Linux, and integrations.",
+      "og_desc": "Technical portfolio featuring backend projects, automation, integrations, and infrastructure experience."
+    },
+    "a11y": {
+      "skip": "Skip to content",
+      "home": "Go to home",
+      "nav": "Main sections",
+      "mobile_nav": "Mobile sections",
+      "menu_open": "Open menu",
+      "theme": "Change theme",
+      "footer_nav": "Footer navigation",
+      "wb_title": "What I can build",
+      "wb_step1": "Backend and APIs",
+      "wb_step2": "Complete web products",
+      "wb_step3": "Automation and integrations"
+    },
+    "brand": {
+      "logo": "CG",
+      "name": "Christian Galindez",
+      "role": "Backend developer"
+    },
+    "nav": {
+      "orbynex": "Orbynex",
+      "projects": "Projects",
+      "skills": "Stack",
+      "contact": "Contact"
+    },
+    "theme": "Theme",
+    "hero": {
+      "eyebrow": "Technical portfolio",
+      "btn_projects": "View projects",
+      "btn_contact": "Contact"
+    },
+    "wb": {
+      "eyebrow": "WHAT I CAN BUILD",
+      "desc": "Functional web solutions from business logic to deployment.",
+      "steps": [
+        {
+          "title": "Backend and APIs",
+          "desc": "I develop APIs, authentication, roles, databases, and business logic for web systems."
+        },
+        {
+          "title": "Complete web products",
+          "desc": "I build responsive sites, forms, admin dashboards, and views connected to real data."
+        },
+        {
+          "title": "Automation and integrations",
+          "desc": "I integrate forms, emails, payments, analytics, dashboards, and workflows that reduce manual work."
+        }
+      ]
+    },
+    "orbynex": {
+      "eyebrow": "Own brand",
+      "btn": "View Orbynex"
+    },
+    "projects": {
+      "eyebrow": "Applied work",
+      "title": "Projects",
+      "desc": "A selection of what I have built: backends, web products, integrations, and real-world automations.",
+      "marquee": "Technologies in motion"
+    },
+    "skills": {
+      "eyebrow": "Stack and technical criteria",
+      "title": "Capabilities",
+      "desc": "Tools I use to build, integrate, deploy, and maintain real solutions."
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Have an idea or need help with your site?",
+      "form_label": "Direct form",
+      "form_title": "Send message",
+      "form_desc": "Fill out the fields and I will reply to the email you provide.",
+      "name_lbl": "Name",
+      "name_ph": "Your name or company",
+      "email_lbl": "Email",
+      "email_ph": "email@company.com",
+      "msg_lbl": "Message",
+      "msg_ph": "Tell me what you need or how I can help you.",
+      "msg_help": "It's okay if you don't have everything figured out yet, you can write anyway.",
+      "btn": "Send message",
+      "status_ready": "Ready to send."
+    },
+    "footer": {
+      "logo": "CG",
+      "name": "Christian Galindez",
+      "desc": "Backend developer focused on building web products, automations, and integrations.",
+      "col_sections": "Sections",
+      "col_contact": "Contact",
+      "rights": "All rights reserved.",
+      "top": "Back to top"
+    }
+  }
+}
