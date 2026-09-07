@@ -329,6 +329,34 @@
       "cta": "Ver sitio"
     },
     {
+      "titulo": "Peritaje Social Familia",
+      "badge": "Cliente web",
+      "estado": "Landing profesional",
+      "descripcion": "Landing page profesional para servicio de peritaje social en Tribunales de Familia. Presenta areas periciales, metodologia de evaluacion, principios eticos y vias de contacto directo.",
+      "impacto": "Diseno editorial sobrio y accesible optimizado para conversion y contacto rapido por WhatsApp, con animaciones fluidas, arquitectura responsive y despliegue en Vercel.",
+      "visual": "cliente",
+      "visual_labels": [
+        "Next.js + Tailwind",
+        "Peritaje social",
+        "WhatsApp CTA"
+      ],
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Motion",
+        "Vercel",
+        "SEO",
+        "Responsive",
+        "WhatsApp",
+        "Landing pages"
+      ],
+      "repo_url": "",
+      "demo_url": "https://www.peritajesocialfamilia.cl/",
+      "cta": "Ver sitio"
+    },
+    {
       "titulo": "NotiWilson",
       "badge": "Bot + dashboard",
       "estado": "Demo activa",

@@ -329,6 +329,34 @@
       "cta": "View site"
     },
     {
+      "titulo": "Peritaje Social Familia",
+      "badge": "Web client",
+      "estado": "Professional landing",
+      "descripcion": "Professional landing page for forensic social work practice serving Family Courts. Outlines expert evaluation areas, methodology, ethical principles, and direct contact channels.",
+      "impacto": "Clean, accessible editorial layout optimized for conversion and fast WhatsApp inquiries, featuring fluid Motion animations, responsive design, and Vercel deployment.",
+      "visual": "cliente",
+      "visual_labels": [
+        "Next.js + Tailwind",
+        "Forensic social work",
+        "WhatsApp CTA"
+      ],
+      "tags": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Motion",
+        "Vercel",
+        "SEO",
+        "Responsive",
+        "WhatsApp",
+        "Landing pages"
+      ],
+      "repo_url": "",
+      "demo_url": "https://www.peritajesocialfamilia.cl/",
+      "cta": "View site"
+    },
+    {
       "titulo": "NotiWilson",
       "badge": "Bot + dashboard",
       "estado": "Active demo",
